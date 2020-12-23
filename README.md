@@ -1,5 +1,5 @@
 
-# Fish Guru
+# River-Guru
 
 Visualise water levels, tides and other interesting info for fishermen on the river lee in Cork, Ireland.
 
