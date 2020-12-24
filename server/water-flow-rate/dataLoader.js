@@ -1,13 +1,13 @@
+const { model } = require('../models/flowReading.model');
 const flowReadingModel = require('../models/flowReading.model');
-const User = require('../models/user.model');
-
 
 function Save ()
 {
- 
-
     var model1 = new flowReadingModel();
-    model1.level = "102";
+    model1.river ="Lee";
+    model1.location = "Dam";
+    model1.level = Math.random();
+    model1.recordedAt =  new Date();
 
         model1.save(function(err, doc) {
       if (err) return console.error(err);
