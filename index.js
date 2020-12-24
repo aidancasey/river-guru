@@ -3,7 +3,6 @@
 let filePath = "test-data/04-Inniscarra-Flow.pdf";
  
 
-
 var pdf_table_extractor = require("pdf-table-extractor");
 
 const ObjectsToCsv = require('objects-to-csv')
