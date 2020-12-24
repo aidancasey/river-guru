@@ -39,5 +39,5 @@ Run mongod as a service
 brew services start mongodb-community
 ```
 
-
+MEAN stack inspired from https://github.com/linnovate/mean
                                                 
