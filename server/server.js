@@ -12,7 +12,7 @@ app.listen(config.port, function() {
   })
 
   app.get('/', function(req, res) {
-    waterFlow.Save1();
+    waterFlow.UpdateData();
     res.send('Hello World')
   })
   

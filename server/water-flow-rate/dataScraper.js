@@ -1,3 +1,6 @@
+const flowReadingModel = require('../models/flowReading.model');
+
+
 function downloadPDFReport() {
   console.log('downloading pdf');
   return;
@@ -8,8 +11,18 @@ function parseData() {
 return;
 }
 
-export function getLatestData() {
-  return 'Munich';
+function GetLatestData() {
+  downloadPDFReport();
+  parseData();
+
+  var model1 = new flowReadingModel();
+    model1.river ="Lee";
+    model1.location = "Dam";
+    model1.level = Math.random();
+    model1.recordedAt =  new Date();
+
+  return model1; 
 }
 
-export const dob = '12.01.1982';
+module.exports.GetLatestData = GetLatestData;
+

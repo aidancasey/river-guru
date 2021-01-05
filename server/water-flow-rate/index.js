@@ -1,9 +1,13 @@
 const db = require('./dataLoader');
+const scraper = require('./dataScraper');
 
+ 
 
-function Save1()
+function UpdateData()
 {
-    db.Save();
+    var data = scraper.GetLatestData();
+console.log(JSON.stringify(data));
+
 };
 
-module.exports.Save1 = Save1;
+module.exports.UpdateData = UpdateData;

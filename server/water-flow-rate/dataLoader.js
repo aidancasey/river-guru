@@ -1,4 +1,3 @@
-const { model } = require('../models/flowReading.model');
 const flowReadingModel = require('../models/flowReading.model');
 
 function Save ()
