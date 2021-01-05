@@ -17,14 +17,13 @@ const FlowReadingSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
- 
+
   createdAt: {
     type: Date,
     default: Date.now
-  },
+  }
 }, {
   versionKey: false
 });
-
 
 module.exports = mongoose.model('FlowReading', FlowReadingSchema);

@@ -5,14 +5,11 @@ require('./config/mongoose');
 
 const waterFlow = require('./water-flow-rate');
 
+app.listen(config.port, () => {
+  console.log('listening on 3000');
+});
 
-
-app.listen(config.port, function() {
-    console.log('listening on 3000')
-  })
-
-  app.get('/', function(req, res) {
-    waterFlow.UpdateData();
-    res.send('Hello World')
-  })
-  
+app.get('/', (req, res) => {
+  waterFlow.UpdateData();
+  res.send('Hello World');
+});

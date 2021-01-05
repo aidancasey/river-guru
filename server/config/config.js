@@ -1,9 +1,9 @@
 const config = {
-  env: "dev",
+  env: 'dev',
   port: 3000,
   mongooseDebug: true,
   mongo: {
-    host: "mongodb://localhost/",
+    host: 'mongodb://localhost/',
     port: 27017
   }
 };
