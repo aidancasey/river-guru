@@ -1,8 +1,6 @@
-const flowReadingModel = require('../models/flowReading.model');
-
-
 var path = require('path');
 const { DownloaderHelper } = require('node-downloader-helper');
+const flowReadingModel = require('../models/flowReading.model');
 
 function downloadPDFReport() {
   var fullPath = path.resolve('./server/downloads');

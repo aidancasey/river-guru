@@ -5,7 +5,8 @@
     "main": "server.js",
     "scripts": {
         "test": "node --inspect server/server.js",
-        "dev": "nodemon server/server.js"
+        "dev": "nodemon server/server.js",
+        "pretest": "eslint --ignore-path .gitignore ."
     },
     "keywords": [],
     "author": "",
