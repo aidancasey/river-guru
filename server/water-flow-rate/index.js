@@ -1,4 +1,4 @@
-const db = require('./dataLoader');
+const db = require('./db');
 const scraper = require('./dataScraper');
 
  
@@ -6,7 +6,8 @@ const scraper = require('./dataScraper');
 function UpdateData()
 {
     var data = scraper.GetLatestData();
-console.log(JSON.stringify(data));
+    console.log(JSON.stringify(data));
+    db.Save(data);
 
 };
 
