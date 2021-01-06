@@ -7,9 +7,13 @@ function Save(model) {
     model1.level = Math.random();
     model1.recordedAt =  new Date(); */
 
-  model.save((err, doc) => {
-    if (err) return console.error(err);
-    console.log('level doc inserted succussfully!');
+  model.save((err, result) => {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      console.log(result);
+    }
   });
 }
 
