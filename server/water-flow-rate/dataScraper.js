@@ -2,7 +2,7 @@ var path = require('path');
 const axios = require('axios').default;
 const fs = require('fs');
 const pdfTableExtractor = require('pdf-table-extractor');
-const ObjectsToCsv = require('objects-to-csv');
+const { DateTime } = require('luxon');
 const FlowReadingModel = require('../models/flowReading.model');
 
 async function downloadFile(fileUrl, outputLocationPath) {
@@ -14,9 +14,7 @@ async function downloadFile(fileUrl, outputLocationPath) {
     responseType: 'stream'
   }).then((response) =>
 
-  // ensure that the user can call `then()` only when the file has
-  // been downloaded entirely.
-
+  // ensure that the file has been downloaded entirely.
     new Promise((resolve, reject) => {
       response.data.pipe(writer);
       let error = null;
@@ -34,6 +32,21 @@ async function downloadFile(fileUrl, outputLocationPath) {
       });
     }));
 }
+
+function transformPDFDataToFlowReadings(readings) {
+  var flowReadings = readings.map((item) => {
+    var model = new FlowReadingModel();
+    model.river = 'Lee';
+    model.location = 'Dam';
+    model.level = item[1];
+    model.DateTime = DateTime.fromFormat(item[0], 'dd-MMM-yy hh:mm:ss');
+    return model;
+  });
+
+  return flowReadings;
+}
+
+// wrap pdfTableExtractor in a promise to make it more composable
 const parsePdf = (file) => new Promise((resolve, reject) => {
   pdfTableExtractor(file, (data, err) => {
     if (err) {
@@ -53,11 +66,20 @@ async function GetLatestData() {
     parsePdf(downloadFileName)
       .then((data) => {
         console.log(data.pageTables[1].tables);
+
+        // last readings are on page two , starting on  line 3
+        var pageTwo = data.pageTables[1];
+        var readings = pageTwo.tables;
+        readings.splice(0, 2); // drop first 2 duff lines
+        console.log('foo');
+
+        var flowReadings = transformPDFDataToFlowReadings(readings);
+
+        return flowReadings;
       })
       .catch((err) => {
         console.log(err);
       });
-    // var x = await parseData(testPath);
   });
 }
 
