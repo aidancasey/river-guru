@@ -10,7 +10,7 @@ router.get('/health', (req, res) => res.send('OK'));
 
 /** GET /water - process latest water levels */
 router.get('/water', (req, res) => {
-  waterFlow.UpdateData();
+  waterFlow.UpdateData()
   res.send('water levels gotted');
 });
 

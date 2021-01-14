@@ -56,31 +56,33 @@ const parsePdf = (file) => new Promise((resolve, reject) => {
   });
 });
 
-async function GetLatestData() {
+async function DownloadLatestPDF() {
   var url = 'http://esbhydro.ie/Lee/02-Inniscarra-Headrace.pdf';
   var fullPath = path.resolve('./server/downloads');
   var newName = `${new Date().toISOString()}.pdf`;
   var downloadFileName = `${fullPath}/${newName}`;
+  return await downloadFile(url, downloadFileName);
+}
 
-  downloadFile(url, downloadFileName).then((value) => {
-    parsePdf(downloadFileName)
-      .then((data) => {
-        console.log(data.pageTables[1].tables);
+async function ExtractRawFlowDataFromPDF(pdfPath) {
+  return parsePdf(pdfPath);
+}
 
-        // last readings are on page two , starting on  line 3
-        var pageTwo = data.pageTables[1];
-        var readings = pageTwo.tables;
-        readings.splice(0, 2); // drop first 2 duff lines
-        console.log('foo');
+async function ConvertToFlowReadings(data) {
+  return new Promise((resolve, reject) => {
+    console.log(data.pageTables[1].tables);
 
-        var flowReadings = transformPDFDataToFlowReadings(readings);
-
-        return flowReadings;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // last readings are on page two , starting on  line 3
+    var pageTwo = data.pageTables[1];
+    var readings = pageTwo.tables;
+    readings.splice(0, 2); // drop first 2 duff line
+    console.log('gonna transfrm');
+    var flowReadings = transformPDFDataToFlowReadings(readings);
+    console.log('transformed');
+    resolve(flowReadings);
   });
 }
 
-module.exports.GetLatestData = GetLatestData;
+module.exports.ConvertToFlowReadings = ConvertToFlowReadings;
+module.exports.DownloadLatestPDF = DownloadLatestPDF;
+module.exports.ExtractRawFlowDataFromPDF = ExtractRawFlowDataFromPDF;

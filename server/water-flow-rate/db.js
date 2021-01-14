@@ -1,20 +1,12 @@
-// const flowReadingModel = require('../models/flowReading.model');
+const { db } = require('../models/flowReading.model');
 
-function Save(model) {
-/*     var model1 = new flowReadingModel();
-    model1.river ="Lee";
-    model1.location = "Dam";
-    model1.level = Math.random();
-    model1.recordedAt =  new Date(); */
-
-  model.save((err, result) => {
-    if (err) {
-      console.log(err);
-    }
-    else {
-      console.log(result);
-    }
+async function SaveFlowReadings(data) {
+  return new Promise((resolve, reject) => {
+    console.log('gonna save');
+    console.log(JSON.stringify(data));
+    console.log('tis done ');
+    resolve('tis done');
   });
 }
 
-module.exports.Save = Save;
+module.exports.SaveFlowReadings = SaveFlowReadings;
