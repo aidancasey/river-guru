@@ -6,8 +6,8 @@ async function UpdateData() {
     .then((filePath) => {
     return scraper.ExtractRawFlowDataFromPDF(filePath);
     })
-    .then((data) => {
-      return scraper.ConvertToFlowReadings(data)
+    .then((rawData) => {
+      return scraper.ConvertToFlowReadings(rawData)
       })
     .then((readings, err) => {
       db.SaveFlowReadings(readings);

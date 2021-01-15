@@ -39,7 +39,7 @@ function transformPDFDataToFlowReadings(readings) {
     model.river = 'Lee';
     model.location = 'Dam';
     model.level = item[1];
-    model.DateTime = DateTime.fromFormat(item[0], 'dd-MMM-yy hh:mm:ss');
+    model.recordedAt = DateTime.fromFormat(item[0], 'dd-MMM-yy hh:mm:ss');
     return model;
   });
 

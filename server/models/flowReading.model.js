@@ -16,11 +16,6 @@ const FlowReadingSchema = new mongoose.Schema({
   recordedAt: {
     type: Date,
     required: true
-  },
-
-  createdAt: {
-    type: Date,
-    default: Date.now
   }
 }, {
   versionKey: false
