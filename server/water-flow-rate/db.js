@@ -26,7 +26,7 @@ async function SaveFlowReadings(flowReadings) {
 async function GetReadingsFromPast24Hours() {
   return await db.aggregate([
     { $match: { recordedAt: { $gt: new Date(Date.now() - 24 * 60 * 60 * 1000) } } },
-    { $sort: { createdAt: -1 } }
+    { $sort: { recordedAt: -1 } }
   ]).then((data) => data);
 }
 

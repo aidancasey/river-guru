@@ -13,7 +13,7 @@ Visualise water levels, tides and other interesting info for fishermen on the ri
 - [X] store it to mongodb
 - [X] API to return latest 24 hours worth of readings
 - [ ] build skeleton vue.js app
-- [ ] pipelines to deploy app to Vercel
+- [ ] pipelines to deploy app to Vercel / Heroku
 - [ ] CRON task / schedulled API to refresh data twice an hour
 
 #### Visualise Tide Info for next 48 hours
