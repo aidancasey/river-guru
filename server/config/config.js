@@ -1,11 +1,8 @@
+require('dotenv').config();
+
 const config = {
   env: 'dev',
-  port: 3000,
-  mongooseDebug: true,
-  mongo: {
-    host: 'mongodb://localhost/',
-    port: 27017
-  }
+  mongooseDebug: true
 };
 
 module.exports = config;

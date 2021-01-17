@@ -5,7 +5,7 @@ const debug = require('debug')('express-mongoose-es6-rest-api:index');
 const config = require('./config');
 
 // connect to mongo db
-const mongoUri = config.mongo.host;
+const mongoUri = process.env.MONGO_HOST;
 mongoose.connect(mongoUri, {
   keepAlive: 1,
   useCreateIndex: true,
