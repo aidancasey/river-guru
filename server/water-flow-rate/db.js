@@ -1,31 +1,34 @@
 const db = require('../models/flowReading.model');
 
 async function SaveFlowReadings(flowReadings) {
-  flowReadings.forEach((element) => {
-    db.findOne({
-      river: element.river,
-      location: element.location,
-      recordedAt: element.recordedAt
-    }, (err, docs) => {
-      if (docs == null) {
-        element.save();
-      }
-      else {
-        console.log('already exists skipping: ', element.recordedAt);
-      }
-    });
+  var promises = [];
+  promises.push(
+    flowReadings.forEach((element) => {
+      db.findOne({
+        river: element.river,
+        location: element.location,
+        recordedAt: element.recordedAt
+      }, (err, docs) => {
+        if (docs == null) {
+          element.save();
+        }
+        else {
+          console.log('already exists skipping: ', element.recordedAt);
+        }
+      });
+    })
+  );
+  await Promise.all(promises).then(() => {
+    console.log('done all the saving');
   });
-  return true;
 }
 
-/* async function SaveFlowReadings1(flowReadings) {
+async function GetReadingsFromPast24Hours() {
+  return await db.aggregate([
+    { $match: { recordedAt: { $gt: new Date(Date.now() - 24 * 60 * 60 * 1000) } } },
+    { $sort: { createdAt: -1 } }
+  ]).then((data) => data);
+}
 
-  return new Promise.((resolve, reject) => {
-
-    const query = { name: 'borne' };
-    flowReadings[0].findOneAndUpdate(query, { name: 'jason bourne' }, options, callback)
-
-    resolve('tis done');
-  });
-} */
 module.exports.SaveFlowReadings = SaveFlowReadings;
+module.exports.GetReadingsFromPast24Hours = GetReadingsFromPast24Hours;

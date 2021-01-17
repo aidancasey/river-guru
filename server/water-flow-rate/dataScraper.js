@@ -57,7 +57,7 @@ const parsePdf = (file) => new Promise((resolve, reject) => {
 });
 
 async function DownloadLatestPDF() {
-  var url = 'http://esbhydro.ie/Lee/02-Inniscarra-Headrace.pdf';
+  var url = 'http://esbhydro.ie/Lee/04-Inniscarra-Flow.pdf';
   var fullPath = path.resolve('./server/downloads');
   var newName = `${new Date().toISOString()}.pdf`;
   var downloadFileName = `${fullPath}/${newName}`;

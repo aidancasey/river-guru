@@ -9,9 +9,19 @@ console.log('adding routes...');
 router.get('/health', (req, res) => res.send('OK'));
 
 /** GET /water - process latest water levels */
-router.get('/water', (req, res) => {
-  waterFlow.UpdateData()
-  res.send('water levels gotted');
+router.get('/crunch', (req, res) => {
+  waterFlow.UpdateData();
+  res.send('latest water readings processed');
+});
+
+/** GET /water - process latest water levels */
+router.get('/waterlevels', (req, res) => {
+  waterFlow.GetLatestWaterLevels()
+    .then((results) => {
+      res.send(results);
+    })
+    .catch((error) => console.error(error));
+  // ...
 });
 
 module.exports = router;

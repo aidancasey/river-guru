@@ -1,14 +1,11 @@
 const db = require('./db');
 const scraper = require('./dataScraper');
+const FlowReadingModel = require('../models/flowReading.model');
 
 async function UpdateData() {
   scraper.DownloadLatestPDF()
-    .then((filePath) => {
-    return scraper.ExtractRawFlowDataFromPDF(filePath);
-    })
-    .then((rawData) => {
-      return scraper.ConvertToFlowReadings(rawData)
-      })
+    .then((filePath) => scraper.ExtractRawFlowDataFromPDF(filePath))
+    .then((rawData) => scraper.ConvertToFlowReadings(rawData))
     .then((readings, err) => {
       db.SaveFlowReadings(readings);
     })
@@ -17,4 +14,10 @@ async function UpdateData() {
     });
 }
 
+async function GetLatestWaterLevels() {
+  var readings = await db.GetReadingsFromPast24Hours();
+  return readings;
+}
+
 module.exports.UpdateData = UpdateData;
+module.exports.GetLatestWaterLevels = GetLatestWaterLevels;
