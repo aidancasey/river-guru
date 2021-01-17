@@ -7,14 +7,18 @@ Visualise water levels, tides and other interesting info for fishermen on the ri
 ### TO DO
 
 Visualise Average Hourly Flow At Inniscarra Dam
+ [DONE]  automatically download latest ESB headrace dam readings from here 
+ http://esbhydro.ie/Lee/04-Inniscarra-Flow.pdf
+ [DOME] extrate the data from the pdf and get in into machine readable format
+ [DONE] store it to mongodb
+ [DONE] API to return latest 24 hours worth of readings
+[] build skeleton vue.js app
+[] pipelines to deploy app to Vercel
+[] CRON task / schedulled API to refresh data twice an hour
 
-- every hour automatically download latest ESB headrace dam readings from here 
- http://esbhydro.ie/Lee/02-Inniscarra-Headrace.pdf
-- extrate the data from the pdf and get in into machine readable format (csv)
-- dump it to mongodb
-- visualise it in
-
-Visualise Tide Times for next 48 hours
+Visualise Tide Info for next 48 hours
+[] find a decent API to consume this info (weather underground??)
+[] find a decent API for moon cycles in Ireland
 
 Visualise Current Temaperature at the kingsley wier
 
