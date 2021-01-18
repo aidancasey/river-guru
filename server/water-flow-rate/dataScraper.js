@@ -59,6 +59,12 @@ const parsePdf = (file) => new Promise((resolve, reject) => {
 async function DownloadLatestPDF() {
   var url = 'http://esbhydro.ie/Lee/04-Inniscarra-Flow.pdf';
   var fullPath = path.resolve('./tmp/');
+
+  var temp_dir = path.join(process.cwd(), 'temp/');
+if (!fs.existsSync(temp_dir))
+{
+    fs.mkdirSync(temp_dir);
+}
   var newName = `${new Date().toISOString()}.pdf`;
   var downloadFileName = `${fullPath}/${newName}`;
   return await downloadFile(url, downloadFileName);
