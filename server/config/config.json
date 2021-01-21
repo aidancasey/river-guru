@@ -1,0 +1,13 @@
+{
+  "development": {
+    "username": "aidancasey",
+    "password": null,
+    "database": "river-guru-db",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "dialect": "postgres",
+    "use_env_variable": "DATABASE_URL"
+  }
+}
