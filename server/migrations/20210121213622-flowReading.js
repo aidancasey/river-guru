@@ -9,11 +9,7 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER,
     },
-    name: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    county: {
+    river: {
       type: Sequelize.STRING,
       allowNull: false,
     },
@@ -21,9 +17,13 @@ module.exports = {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    data: {
-      type: Sequelize.JSON,
-      allowNull: true,
+    reading: {
+      type: Sequelize.DOUBLE,
+      allowNull: false,
+    },
+    recordedAt: {
+      type: Sequelize.DATE,
+      allowNull: false,
     },
     createdAt: {
       allowNull: false,

@@ -9,7 +9,7 @@ async function UpdateData() {
      
      console.log('need to save...');
      console.log(JSON.stringify(readings));
-     // db.SaveFlowReadings(readings);
+      db.SaveFlowReadings(readings);
     })
     .catch((error) => {
       console.log('Error Occured ', error);

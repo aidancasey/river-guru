@@ -18,5 +18,5 @@ module.exports = (app) => {
 
   app.get('/api/riverlocations', riverLocationsController.list);
 
-  app.get('/api/crunch', dataCruncherController.crunch);
+  app.get('/api/crunch', dataCruncherController.Foo);
 };

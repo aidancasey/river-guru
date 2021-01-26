@@ -1,6 +1,7 @@
+const { UpdateData } = require('../water-flow-rates');
 
 module.exports = {
-  crunch(req, res) {
-   res.send('data crunchified');
-  },
+  Foo(req, res) {
+    UpdateData().then(res.send('data crunchified'));
+  }
 };

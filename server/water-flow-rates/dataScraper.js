@@ -3,7 +3,7 @@ const axios = require('axios').default;
 const fs = require('fs');
 const pdfTableExtractor = require('pdf-table-extractor');
 const { DateTime } = require('luxon');
-const { FlowReading } = require('../../models');
+const { FlowReading } = require('../models');
 
 async function downloadFile(fileUrl, outputLocationPath) {
   const writer = fs.createWriteStream(outputLocationPath);
