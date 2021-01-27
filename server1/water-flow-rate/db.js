@@ -10,7 +10,7 @@ async function SaveFlowReadings(flowReadings) {
         recordedAt: element.recordedAt
       }, (err, docs) => {
         if (docs == null) {
-          element.save();
+          element.save(); // doesn't exist so add it
         }
         else {
           console.log('already exists skipping: ', element.recordedAt);

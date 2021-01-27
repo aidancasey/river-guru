@@ -1,6 +1,7 @@
 //const todosController = require('../controllers').todos;
 //const todoItemsController = require('../controllers').todoItems;
 const riverLocationsController = require('../controllers').riverLocations;
+const flowReadingsController = require('../controllers').flowReadings;
 const dataCruncherController = require('../controllers').dataCruncher;
 
 
@@ -17,6 +18,7 @@ module.exports = (app) => {
   app.delete('/api/todos/:todoId', todosController.destroy); */
 
   app.get('/api/riverlocations', riverLocationsController.list);
+  app.get('/api/flowreadings/latest', flowReadingsController.latest);
 
   app.get('/api/crunch', dataCruncherController.Foo);
 };

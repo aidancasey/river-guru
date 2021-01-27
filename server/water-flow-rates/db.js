@@ -4,9 +4,30 @@ async function SaveFlowReadings(flowReadings) {
   var promises = [];
   promises.push(
     flowReadings.forEach((element) => {
-      element.save();
+      //    element.save();
+      db.FlowReading.findOne({
+        where: {
+          river: element.river,
+          location: element.location,
+          recordedAt: element.recordedAt
+        }
+      }).then((foundItem) => {
+        if (!foundItem) {
+          // Item not found, create a new one
+          element.save();
+          //   .then(onCreate)
+          //   .catch(onError);
+        }
+        else {
+          console.log('already exists... SKIPPING');
+        }
+      })
+        .catch((err) => {
+          console.log(err);
+        });
     })
   );
+
   await Promise.all(promises).then(() => {
     console.log('done all the saving');
   });
