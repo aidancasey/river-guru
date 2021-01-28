@@ -21,6 +21,10 @@ module.exports = {
       type: Sequelize.STRING,
       allowNull: false,
     },
+    locationID: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
     data: {
       type: Sequelize.JSON,
       allowNull: true,

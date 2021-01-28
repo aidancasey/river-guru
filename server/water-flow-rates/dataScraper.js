@@ -37,7 +37,7 @@ function transformPDFDataToFlowReadings(readings) {
   var flowReadings = readings.map((item) => {
     var model = new FlowReading();
     model.river = 'Lee';
-    model.location = 'Inniscarra Dam';
+    model.locationID = 1;
     model.reading = item[1];
     model.recordedAt = DateTime.fromFormat(item[0], 'dd-MMM-yy hh:mm:ss');
     return model;

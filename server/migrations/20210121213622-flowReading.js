@@ -13,8 +13,8 @@ module.exports = {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    location: {
-      type: Sequelize.STRING,
+    locationID: {
+      type: Sequelize.INTEGER,
       allowNull: false,
     },
     reading: {

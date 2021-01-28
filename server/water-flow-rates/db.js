@@ -8,7 +8,7 @@ async function SaveFlowReadings(flowReadings) {
       db.FlowReading.findOne({
         where: {
           river: element.river,
-          location: element.location,
+          locationID: element.locationID,
           recordedAt: element.recordedAt
         }
       }).then((foundItem) => {
