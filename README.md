@@ -13,7 +13,7 @@ Visualise water levels, tides and other interesting data for fishermen on the ri
 - [X] API to return latest 24 hours worth of readings
 - [ ] build skeleton vue.js app
 - [X] pipelines to deploy app  / Heroku
-- [ ] CRON task / schedulled API to refresh data twice an hour
+- [X] CRON task / schedulled API to refresh data twice an hour
 
 #### Visualise Tide Info for next 48 hours
 - [ ] find a decent API to consume this info (weather underground??)
@@ -29,7 +29,7 @@ Visualise water levels, tides and other interesting data for fishermen on the ri
 #### Push Notifications to tell me to go fishing when the stars align !
 
 
-### Installing
+### Installing Locally
 
 DB schema
 ```
@@ -44,4 +44,16 @@ Running the app
 npm run start
 ```
 
+
+### Deploying DB schema and seed data via Heroku CLI
+
+```
+heroku addons:create heroku-postgresql:hobby-dev
+npm install -g sequelize-cli
+heroku run bash
+sequelize db:migrate  
+sequelize db:seed:all  
+heroku restart
+
+```
                                                 
