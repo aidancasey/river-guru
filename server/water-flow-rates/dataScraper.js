@@ -3,7 +3,7 @@ const axios = require('axios').default;
 const fs = require('fs');
 const pdfTableExtractor = require('pdf-table-extractor');
 const { DateTime } = require('luxon');
-const FlowReadingModel = require('../models/flowReading.model');
+const { FlowReading } = require('../models');
 
 async function downloadFile(fileUrl, outputLocationPath) {
   const writer = fs.createWriteStream(outputLocationPath);
@@ -35,10 +35,10 @@ async function downloadFile(fileUrl, outputLocationPath) {
 
 function transformPDFDataToFlowReadings(readings) {
   var flowReadings = readings.map((item) => {
-    var model = new FlowReadingModel();
+    var model = new FlowReading();
     model.river = 'Lee';
-    model.location = 'Dam';
-    model.level = item[1];
+    model.location = 'Inniscarra Dam';
+    model.reading = item[1];
     model.recordedAt = DateTime.fromFormat(item[0], 'dd-MMM-yy hh:mm:ss');
     return model;
   });

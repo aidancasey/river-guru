@@ -6,3 +6,4 @@ npm-debug.log
 /server/downloads/*
 .password
 .env
+tmp
