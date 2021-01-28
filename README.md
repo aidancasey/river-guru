@@ -1,12 +1,7 @@
 
 # River-Guru
 
-Visualise water levels, tides and other interesting info for fishermen on the river lee in Cork, Ireland.
-
-
-
-
-river , location 
+Visualise water levels, tides and other interesting data for fishermen on the river lee in Cork, Ireland.
 
 ### TO DO
 
@@ -14,10 +9,10 @@ river , location
 - [X] automatically download latest ESB headrace dam readings from here 
  http://esbhydro.ie/Lee/04-Inniscarra-Flow.pdf
 - [X] extrate the data from the pdf and get in into machine readable format
-- [X] store it to mongodb
+- [X] store it to postgres
 - [X] API to return latest 24 hours worth of readings
 - [ ] build skeleton vue.js app
-- [ ] pipelines to deploy app to Vercel / Heroku
+- [X] pipelines to deploy app  / Heroku
 - [ ] CRON task / schedulled API to refresh data twice an hour
 
 #### Visualise Tide Info for next 48 hours
@@ -36,16 +31,17 @@ river , location
 
 ### Installing
 
-Mongodb
+DB schema
 ```
-brew install mongodb-community
+npm install --save-dev sequelize-cli
+sequelize db:migrate  
+sequelize db:seed:all   
+
 ```
 
-Run mongod as a service
-
+Running the app
 ```
-brew services start mongodb-community
+npm run start
 ```
 
-MEAN stack inspired from https://github.com/linnovate/mean
                                                 
