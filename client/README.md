@@ -1,5 +1,7 @@
 # river-guru-ui
 
+https://codesandbox.io/s/voyy36o7y?file=/src/components/Chart.component.vue:290-307
+
 ## Project setup
 ```
 npm install
