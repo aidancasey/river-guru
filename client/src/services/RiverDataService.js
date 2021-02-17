@@ -2,7 +2,7 @@ import http from "../http-common";
 
 class RiverDataService {
   getAll() {
-    return http.get("/flowReadings/latest");
+    return http.get("/api/flowReadings/latest");
   }
 
  /*  get(id) {
