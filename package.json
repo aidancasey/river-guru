@@ -5,7 +5,7 @@
     "main": "server.js",
     "scripts": {
         "start": "node ./bin/www",
-        "heroku-prebuild": "cd client && npm install && npm run build"
+        "heroku-postbuild": "cd client && npm install && npm run build"
     },
     "keywords": [],
     "author": "",
@@ -31,9 +31,11 @@
         "sequelize": "^6.4.0",
         "sequelize-cli": "^6.2.0",
         "serve-static": "^1.14.1",
-        "vue-apexcharts": "^1.6.0"
+        "vue-apexcharts": "^1.6.0",
+        "vuetify": "^2.4.4"
     },
     "devDependencies": {
+        "@vue/cli": "^4.5.11",
         "@vue/cli-plugin-babel": "~4.5.0",
         "@vue/cli-plugin-eslint": "~4.5.0",
         "@vue/cli-service": "~4.5.0",
