@@ -11,18 +11,18 @@
       </router-link>
     </v-toolbar>
     <v-list>
-      <v-list-tile @click="changeRoute('Dashboard', 1)">
-        <v-list-tile-action>
+      <v-list-item @click="changeRoute('Dashboard', 1)">
+        <v-list-item-action>
           <v-icon>dashboard</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-title :class="[{'active': selectedIndex === 1}, 'item-title' ]" >Dashingboard</v-list-tile-title>
-      </v-list-tile>
-        <v-list-tile @click="changeRoute('Chart', 5)">
-        <v-list-tile-action>
+        </v-list-item-action>
+        <v-list-item-title :class="[{'active': selectedIndex === 1}, 'item-title' ]" >Dashboard</v-list-item-title>
+      </v-list-item>
+        <v-list-item @click="changeRoute('Chart', 5)">
+        <v-list-item-action>
           <v-icon>bar_chart</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-title :class="[{'active': selectedIndex === 5}, 'item-title' ]" >Charts</v-list-tile-title>
-      </v-list-tile>
+        </v-list-item-action>
+        <v-list-item-title :class="[{'active': selectedIndex === 5}, 'item-title' ]" >Chart</v-list-item-title>
+      </v-list-item>
     </v-list>
   </v-navigation-drawer>
 </template>

@@ -1,12 +1,12 @@
 <template>
-  <v-toolbar
+  <v-app-bar 
     dark
     app
     :color="$root.themeColor">
     <v-toolbar-title> SSSSSS
-      <v-toolbar-side-icon @click="toggleNavigationBar"></v-toolbar-side-icon>
+      <v-app-bar-nav-icon @click="toggleNavigationBar"></v-app-bar-nav-icon>
     </v-toolbar-title>
-  </v-toolbar>
+  </v-app-bar>
 </template>
 <script>
 export default {
