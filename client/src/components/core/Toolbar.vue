@@ -3,7 +3,7 @@
     dark
     app
     :color="$root.themeColor">
-    <v-toolbar-title> SSSSSS
+    <v-toolbar-title>
       <v-app-bar-nav-icon @click="toggleNavigationBar"></v-app-bar-nav-icon>
     </v-toolbar-title>
   </v-app-bar>
