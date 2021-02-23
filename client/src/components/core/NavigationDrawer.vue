@@ -24,7 +24,7 @@
         <v-list-item-title :class="[{'active': selectedIndex === 2}, 'item-title' ]" >River Bandon, Cork</v-list-item-title>
       </v-list-item>
     </v-list>
-          <v-list-item @click="changeRoute('Dashboard', 3)">
+          <v-list-item @click="changeRoute('Chart', 3)">
         <v-list-item-action>
           <v-icon>mdi-waves</v-icon>
         </v-list-item-action>
