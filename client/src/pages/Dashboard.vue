@@ -2,7 +2,7 @@
   <v-container fluid grid-list-xl>
     <v-layout row wrap>
       <!-- Widgets-->
-      <v-flex d-flex lg3 sm6 xs12>
+     <!--  <v-flex d-flex lg3 sm6 xs12>
         <widget icon="domain" title="1,287,687" subTitle="13%"  color="#00b297"/>
       </v-flex>
       <v-flex d-flex lg3 sm6 xs12>
@@ -13,25 +13,27 @@
       </v-flex>
       <v-flex d-flex lg3 sm6 xs12>
         <widget icon="watch_later" title="13.00%" subTitle="222"  color="#1D2939"/>
-      </v-flex>
+      </v-flex> -->
       <!-- Widgets Ends -->
       <!-- Statistics -->
       <v-flex d-flex lg4 sm6 xs12>
-        <site-view-statistic/>
+        <flow-rate-chart/>
       </v-flex>
-      <v-flex d-flex lg4 sm6 xs12>
+     <!--  <v-flex d-flex lg4 sm6 xs12>
         <total-earnings-statistic/>
       </v-flex>
       <v-flex d-flex lg4 sm6 xs12>
         <total-earnings-statistic/>
-      </v-flex>
+      </v-flex> -->
       <!-- Statistics Ends -->
          </v-layout>
   </v-container>
 </template>
 
 <script>
+import FlowRateChart from '../components/FlowRateChart.vue'
 export default {
+  components: { FlowRateChart },
   data() {
     return {
       lorem: `Lorem ipsum dolor sit amet, mel at clita quando.`

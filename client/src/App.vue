@@ -7,7 +7,6 @@
           <navigation :toggle="drawer"/>
           <v-content>
             <router-view/>
-            <page-footer />
           </v-content>
         </div>
       </v-app>

@@ -11,6 +11,9 @@ import 'vuetify/dist/vuetify.min.css';
 import 'material-design-icons-iconfont/dist/material-design-icons.css';
 import 'font-awesome/css/font-awesome.css';
 import './styles/global.css';
+import VueLuxon from "vue-luxon";
+
+Vue.use(VueLuxon);
 
 
 Vue.config.productionTip = false

@@ -1,7 +1,7 @@
 <template>
   <v-card class="card">
     <v-card-text class="pa-1">
-      <area-chart :data="data" :dataset="{borderWidth: 3}" :colors="['#b00']"  ytitle="Earnings" ></area-chart>
+      <area-chart :data="data11" :dataset="{borderWidth: 3}" :colors="['#b00']"  ytitle="Flow cubic metres per sec" ></area-chart>
     </v-card-text>
   </v-card>
 </template>
@@ -10,7 +10,7 @@
 export default {
   data() {
     return {
-      data: {
+      data11: {
           '2018-01-01 00:00:00 -0800': 250,
           '2018-01-02 00:00:00 -0800': 150,
           '2018-01-03 00:00:00 -0800': 450,
@@ -20,7 +20,46 @@ export default {
         }
     }
   }
-}
+} 
+
+/* import RiverDataService from "../services/RiverDataService";
+export default {
+  name: "flowReadings-list",
+  data() {
+    return {
+      flowReadings: []
+    };
+  },
+  methods: {
+    retrieveFlowReadings() {
+      RiverDataService.getAll()
+        .then((response) => {
+            console.log(response);
+          this.flowReadings = response.data.map(this.getDisplayFlowReading);
+          console.log(response.data);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+
+    refreshList() {
+      this.retrieveFlowReadings();
+    },
+
+    getDisplayFlowReading(reading) {
+      return {
+
+        reading: reading.reading,
+        recordedAt: reading.recordedAt
+      };
+    },
+  },
+  mounted() {
+    this.retrieveFlowReadings();
+  },
+}; */
+
 </script>
 
 <style>

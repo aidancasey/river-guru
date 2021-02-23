@@ -12,7 +12,7 @@ export default new Router({
       path: "/reading",
       alias: "/readings",
       name: "readings",
-      component: () => import("./components/RiverFlowReadingList")
+      //component: () => import("./components/RiverFlowReadingList")
     },
     {
       path: '/',

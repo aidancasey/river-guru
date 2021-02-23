@@ -17,13 +17,19 @@
         </v-list-item-action>
         <v-list-item-title :class="[{'active': selectedIndex === 1}, 'item-title' ]" >River Lee, Cork</v-list-item-title>
       </v-list-item>
-        <v-list-item @click="changeRoute('Chart', 5)">
+        <v-list-item @click="changeRoute('Chart', 2)">
         <v-list-item-action>
           <v-icon>mdi-waves</v-icon>
         </v-list-item-action>
-        <v-list-item-title :class="[{'active': selectedIndex === 5}, 'item-title' ]" >River Bandon, Cork</v-list-item-title>
+        <v-list-item-title :class="[{'active': selectedIndex === 2}, 'item-title' ]" >River Bandon, Cork</v-list-item-title>
       </v-list-item>
     </v-list>
+          <v-list-item @click="changeRoute('Dashboard', 3)">
+        <v-list-item-action>
+          <v-icon>mdi-waves</v-icon>
+        </v-list-item-action>
+        <v-list-item-title :class="[{'active': selectedIndex === 3}, 'item-title' ]" >River Blackwater, Cork</v-list-item-title>
+      </v-list-item>
   </v-navigation-drawer>
 </template>
 
