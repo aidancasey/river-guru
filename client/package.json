@@ -6,15 +6,23 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "dev": "concurrently \"npm run serve\" \"cd ../server && npm start\""
+    "dev": "concurrently \"npm run serve\" \"cd ../server && npm start\"",
+    "dev1": "concurrently \"webpack-dev-server --inline --progress --config build/webpack.dev.conf.js\" \"cd ../server && npm start\"",
+    "start": "npm run dev",
+    "build1": "node build/build.js"
   },
   "dependencies": {
     "apexcharts": "^3.24.0",
     "axios": "^0.21.1",
+    "chart.js": "^2.9.4",
     "core-js": "^3.6.5",
+    "font-awesome": "^4.7.0",
+    "material-design-icons-iconfont": "^6.1.0",
     "vue": "^2.6.11",
     "vue-apexcharts": "^1.6.0",
+    "vue-chartkick": "^0.5.0",
     "vue-cli-plugin-vuetify": "~2.1.0",
+    "vue-luxon": "^0.10.0",
     "vue-route": "^1.5.1",
     "vue-router": "^3.5.1",
     "vuetify": "^2.4.0"
