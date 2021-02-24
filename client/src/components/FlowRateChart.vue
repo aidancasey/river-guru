@@ -18,7 +18,6 @@ export default {
       chartData: [],
       currentFlow:0,
     }
-
     },
      methods: {
     retrieveFlowReadings() {
