@@ -3,15 +3,15 @@
     v-model="toggle"
     fixed app>
     <v-toolbar flat dark :color="$root.themeColor" class="toolbar">
-      <router-link :to="{ name: 'Dashboard' }">
+      <router-link :to="{ name: 'LeeDashboard' }">
         <img src="@/assets/guru.png" width="36px"/>
       </router-link>
-      <router-link :to="{ name: 'Dashboard' }" class="text">
+      <router-link :to="{ name: 'LeeDashboard' }" class="text">
          The River Guru
       </router-link>
     </v-toolbar>
     <v-list>
-      <v-list-item @click="changeRoute('Dashboard', 1)">
+      <v-list-item @click="changeRoute('LeeDashboard', 1)">
         <v-list-item-action>
           <v-icon>mdi-waves</v-icon>
         </v-list-item-action>
