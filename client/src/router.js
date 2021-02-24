@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Dashboard from '../src/pages/Dashboard.vue';
+import LeeDashboard from '../src/pages/LeeDashboard.vue';
 
 
 Vue.use(Router);
@@ -16,8 +16,8 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'Dashboard',
-      component: Dashboard  }
+      name: 'LeeDashboard',
+      component: LeeDashboard  }
     
   ]
 });

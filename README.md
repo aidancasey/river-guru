@@ -11,12 +11,18 @@ Visualise water levels, tides and other interesting data for fishermen on the ri
 - [X] extrate the data from the pdf and get in into machine readable format
 - [X] store it to postgres
 - [X] API to return latest 24 hours worth of readings
-- [ ] build skeleton vue.js app
+- [X] build skeleton vue.js app
 - [X] pipelines to deploy app  / Heroku
 - [X] CRON task / schedulled API to refresh data twice an hour
 
+#### Deployments
+- [X] custom domain hosting
+- [X] cloudflare SSL certs
+- [] bundle optimisations - add WebPack
+
+
 #### Visualise Tide Info for next 48 hours
-- [ ] find a decent API to consume this info (weather underground??)
+- [ ] find a decent API to consume this info (npm tide-times fork)
 - [ ] find a decent API for moon cycles in Ireland
 
 #### Visualise Current Temaperature at the kingsley wier
