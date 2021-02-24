@@ -3,6 +3,7 @@
 const riverLocationsController = require('../controllers').riverLocations;
 const flowReadingsController = require('../controllers').flowReadings;
 const dataCruncherController = require('../controllers').dataCruncher;
+const tidesController = require('../controllers').tides;
 
 
 
@@ -24,4 +25,5 @@ module.exports = (app) => {
   app.get('/api/flowreadings/latest', flowReadingsController.latest);
 
   app.get('/api/crunch', dataCruncherController.Foo);
+  app.get('/api/tides', tidesController.GetTides);
 };
