@@ -2,8 +2,8 @@
   <v-card class="card">
     <v-card-text class="pa-3"> 
        <v-card-title>Inniscarra Dam</v-card-title>
-        <p class="text-center display-2 text--primary">{{currentFlow}}</p>
-      <area-chart :data="chartData" ytitle="m3/s"/>
+        <p class="text-center display-2 text--primary">{{currentFlow}} ㎥/sec</p>
+      <area-chart :data="chartData"/>
     </v-card-text>
   </v-card>
 </template>
