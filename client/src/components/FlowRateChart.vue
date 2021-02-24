@@ -27,7 +27,7 @@ export default {
             var results = response.data.map(this.getDisplayFlowReading);
             results.reverse();
           this.chartData = results;
-          this.currentFlow = results[0][1][0];
+          this.currentFlow = results[results.length - 1][1][0]; //get the  very last (latest ) flow reading 
         })
         .catch((e) => {
           console.log(e);
