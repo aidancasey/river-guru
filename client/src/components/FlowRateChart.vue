@@ -28,7 +28,7 @@ export default {
             var results = response.data.map(this.getDisplayFlowReading);
             results.reverse();
           this.chartData = results;
-          this.currentFlow = results[0][1].value;
+          this.currentFlow = results[0][1][0];
         })
         .catch((e) => {
           console.log(e);
