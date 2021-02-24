@@ -2,13 +2,8 @@
   <v-card class="card">
     <v-card-text class="pa-3"> 
        <v-card-title>Inniscarra Dam</v-card-title>
-<<<<<<< HEAD
-        <p class="text-center display-2 text--primary">{{currentFlow}}</p>
-      <area-chart :data="chartData" ytitle="m3/s"/>
-=======
         <p class="text-center display-2 text--primary">{{currentFlow}} ㎥/sec</p>
       <area-chart :data="chartData"/>
->>>>>>> 4a12907d738ec3dc4e76757696b2d14bc0528342
     </v-card-text>
   </v-card>
 </template>
@@ -32,11 +27,7 @@ export default {
             var results = response.data.map(this.getDisplayFlowReading);
             results.reverse();
           this.chartData = results;
-<<<<<<< HEAD
-          this.currentFlow = results[0][1].value;
-=======
           this.currentFlow = results[results.length - 1][1][0]; //get the  very last (latest ) flow reading 
->>>>>>> 4a12907d738ec3dc4e76757696b2d14bc0528342
         })
         .catch((e) => {
           console.log(e);
