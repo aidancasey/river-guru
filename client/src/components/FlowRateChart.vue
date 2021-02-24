@@ -2,7 +2,7 @@
   <v-card class="card">
     <v-card-text class="pa-3"> 
        <v-card-title>Inniscarra Dam</v-card-title>
-        <p class="text-center display-2 text--primary">200</p>
+        <p class="text-center display-2 text--primary">{{currentFlow}}</p>
       <area-chart :data="chartData" ytitle="m3/s"/>
     </v-card-text>
   </v-card>
@@ -16,6 +16,7 @@ export default {
   data() {
     return {
       chartData: [],
+      currentFlow:0,
     }
 
     },
@@ -27,6 +28,7 @@ export default {
             var results = response.data.map(this.getDisplayFlowReading);
             results.reverse();
           this.chartData = results;
+          this.currentFlow = results[0][1].value;
         })
         .catch((e) => {
           console.log(e);
