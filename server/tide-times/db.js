@@ -1,22 +1,19 @@
 const db = require('../models');
 
-async function SaveFlowReadings(flowReadings) {
+async function SaveTideTimes(tideTimes) {
   var promises = [];
   promises.push(
-    flowReadings.forEach((element) => {
+    tideTimes.forEach((element) => {
       //    element.save();
-      db.FlowReading.findOne({
+      db.TideTime.findOne({
         where: {
-          location: element.location,
-          locationID: element.locationID,
-          recordedAt: element.recordedAt
+          river: element.river,
+          time: element.time
         }
       }).then((foundItem) => {
         if (!foundItem) {
           // Item not found, create a new one
           element.save();
-          //   .then(onCreate)
-          //   .catch(onError);
         }
         else {
           console.log('already exists... SKIPPING');
@@ -32,4 +29,4 @@ async function SaveFlowReadings(flowReadings) {
   });
 }
 
-module.exports.SaveFlowReadings = SaveFlowReadings;
+module.exports.SaveTideTimes = SaveTideTimes;

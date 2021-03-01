@@ -1,7 +1,7 @@
-const { GetTimesTimes } = require('../tide-times');
+const { GetTideTimes } = require('../tide-times');
 
 module.exports = {
   GetTides(req, res) {
-    GetTimesTimes().then((result)=>res.send(result));
+    GetTideTimes().then((result)=>res.send(result));
   }
 };
