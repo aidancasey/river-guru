@@ -1,7 +1,9 @@
 
 var assert = require('assert');
 var scraper = require('../tide-times/scraper.js')
+var index = require('../tide-times/index.js')
 const { DateTime } = require('luxon');
+
 
 describe('tide-times-scraper', function() {
   describe('#BuildURL()', function() {
@@ -18,11 +20,25 @@ describe('tide-times-scraper', function() {
     describe('#GetTideTimes()', function() {
       it('should return at least 2 tides times when passed a valid location and date', function() {
         const now = DateTime.fromISO(new Date().toISOString())
-        var data = scraper.GetTideTimes('cork',now);
-        console.log(data);
-        assert.equal(url,"dookes",true);
+        scraper.GetTideTimes('cork',now).then((data)=>{
+          console.log(data.length);
+          assert.equal(data.length>2,true,true);  
+        })
       }
         );
       });
     });
 
+
+    describe('tide-times-index', function() {
+      describe('#GetTideTimes()', function() {
+        it('should return at least 2 tides times when passed a valid location and date', function() {
+          const now = DateTime.fromISO(new Date().toISOString())
+          index.GetTideTimes('cork',now).then((data)=>{
+            console.log(data.length);
+            assert.equal(data.length>2,true,true);  
+          })
+        }
+          );
+        });
+      });

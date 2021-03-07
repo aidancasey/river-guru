@@ -1,7 +1,7 @@
 const rp = require('request-promise');
 const $ = require('cheerio');
 const { DateTime } = require('luxon');
-
+const { TideTime } = require('../models');
 
 async function GetTideTimes(location,startDate,noDays) {
      var url = BuildURL(location,startDate);
@@ -9,8 +9,48 @@ async function GetTideTimes(location,startDate,noDays) {
 return await rp(url)
   .then(function(html) {
     var fragment = $('.times', html).text();
-    var result =FormatToJSON(fragment);
-    return result;
+    var tides =FormatToJSON(fragment);
+    var results = [];
+
+    tides.low.forEach((element) => {
+      tide = new TideTime();
+      tide.location = location;
+      tide.height=element.height;
+
+      var hh = element.time.split(":")[0];
+      var mm = element.time.split(":")[1];
+
+      tide.time = DateTime.fromObject({
+        year:startDate.year,
+        month:startDate.month, 
+        day: startDate.day, 
+        hour: hh, 
+        minute: mm
+      }); 
+      tide.hilo ='low';
+      results.push(tide);
+  });
+
+  tides.high.forEach((element) => {
+    tide = new TideTime();
+    tide.location = location;
+    tide.height=element.height;
+
+    var hh = element.time.split(":")[0];
+    var mm = element.time.split(":")[1];
+
+    tide.time = DateTime.fromObject({
+      year:startDate.year,
+      month:startDate.month, 
+      day: startDate.day, 
+      hour: hh, 
+      minute: mm
+    }); 
+    tide.hilo ='high';
+    results.push(tide);
+});
+
+    return results;
   })
   .catch(function(err) {
     console.log(err);
