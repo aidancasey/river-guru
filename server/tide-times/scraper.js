@@ -3,8 +3,8 @@ const $ = require('cheerio');
 const { DateTime } = require('luxon');
 const { TideTime } = require('../models');
 
-async function GetTideTimes(location,startDate,noDays) {
-     var url = BuildURL(location,startDate);
+async function GetTideTimes(place,startDate) {
+     var url = BuildURL(place,startDate);
 // Scrape the data
 return await rp(url)
   .then(function(html) {
@@ -14,7 +14,7 @@ return await rp(url)
 
     tides.low.forEach((element) => {
       tide = new TideTime();
-      tide.location = location;
+      tide.location = place;
       tide.height=element.height;
 
       var hh = element.time.split(":")[0];
@@ -33,7 +33,7 @@ return await rp(url)
 
   tides.high.forEach((element) => {
     tide = new TideTime();
-    tide.location = location;
+    tide.location = place;
     tide.height=element.height;
 
     var hh = element.time.split(":")[0];
@@ -59,15 +59,15 @@ return await rp(url)
 }
 
 
-function BuildURL(location,date){
+function BuildURL(place,date){
     //https://www.tidetimes.co.uk/cork-city-tide-times-20210217'
 
     var baseURL = 'https://www.tidetimes.co.uk/';
-    if (location.toLowerCase() == "cork"){
+    if (place.toLowerCase() == "cork"){
       baseURL = baseURL + 'cork-city-tide-times-'
     }
     else{
-        throw "unsupported location for tide times " + location;
+        throw "unsupported location for tide times " + loc;
     }
     baseURL= baseURL + DateTime.fromISO(date).toFormat('yyyyMMdd')
     return baseURL;

@@ -1,7 +1,7 @@
 const db = require('./db');
 const scraper = require('./dataScraper');
 
-async function UpdateData() {
+async function StoreLatestFlowReadings() {
   scraper.DownloadLatestPDF()
     .then((filePath) => scraper.ExtractRawFlowDataFromPDF(filePath))
     .then((rawData) => scraper.ConvertToFlowReadings(rawData))
@@ -21,5 +21,5 @@ async function GetLatestWaterLevels() {
   return readings;
 }
 
-module.exports.UpdateData = UpdateData;
+module.exports.StoreLatestFlowReadings = StoreLatestFlowReadings;
 module.exports.GetLatestWaterLevels = GetLatestWaterLevels;

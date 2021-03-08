@@ -1,7 +1,12 @@
-const { UpdateData } = require('../water-flow-rates');
+const { StoreLatestFlowReadings } = require('../water-flow-rates');
+const { StoreMissingTideTimes } = require('../tide-times');
 
 module.exports = {
-  Foo(req, res) {
-    UpdateData().then(res.send('data crunchified'));
+  Karunch(req, res) {
+
+    // store latest tide times
+    StoreMissingTideTimes('cork')
+   // .then(StoreLatestFlowReadings)
+    .then(res.send('data crunchified'));
   }
 };

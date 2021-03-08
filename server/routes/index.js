@@ -24,6 +24,13 @@ module.exports = (app) => {
   app.get('/api/riverlocations', riverLocationsController.list);
   app.get('/api/flowreadings/latest', flowReadingsController.latest);
 
-  app.get('/api/crunch', dataCruncherController.Foo);
-  app.get('/api/tides', tidesController.GetTides);
+  app.get('/api/crunch', dataCruncherController.Karunch);
+
+  
+  app.get('/api/tides/:location/latest', function (req, res) {
+    var place = req.params.location;
+    tidesController.GetLatestTides(place,req,res);
+  });
+
+
 };

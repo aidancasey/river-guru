@@ -1,7 +1,9 @@
-const { GetTideTimes } = require('../tide-times');
+const { index } = require('../tide-times');
+const { DateTime } = require('luxon');
 
 module.exports = {
-  GetTides(req, res) {
-    GetTideTimes().then((result)=>res.send(result));
+  GetLatestTides(place,req, res) {
+    var today = DateTime.local();
+    index.GetTides(place,today).then((result)=>{res.send(result)});
   }
 };
