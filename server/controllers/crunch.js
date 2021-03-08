@@ -6,7 +6,7 @@ module.exports = {
 
     // store latest tide times
     StoreMissingTideTimes('cork')
-   // .then(StoreLatestFlowReadings)
+    .then(StoreLatestFlowReadings)
     .then(res.send('data crunchified'));
   }
 };
