@@ -27,7 +27,7 @@ async function GetTideTimes(place, startDate) {
       var results = [];
 
       tides.low.forEach((element) => {
-        tide = new TideTime();
+        var tide = new TideTime();
         tide.location = place;
         tide.height = element.height;
 
@@ -80,17 +80,17 @@ function FormatToText(times) {
 }
 
 function FormatToJSON(times) {
-  text = FormatToText(times);
-  json = { low: [], high: [] };
-  a = text.split('\n');
+  var text = FormatToText(times);
+  var json = { low: [], high: [] };
+  var a = text.split('\n');
   a.pop(); // get rid of last value due to trailigng \n
-  timeRegex = /([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]/;
-  hightRegex = /[0-9]*\.[0-9]{2}/;
+  var timeRegex = /([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]/;
+  var hightRegex = /[0-9]*\.[0-9]{2}/;
   a.map((line) => {
-    time = line.match(timeRegex)[0];
-    hight = line.match(hightRegex)[0];
-    tide = { time, height: hight };
-    if (line[0] == 'H') {
+    var time = line.match(timeRegex)[0];
+    var hight = line.match(hightRegex)[0];
+    var tide = { time, height: hight };
+    if (line[0] === 'H') {
       json.high.push(tide);
     }
     else {

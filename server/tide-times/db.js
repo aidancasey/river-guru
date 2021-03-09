@@ -1,7 +1,6 @@
 const db = require('../models');
 
 async function SaveTideTimes(tideTimes) {
-  console.log('saving all the shit..')
   var promises = [];
   promises.push(
     tideTimes.forEach((element) => {

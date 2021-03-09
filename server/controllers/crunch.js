@@ -3,10 +3,9 @@ const { StoreMissingTideTimes } = require('../tide-times');
 
 module.exports = {
   Karunch(req, res) {
-
     // store latest tide times
     StoreMissingTideTimes('cork')
-    .then(StoreLatestFlowReadings)
-    .then(res.send('data crunchified'));
+      .then(StoreLatestFlowReadings)
+      .then(res.send('data crunchified'));
   }
 };
