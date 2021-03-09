@@ -5,6 +5,10 @@ class RiverDataService {
     return http.get("/api/flowReadings/latest");
   }
 
+  getLatestTideTimes(location) {
+    return http.get("/api/tides/" + location + "/latest");
+  }
+
  /*  get(id) {
     return http.get(`/river/${id}`);
   }
