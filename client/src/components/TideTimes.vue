@@ -7,10 +7,10 @@
     <v-list class="transparent">
       <v-list-item v-for="item in tides" :key="item.id">
         <v-list-item-subtitle class="text-left">
-          {{ item.hilo }}
+          {{ item.hilo.toUpperCase() }}
         </v-list-item-subtitle>
 
-        <v-list-item-subtitle class="text-right">
+        <v-list-item-subtitle class="text-center">
           {{ formatDate(item.time) }}
         </v-list-item-subtitle>
 
