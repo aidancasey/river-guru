@@ -1,5 +1,5 @@
 <template>
-  <v-card class="card">
+  <v-card class="mx-auto" max-width="400">
     <v-card-text class="pa-3"> 
        <v-card-title>Inniscarra Dam</v-card-title>
         <p class="text-center display-2 text--primary">{{currentFlow}} ㎥/sec</p>

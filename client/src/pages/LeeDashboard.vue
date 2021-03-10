@@ -20,8 +20,11 @@
         <flow-rate-chart/>
       </v-flex>
        <v-flex d-flex lg4 sm6 xs12>
-        <tide-times icon="watch_later" location="Cork City"  color="#1D2939"/>
-      </v-flex> -->
+        <tide-times location="Cork City"/>
+      </v-flex> 
+      <v-flex d-flex lg4 sm6 xs12>
+        <weather location="Placeholder Cork City Weather"/>
+      </v-flex> 
      <!--  <v-flex d-flex lg4 sm6 xs12>
         <total-earnings-statistic/>
       </v-flex>
