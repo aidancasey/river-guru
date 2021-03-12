@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" max-width="344">
+  <v-card class="mx-auto" max-width="400">
     <v-card-text>
       <p class="display-1 text--primary">Tide Time {{ location }}</p>
     </v-card-text>
