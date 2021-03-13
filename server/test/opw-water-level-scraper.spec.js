@@ -7,6 +7,7 @@ describe('opw-water-level-scraper', () => {
 describe('#GetWaterLevels', () => {
   it('returns water levels when called with valid parameters for river bandon',async () => {
      var data = await scraper.GetWaterLevels('bandon', 'curranure')
+     console.log(JSON.stringify(data));
    assert.equal(data.length > 10, true, true);
   })
 })
