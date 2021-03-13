@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const FlowReading = sequelize.define('RiverLevel', {
+    const RiverLevel = sequelize.define('RiverLevel', {
       river: {
         type: DataTypes.STRING,
         allowNull: false,

@@ -3,6 +3,7 @@ var assert = require('assert');
 const { DateTime } = require('luxon');
 var scraper = require('../tide-times/scraper.js');
 var index = require('../tide-times/index.js');
+const { doesNotMatch } = require('assert');
 
 describe('tide-times-scraper', () => {
   describe('#BuildURL()', () => {
@@ -10,6 +11,7 @@ describe('tide-times-scraper', () => {
       const now = DateTime.fromISO(new Date().toISOString());
       var url = scraper.BuildURL('cork', now);
       assert.equal(url.includes('https://www.tidetimes.co.uk/'), true);
+      done();
     });
   });
 });
@@ -21,6 +23,7 @@ describe('tide-times-scraper', () => {
       scraper.GetTideTimes('cork', now).then((data) => {
         console.log(data.length);
         assert.equal(data.length > 2, true, true);
+        done();
       });
     });
   });
@@ -33,6 +36,7 @@ describe('tide-times-index', () => {
       index.GetTideTimes('cork', now).then((data) => {
         console.log(data.length);
         assert.equal(data.length > 2, true, true);
+        done();
       });
     });
   });
