@@ -18,3 +18,4 @@ sequelize db:seed --seed 20210121211744-riverLocations.js
 sequelize db:seed --seed 20210312211744-riverLocations.js
 sequelize db:seed --seed 20210314211744-riverLocations.js
 sequelize db:seed --seed 20210314211747-lowercaselee.js
+sequelize db:seed --seed 20210314211799-riverLocations.js

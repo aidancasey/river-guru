@@ -10,6 +10,7 @@ module.exports = {
       .then(StoreLatestFlowReadings)
       .then(StoreMissingWaterLevels('bandon','curranure'))
       .then(StoreMissingWaterLevels('blackwater','fermoy'))
+      .then(StoreMissingWaterLevels('owenboy','ballea'))
       .then(res.send('data crunchified'));
   }
 };
