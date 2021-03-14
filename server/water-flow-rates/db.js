@@ -19,7 +19,10 @@ async function SaveFlowReadings(flowReadings) {
           //   .catch(onError);
         }
         else {
-          console.log('already exists... SKIPPING');
+          console.log('**************************************')
+          console.log('Flow Reading already exists... SKIPPING');
+          console.log('**************************************')
+
         }
       })
         .catch((err) => {

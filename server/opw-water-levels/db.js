@@ -17,7 +17,10 @@ async function SaveRiverLevels(data) {
           element.save();
         }
         else {
-          console.log('already exists... SKIPPING');
+          console.log('**************************************')
+          console.log('WaterLevel reading already exists... SKIPPING');
+          console.log('**************************************')
+
         }
       })
         .catch((err) => {

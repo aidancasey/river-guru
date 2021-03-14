@@ -16,7 +16,9 @@ async function SaveTideTimes(tideTimes) {
           element.save();
         }
         else {
-          console.log('already exists... SKIPPING');
+          console.log('**************************************')
+          console.log('Tide Times already exists... SKIPPING');
+          console.log('**************************************')
         }
       })
         .catch((err) => {

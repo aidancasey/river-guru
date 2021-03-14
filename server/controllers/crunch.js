@@ -9,6 +9,7 @@ module.exports = {
     StoreMissingTideTimes('cork')
       .then(StoreLatestFlowReadings)
       .then(StoreMissingWaterLevels('bandon','curranure'))
+      .then(StoreMissingWaterLevels('blackwater','fermoy'))
       .then(res.send('data crunchified'));
   }
 };
