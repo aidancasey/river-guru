@@ -3,6 +3,7 @@ var assert = require('assert');
 const { DateTime } = require('luxon');
 var scraper = require('../tide-times/scraper.js');
 var index = require('../tide-times/index.js');
+const { doesNotMatch } = require('assert');
 
 describe('tide-times-scraper', () => {
   describe('#BuildURL()', () => {

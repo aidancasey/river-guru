@@ -1,14 +1,15 @@
 const db = require('../models');
 
-async function SaveTideTimes(tideTimes) {
+async function SaveRiverLevels(data) {
   var promises = [];
   promises.push(
-    tideTimes.forEach((element) => {
+    data.forEach((element) => {
       //    element.save();
-      db.TideTime.findOne({
+      db.RiverLevel.findOne({
         where: {
-          location: element.location,
-          time: element.time
+          river: element.river,
+          locationID: element.locationID,
+          recordedAt : element.recordedAt
         }
       }).then((foundItem) => {
         if (!foundItem) {
@@ -17,8 +18,9 @@ async function SaveTideTimes(tideTimes) {
         }
         else {
           console.log('**************************************')
-          console.log('Tide Times already exists... SKIPPING');
+          console.log('WaterLevel reading already exists... SKIPPING');
           console.log('**************************************')
+
         }
       })
         .catch((err) => {
@@ -31,4 +33,4 @@ async function SaveTideTimes(tideTimes) {
   });
 }
 
-module.exports.SaveTideTimes = SaveTideTimes;
+module.exports.SaveRiverLevels = SaveRiverLevels;

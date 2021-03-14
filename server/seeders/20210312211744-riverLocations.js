@@ -1,11 +1,11 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    var config = { readingFile: "http://esbhydro.ie/Lee/04-Inniscarra-Flow.pdf" };
+    var config = { station: "0000020002" };
     return queryInterface.bulkInsert('RiverLocations', [{
-      name: 'lee',
+      name: 'bandon',
       county: 'cork',
-      location: 'inniscarra dam',
-      locationID:  1,
+      location: 'curranure',
+      locationID:  2,
       data: JSON.stringify(config),
       createdAt: new Date(),
       updatedAt: new Date()

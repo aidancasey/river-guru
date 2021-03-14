@@ -36,7 +36,7 @@ async function downloadFile(fileUrl, outputLocationPath) {
 function transformPDFDataToFlowReadings(readings) {
   var flowReadings = readings.map((item) => {
     var model = new FlowReading();
-    model.river = 'Lee';
+    model.river = 'lee';
     model.locationID = 1;
     model.reading = item[1];
     model.recordedAt = DateTime.fromFormat(item[0], 'dd-MMM-yy hh:mm:ss');
@@ -76,15 +76,15 @@ async function ExtractRawFlowDataFromPDF(pdfPath) {
 
 async function ConvertToFlowReadings(data) {
   return new Promise((resolve, reject) => {
-    console.log(data.pageTables[1].tables);
+    // console.log(data.pageTables[1].tables);
 
     // last readings are on page two , starting on  line 3
     var pageTwo = data.pageTables[1];
     var readings = pageTwo.tables;
     readings.splice(0, 2); // drop first 2 duff line
-    console.log('gonna transfrm');
+   // console.log('gonna transfrm');
     var flowReadings = transformPDFDataToFlowReadings(readings);
-    console.log('transformed');
+   // console.log('transformed');
     resolve(flowReadings);
   });
 }

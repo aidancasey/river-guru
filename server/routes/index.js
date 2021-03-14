@@ -2,6 +2,8 @@ const riverLocationsController = require('../controllers').riverLocations;
 const flowReadingsController = require('../controllers').flowReadings;
 const dataCruncherController = require('../controllers').dataCruncher;
 const tidesController = require('../controllers').tides;
+const riverLevelController = require('../controllers').riverLevel;
+
 
 module.exports = (app) => {
   app.get('/api', (req, res) => res.status(200).send({
@@ -17,4 +19,11 @@ module.exports = (app) => {
     var place = req.params.location;
     tidesController.GetLatestTides(place, req, res);
   });
+
+  app.get('/api/levels/:river/:location/latest', (req, res) => {
+    var location = req.params.location;
+    var river = req.params.river;
+    riverLevelController.GetLatest(river,location, req, res);
+  });
+
 };

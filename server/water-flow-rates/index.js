@@ -7,8 +7,8 @@ async function StoreLatestFlowReadings() {
     .then((rawData) => scraper.ConvertToFlowReadings(rawData))
     .then((readings, err) => {
      
-     console.log('need to save...');
-     console.log(JSON.stringify(readings));
+     //console.log('need to save...');
+     //console.log(JSON.stringify(readings));
       db.SaveFlowReadings(readings);
     })
     .catch((error) => {
