@@ -2,6 +2,9 @@ const scraper = require('./scraper');
 const { RiverLevel } = require('../models');
 const { RiverLocation } = require('../models');
 const { SaveRiverLevels } = require('./db');
+const { Op } = require('../models').Sequelize;
+const { DateTime } = require('luxon');
+
 
 async function StoreMissingWaterLevels(river, location) {
 
@@ -42,7 +45,29 @@ async function StoreMissingWaterLevels(river, location) {
 
 };
 
-async function GetLatestWaterLevelReadings() {
+async function GetLatestWaterLevelReadings(river, location) {
+    //look up river locationID
+    var location = await RiverLocation.findOne({
+        where: {
+            name: river,
+            location: location
+        }
+    });
+
+    return RiverLevel.findAll({
+        where: {
+            river : river,
+            locationID : location.locationID,
+          recordedAt: {
+            [Op.gte]: DateTime.local().plus({ days: -30 })
+          }
+        },
+        // Add order conditions here....
+        order: [
+          ['recordedAt', 'DESC']
+        ]
+      })
+
 }
 
 module.exports.GetLatestWaterLevelReadings = GetLatestWaterLevelReadings;
