@@ -5,6 +5,7 @@ import TideTimes from '../components/TideTimes.vue';
 import Weather from '../components/Weather.vue';
 import FlowRateChart from '../components/FlowRateChart.vue';
 import TotalEarningsStatistic from '../components/TotalEarningsStatistic.vue';
+import RiverLevel from '../components/RiverLevel.vue';
 
 function setupComponents(Vue){
 
@@ -13,6 +14,7 @@ function setupComponents(Vue){
   Vue.component('tide-times', TideTimes);
   Vue.component('weather', Weather);
   Vue.component('flow-rate-chart', FlowRateChart);
+  Vue.component('river-level', RiverLevel);
   Vue.component('total-earnings-statistic', TotalEarningsStatistic);
 }
 

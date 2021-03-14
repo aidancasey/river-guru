@@ -9,6 +9,10 @@ class RiverDataService {
     return http.get("/api/tides/" + location + "/latest");
   }
 
+  getLatestLevels(river,location) {
+    return http.get("/api/levels/" + river  + "/" + location +  "/latest");
+  }
+
  /*  get(id) {
     return http.get(`/river/${id}`);
   }
