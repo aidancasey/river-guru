@@ -5,7 +5,7 @@ module.exports = {
       name: 'owenboy',
       county: 'cork',
       location: 'ballea',
-      locationID:  3,
+      locationID:  4,
       data: JSON.stringify(config),
       createdAt: new Date(),
       updatedAt: new Date()
