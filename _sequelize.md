@@ -15,7 +15,13 @@ sequelize db:migrate
 to lay down seed data ( Need to call each file once)
 
 sequelize db:seed --seed 20210121211744-riverLocations.js
+
 sequelize db:seed --seed 20210312211744-riverLocations.js
+
 sequelize db:seed --seed 20210314211744-riverLocations.js
+
 sequelize db:seed --seed 20210314211747-lowercaselee.js
+--owenboy
 sequelize db:seed --seed 20210314211799-riverLocations.js
+--lee waterworks
+20210316211799-riverLocations.js

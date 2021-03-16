@@ -26,7 +26,7 @@
         <weather location="Placeholder Cork City Weather"/>
       </v-flex> 
             <v-flex d-flex lg4 sm6 xs12>
-        <river-level river ="blackwater" location="fermoy"/>
+        <river-level river ="lee" location="waterworks"/>
       </v-flex> 
      <!--  <v-flex d-flex lg4 sm6 xs12>
         <total-earnings-statistic/>

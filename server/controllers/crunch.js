@@ -11,6 +11,7 @@ module.exports = {
       .then(StoreMissingWaterLevels('bandon','curranure'))
       .then(StoreMissingWaterLevels('blackwater','fermoy'))
       .then(StoreMissingWaterLevels('owenboy','ballea'))
+      .then(StoreMissingWaterLevels('lee','waterworks'))
       .then(res.send('data crunchified'));
   }
 };
