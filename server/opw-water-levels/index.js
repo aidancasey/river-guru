@@ -53,13 +53,16 @@ async function GetLatestWaterLevelReadings(river, location) {
             location: location
         }
     });
+    var fromDate = new Date();
+fromDate.setDate(fromDate.getDate() - 20);
+
 
     return RiverLevel.findAll({
         where: {
             river : river,
             locationID : location.locationID,
           recordedAt: {
-            [Op.gte]: DateTime.local().plus({ days: -30 })
+            [Op.gte]: fromDate
           }
         },
         // Add order conditions here....
