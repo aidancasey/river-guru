@@ -17,18 +17,24 @@
         </v-list-item-action>
         <v-list-item-title :class="[{'active': selectedIndex === 1}, 'item-title' ]" >River Lee, Cork</v-list-item-title>
       </v-list-item>
-        <v-list-item @click="changeRoute('Chart', 2)">
+        <v-list-item @click="changeRoute('BandonDashboard', 2)">
         <v-list-item-action>
           <v-icon>mdi-waves</v-icon>
         </v-list-item-action>
         <v-list-item-title :class="[{'active': selectedIndex === 2}, 'item-title' ]" >River Bandon, Cork</v-list-item-title>
       </v-list-item>
     </v-list>
-          <v-list-item @click="changeRoute('Chart', 3)">
+          <v-list-item @click="changeRoute('BlackwaterDashboard', 3)">
         <v-list-item-action>
           <v-icon>mdi-waves</v-icon>
         </v-list-item-action>
         <v-list-item-title :class="[{'active': selectedIndex === 3}, 'item-title' ]" >River Blackwater, Cork</v-list-item-title>
+      </v-list-item>
+                <v-list-item @click="changeRoute('OwenboyDashboard', 4)">
+        <v-list-item-action>
+          <v-icon>mdi-waves</v-icon>
+        </v-list-item-action>
+        <v-list-item-title :class="[{'active': selectedIndex === 4}, 'item-title' ]" >River Owenboy, Cork</v-list-item-title>
       </v-list-item>
   </v-navigation-drawer>
 </template>

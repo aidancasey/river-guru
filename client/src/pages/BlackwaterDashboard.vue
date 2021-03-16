@@ -16,9 +16,6 @@
       </v-flex> -->
       <!-- Widgets Ends -->
       <!-- Statistics -->
-      <v-flex d-flex lg4 sm6 xs12>
-        <flow-rate-chart/>
-      </v-flex>
        <v-flex d-flex lg4 sm6 xs12>
         <tide-times location="Cork City"/>
       </v-flex> 
@@ -40,11 +37,10 @@
 </template>
 
 <script>
-import FlowRateChart from '../components/FlowRateChart.vue'
 import TideTimes from '../components/TideTimes.vue'
 
 export default {
-  components: { FlowRateChart, TideTimes },
+  components: { TideTimes },
   data() {
     return {
       lorem: `Lorem ipsum dolor sit amet, mel at clita quando.`
