@@ -1,9 +1,9 @@
 <template>
   <v-card class="mx-auto" max-width="400">
     <v-card-text class="pa-3">
-      <v-card-title>River Level {{river}} {{location}}</v-card-title>
+      <v-card-title>River Level {{ river }} {{ location }}</v-card-title>
       <p class="text-center display-2 text--primary">
-        {{ currentFlow }} ㎥/sec
+        {{ currentLevel }} m
       </p>
       <area-chart :data="chartData" />
     </v-card-text>
@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       chartData: [],
-      currentFlow:0,
+      currentLevel:0,
     }
     },
     props : {
@@ -35,11 +35,21 @@ export default {
     retrieveLevelReadings() {
       RiverDataService.getLatestLevels(this.$props.river,this.$props.location)
         .then((response) => {
-            console.log(response);
-            var results = response.data.map(this.getDisplayFlowReading);
+            var results = this.getDailyFlowReadings(response.data);
             results.reverse();
           this.chartData = results;
-        //  this.currentFlow = results[results.length - 1][1][0]; //get the  very last (latest ) flow reading 
+          var hourlyResults = this.getHourlyFlowReadings(response.data);
+          
+          
+          var latestDate = hourlyResults[0][0][0];
+          var latestLevel = hourlyResults[0][1][0];
+
+
+          //add the latest reading to the end of the daily results to make end of chart accurate
+          results.push([[latestDate],[latestLevel]]);
+
+
+          this.currentLevel = latestLevel; //get the  very last (latest ) flow reading 
         })
         .catch((e) => {
           console.log(e);
@@ -50,12 +60,30 @@ export default {
       this.retrieveFlowReadings();
     },
 
-    getDisplayFlowReading(reading) { 
-      return [
-            [DateTime.fromISO(reading.recordedAt).toFormat('T')],
-            [reading.value]
-        ]
+    getDailyFlowReadings(allReadings) { 
+    var results = [];
+    allReadings.forEach(function(item) {
+                if (item.mean !=0){
+                      results.push([ 
+                                [DateTime.fromISO(item.recordedAt).toLocaleString()],
+                                [item.mean]]
+                                  );
+                  }
+      })
+  return results;
     },
+  getHourlyFlowReadings(allReadings) { 
+    var results = [];
+    allReadings.forEach(function(item) {
+                if (item.mean ==0){
+                      results.push([ 
+                                [DateTime.fromISO(item.recordedAt).toLocaleString()],
+                                [item.value]]
+                                  );
+                  }
+      })
+  return results;
+    }
   },
   mounted() {
     this.retrieveLevelReadings();
