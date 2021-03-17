@@ -1,6 +1,7 @@
 const riverLocationsController = require('../controllers').riverLocations;
 const flowReadingsController = require('../controllers').flowReadings;
 const dataCruncherController = require('../controllers').dataCruncher;
+const dataNukerController = require('../controllers').dataNuker;
 const tidesController = require('../controllers').tides;
 const riverLevelController = require('../controllers').riverLevel;
 
@@ -14,6 +15,8 @@ module.exports = (app) => {
   app.get('/api/flowreadings/latest', flowReadingsController.latest);
 
   app.get('/api/crunch', dataCruncherController.Karunch);
+  app.get('/api/nuke', dataNukerController.Kaboom);
+  
 
   app.get('/api/tides/:location/latest', (req, res) => {
     var place = req.params.location;

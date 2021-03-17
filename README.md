@@ -22,10 +22,13 @@ Visualise water levels, tides and other interesting data for fishermen on the ri
 
 
 #### Visualise Tide Info for next 48 hours
-- [ ] find a decent API to consume this info (npm tide-times fork)
+- [X] find a decent API to consume this info (npm tide-times fork)
 - [ ] find a decent API for moon cycles in Ireland
 
 #### Visualise Current Temaperature at the kingsley wier
+
+https://waterlevel.ie/0000019102/0002/summary/
+
 
 #### Visualise weather forecast for next 48 hours
 

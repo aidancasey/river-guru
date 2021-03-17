@@ -71,7 +71,28 @@ fromDate.setDate(fromDate.getDate() - 20);
         ]
       })
 
+};
+async function DeleteOldWaterLeveLReadings(){
+    
+    console.log('*********************************')
+    console.log('*********************************')
+    console.log('*********DELETING OLD WATER LEVEL DATA********')
+
+
+    var yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() -1);
+
+    return RiverLevel.destroy({
+        where: {
+            mean : 0,
+            recordedAt: {
+                [Op.lte]: yesterday
+              }
+        }
+    })
 }
+
 
 module.exports.GetLatestWaterLevelReadings = GetLatestWaterLevelReadings;
 module.exports.StoreMissingWaterLevels = StoreMissingWaterLevels;
+module.exports.DeleteOldWaterLeveLReadings = DeleteOldWaterLeveLReadings;

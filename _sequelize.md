@@ -24,4 +24,4 @@ sequelize db:seed --seed 20210314211747-lowercaselee.js
 --owenboy
 sequelize db:seed --seed 20210314211799-riverLocations.js
 --lee waterworks
-20210316211799-riverLocations.js
+sequelize db:seed --seed 20210316211799-riverLocations.js
