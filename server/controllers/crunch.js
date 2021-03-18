@@ -11,6 +11,7 @@ module.exports = {
       .then(StoreLatestFlowReadings)
       .then(StoreMissingWaterLevels('bandon','curranure'))
       .then(StoreMissingWaterLevels('blackwater','fermoy'))
+      .then(StoreMissingWaterLevels('blackwater','ballyduff'))
       .then(StoreMissingWaterLevels('owenboy','ballea'))
       .then(DeleteOldWaterLeveLReadings())
       .then(res.send('data crunchified'));

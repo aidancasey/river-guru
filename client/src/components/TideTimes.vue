@@ -1,9 +1,8 @@
 <template>
   <v-card class="mx-auto" max-width="400">
-    <v-card-text>
-      <p class="display-1 text--primary">Tide Time {{ location }}</p>
-    </v-card-text>
-
+     <v-card-text class="pa-3">
+          <v-card-title>Tide Times - {{location}}</v-card-title>
+     </v-card-text>
     <v-list class="transparent">
       <v-list-item v-for="item in tides" :key="item.id">
         <v-list-item-subtitle class="text-left">

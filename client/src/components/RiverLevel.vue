@@ -1,12 +1,17 @@
 <template>
   <v-card class="mx-auto" max-width="400">
     <v-card-text class="pa-3">
-      <v-card-title>River Level {{ river }} {{ location }}</v-card-title>
+      <v-card-title>River Level - {{displayHeading}}</v-card-title>
       <p class="text-center display-2 text--primary">
         {{ currentLevel }} m
       </p>
       <area-chart :data="chartData" />
     </v-card-text>
+     <v-divider></v-divider>
+
+    <v-card-actions>
+      <v-btn text> More Info (Last 12 Hours)</v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 
@@ -27,6 +32,10 @@ export default {
       required: false,
     },
       location: {
+      type: String,
+      required: false,
+    },
+      displayHeading: {
       type: String,
       required: false,
     },

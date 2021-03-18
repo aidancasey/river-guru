@@ -16,15 +16,19 @@
       </v-flex> -->
       <!-- Widgets Ends -->
       <!-- Statistics -->
+        <v-flex d-flex lg4 sm6 xs12>
+        <river-level river ="blackwater" location="fermoy" displayHeading="Fermoy Bridge"/>
+      </v-flex> 
+        <v-flex d-flex lg4 sm6 xs12>
+        <river-level river ="blackwater" location="fermoy" displayHeading="BallyDuff"/>
+      </v-flex> 
        <v-flex d-flex lg4 sm6 xs12>
         <tide-times location="Cork City"/>
       </v-flex> 
       <v-flex d-flex lg4 sm6 xs12>
         <weather location="Placeholder Cork City Weather"/>
       </v-flex> 
-            <v-flex d-flex lg4 sm6 xs12>
-        <river-level river ="blackwater" location="fermoy"/>
-      </v-flex> 
+
      <!--  <v-flex d-flex lg4 sm6 xs12>
         <total-earnings-statistic/>
       </v-flex>

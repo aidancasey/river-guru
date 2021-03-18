@@ -19,14 +19,14 @@
       <v-flex d-flex lg4 sm6 xs12>
         <flow-rate-chart/>
       </v-flex>
+      <v-flex d-flex lg4 sm6 xs12>
+        <river-level river ="lee" location="waterworks" displayHeading="The Waterworks"/>
+      </v-flex> 
        <v-flex d-flex lg4 sm6 xs12>
         <tide-times location="Cork City"/>
       </v-flex> 
       <v-flex d-flex lg4 sm6 xs12>
         <weather location="Placeholder Cork City Weather"/>
-      </v-flex> 
-            <v-flex d-flex lg4 sm6 xs12>
-        <river-level river ="lee" location="waterworks"/>
       </v-flex> 
      <!--  <v-flex d-flex lg4 sm6 xs12>
         <total-earnings-statistic/>

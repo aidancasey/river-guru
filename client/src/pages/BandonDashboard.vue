@@ -16,14 +16,14 @@
       </v-flex> -->
       <!-- Widgets Ends -->
       <!-- Statistics -->
+      <v-flex d-flex lg4 sm6 xs12>
+        <river-level river ="bandon" location="curranure" displayHeading="Curranure Bridge"/>
+      </v-flex> 
        <v-flex d-flex lg4 sm6 xs12>
         <tide-times location="Cork City"/>
       </v-flex> 
       <v-flex d-flex lg4 sm6 xs12>
         <weather location="Placeholder Cork City Weather"/>
-      </v-flex> 
-            <v-flex d-flex lg4 sm6 xs12>
-        <river-level river ="bandon" location="curranure"/>
       </v-flex> 
      <!--  <v-flex d-flex lg4 sm6 xs12>
         <total-earnings-statistic/>
