@@ -2,7 +2,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     var config = { station: "0000018002" };
     return queryInterface.bulkInsert('RiverLocations', [{
-      name: 'bandon',
+      name: 'blackwater',
       county: 'cork',
       location: 'ballyduff',
       locationID:  6,

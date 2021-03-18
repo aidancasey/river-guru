@@ -20,7 +20,7 @@
         <flow-rate-chart/>
       </v-flex>
       <v-flex d-flex lg4 sm6 xs12>
-        <river-level river ="lee" location="waterworks" displayHeading="The Waterworks"/>
+        <river-level river ="lee" location="waterworks" displayHeading="Waterworks Weir"/>
       </v-flex> 
        <v-flex d-flex lg4 sm6 xs12>
         <tide-times location="Cork City"/>
