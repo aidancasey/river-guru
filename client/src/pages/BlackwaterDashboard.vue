@@ -20,7 +20,7 @@
         <river-level river ="blackwater" location="fermoy" displayHeading="Fermoy Bridge"/>
       </v-flex> 
         <v-flex d-flex lg4 sm6 xs12>
-        <river-level river ="blackwater" location="fermoy" displayHeading="BallyDuff"/>
+        <river-level river ="blackwater" location="ballyduff" displayHeading="BallyDuff"/>
       </v-flex> 
        <v-flex d-flex lg4 sm6 xs12>
         <tide-times location="Cork City"/>
