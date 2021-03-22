@@ -27,3 +27,7 @@ sequelize db:seed --seed 20210314211799-riverLocations.js
 sequelize db:seed --seed 20210316211799-riverLocations.js
 --ballyduff
 sequelize db:seed --seed 20210318211799-riverLocations.js
+
+
+-- to roll back a seed..
+sequelize db:seed:undo --seed 
