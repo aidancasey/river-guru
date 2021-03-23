@@ -1,8 +1,6 @@
-
-
 to make a new model
- 
- sequelize model:generate --name TideTime --attributes location:string,height:double,hilo:string,time:date
+
+sequelize model:generate --name TideTime --attributes location:string,height:double,hilo:string,time:date
 
 --but if you need to make nullable cols, run command and hand craft it...
 
@@ -28,6 +26,8 @@ sequelize db:seed --seed 20210316211799-riverLocations.js
 --ballyduff
 sequelize db:seed --seed 20210318211799-riverLocations.js
 
+--anglers rest lat & long
+sequelize db:seed --seed 20210323100000-anglers-rest-riverLocations.js
 
 -- to roll back a seed..
-sequelize db:seed:undo --seed 
+sequelize db:seed:undo --seed
