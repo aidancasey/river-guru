@@ -1,4 +1,4 @@
-to make a new model
+### To autogenerate a new data model
 
 sequelize model:generate --name TideTime --attributes location:string,height:double,hilo:string,time:date
 
@@ -6,7 +6,7 @@ sequelize model:generate --name TideTime --attributes location:string,height:dou
 
 sequelize model:generate --name RiverLevel --attributes river:string allowNull:false,locationID:integer,value:double,min:double,max:double,mean:double,recordedAt:date
 
-to run it into the db
+### to run it into the db
 
 sequelize db:migrate
 
@@ -30,4 +30,4 @@ sequelize db:seed --seed 20210318211799-riverLocations.js
 sequelize db:seed --seed 20210323100000-anglers-rest-riverLocations.js
 
 -- to roll back a seed..
-sequelize db:seed:undo --seed
+sequelize db:seed:undo --seed 20210323100000-anglers-rest-riverLocations.js
