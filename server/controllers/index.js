@@ -1,9 +1,10 @@
-const riverLocations = require('./riverLocations');
-const flowReadings = require('./flowReadings');
-const dataCruncher = require('./crunch');
-const dataNuker = require('./nuke');
-const tides = require('./tides');
-const riverLevel = require('./riverLevel');
+const riverLocations = require("./riverLocations");
+const flowReadings = require("./flowReadings");
+const dataCruncher = require("./crunch");
+const dataNuker = require("./nuke");
+const tides = require("./tides");
+const riverLevel = require("./riverLevel");
+const weatherForecast = require("./weatherForecast");
 
 module.exports = {
   riverLocations,
@@ -11,5 +12,6 @@ module.exports = {
   flowReadings,
   tides,
   riverLevel,
-  dataNuker
+  dataNuker,
+  weatherForecast,
 };
