@@ -2,24 +2,20 @@ const weatherAPI = require("weather-ireland-js");
 const { WeatherForecast } = require("../../models");
 const { RiverLocation } = require("../../models");
 const { UpsertForecast } = require("./db");
+const { GetForecast } = require("./db");
 const { DateTime } = require("luxon");
 
-async function GetForecast(river, locationName) {
-  //look up river locationID
-  var location = await RiverLocation.findOne({
+async function GetLatestWeatherForecast(river, locationName) {
+  return await RiverLocation.findOne({
     where: {
       name: river,
       location: locationName,
     },
+  }).then((location) => {
+    return GetForecast(river, location.locationID).then((data) => {
+      return data;
+    });
   });
-
-  if (location == null) {
-    return {};
-  }
-
-  var result = await db.GetForecast(river, locationID);
-
-  return result;
 }
 
 async function StoreLatestForecastData(river, locationName) {
@@ -55,5 +51,5 @@ async function StoreLatestForecastData(river, locationName) {
   await UpsertForecast(river, location.locationID, forecast);
 }
 
-module.exports.GetForecast = GetForecast;
+module.exports.GetLatestWeatherForecast = GetLatestWeatherForecast;
 module.exports.StoreLatestForecastData = StoreLatestForecastData;

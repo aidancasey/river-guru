@@ -3,19 +3,12 @@ const { RiverLocation } = require("../../models");
 const { DateTime } = require("luxon");
 
 async function GetForecast(river, locationID) {
-  RiverLocation.findOne({
+  return WeatherForecast.findOne({
     where: {
       river: river,
       locationID: locationID,
     },
-  })
-    .then((foundItem) => {
-      return foundItem;
-    })
-    .catch((err) => {
-      console.log(err);
-      return {};
-    });
+  });
 }
 
 async function UpsertForecast(river, locationID, forecast) {

@@ -33,6 +33,6 @@ module.exports = (app) => {
   app.get("/api/weather-forecast/:river/:location", (req, res) => {
     var location = req.params.location;
     var river = req.params.river;
-    weatherForecastController.StoreLatestForecast(river, location, req, res);
+    weatherForecastController.GetLatestForecast(river, location, req, res);
   });
 };

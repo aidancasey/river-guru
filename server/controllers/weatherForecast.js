@@ -1,9 +1,9 @@
-const { StoreLatestForecastData } = require("../data-feeds/weather-forecast");
+const { GetLatestWeatherForecast } = require("../data-feeds/weather-forecast");
 
 module.exports = {
-  StoreLatestForecast(river, location, req, res) {
-    StoreLatestForecastData(river, location).then((result) => {
-      res.send("store zee ");
+  GetLatestForecast(river, location, req, res) {
+    GetLatestWeatherForecast(river, location).then((result) => {
+      res.send(result);
     });
   },
 };
