@@ -19,8 +19,6 @@ async function UpsertForecast(river, locationID, forecast) {
     },
   }).then((foundItem) => {
     if (!foundItem) {
-      console.log("forecast :");
-      console.log(JSON.stringify(forecast));
       forecast.save();
     } else {
       foundItem.data = forecast.data;

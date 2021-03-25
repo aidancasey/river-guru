@@ -31,8 +31,6 @@ async function StoreLatestForecastData(river, locationName) {
     console.log("no matching location");
     return {};
   }
-  console.log("location id is " + location.locationID);
-
   var forecasts = await weatherAPI.getForecast(
     location.data.latitude,
     location.data.longitude
@@ -43,11 +41,6 @@ async function StoreLatestForecastData(river, locationName) {
   forecast.locationID = location.locationID;
   forecast.data = forecasts;
   forecast.recordedAt = DateTime.local();
-
-  // Createor Upsert Forecast
-  console.log("need to save");
-  //console.log(JSON.stringify(forecast));
-
   await UpsertForecast(river, location.locationID, forecast);
 }
 
