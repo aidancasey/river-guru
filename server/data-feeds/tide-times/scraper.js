@@ -1,19 +1,18 @@
-const rp = require('request-promise');
-const $ = require('cheerio');
-const { DateTime } = require('luxon');
-const { TideTime } = require('../models');
+const rp = require("request-promise");
+const $ = require("cheerio");
+const { DateTime } = require("luxon");
+const { TideTime } = require("../../models");
 
 function BuildURL(place, date) {
   // https://www.tidetimes.co.uk/cork-city-tide-times-20210217'
 
-  var baseURL = 'https://www.tidetimes.co.uk/';
-  if (place.toLowerCase() === 'cork') {
+  var baseURL = "https://www.tidetimes.co.uk/";
+  if (place.toLowerCase() === "cork") {
     baseURL = `${baseURL}cork-city-tide-times-`;
-  }
-  else {
+  } else {
     throw `unsupported location for tide times ${loc}`;
   }
-  baseURL += DateTime.fromISO(date).toFormat('yyyyMMdd');
+  baseURL += DateTime.fromISO(date).toFormat("yyyyMMdd");
   return baseURL;
 }
 
@@ -22,7 +21,7 @@ async function GetTideTimes(place, startDate) {
   // Scrape the data
   return await rp(url)
     .then((html) => {
-      var fragment = $('.times', html).text();
+      var fragment = $(".times", html).text();
       var tides = FormatToJSON(fragment);
       var results = [];
 
@@ -31,17 +30,17 @@ async function GetTideTimes(place, startDate) {
         tide.location = place;
         tide.height = element.height;
 
-        var hh = element.time.split(':')[0];
-        var mm = element.time.split(':')[1];
+        var hh = element.time.split(":")[0];
+        var mm = element.time.split(":")[1];
 
         tide.time = DateTime.fromObject({
           year: startDate.year,
           month: startDate.month,
           day: startDate.day,
           hour: hh,
-          minute: mm
+          minute: mm,
         });
-        tide.hilo = 'low';
+        tide.hilo = "low";
         results.push(tide);
       });
 
@@ -50,17 +49,17 @@ async function GetTideTimes(place, startDate) {
         tide.location = place;
         tide.height = element.height;
 
-        var hh = element.time.split(':')[0];
-        var mm = element.time.split(':')[1];
+        var hh = element.time.split(":")[0];
+        var mm = element.time.split(":")[1];
 
         tide.time = DateTime.fromObject({
           year: startDate.year,
           month: startDate.month,
           day: startDate.day,
           hour: hh,
-          minute: mm
+          minute: mm,
         });
-        tide.hilo = 'high';
+        tide.hilo = "high";
         results.push(tide);
       });
 
@@ -72,17 +71,19 @@ async function GetTideTimes(place, startDate) {
     });
 }
 
-
 // https://github.com/digitalfrost/tidetimes
 // Format the scaped tide times by removing extra spaces, adding a line break after m, and removing the leading spaces
 function FormatToText(times) {
-  return times.replace(/\s+/g, ' ').replace(/m /g, 'm\n').substring(1);
+  return times
+    .replace(/\s+/g, " ")
+    .replace(/m /g, "m\n")
+    .substring(1);
 }
 
 function FormatToJSON(times) {
   var text = FormatToText(times);
   var json = { low: [], high: [] };
-  var a = text.split('\n');
+  var a = text.split("\n");
   a.pop(); // get rid of last value due to trailigng \n
   var timeRegex = /([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]/;
   var hightRegex = /[0-9]*\.[0-9]{2}/;
@@ -90,10 +91,9 @@ function FormatToJSON(times) {
     var time = line.match(timeRegex)[0];
     var hight = line.match(hightRegex)[0];
     var tide = { time, height: hight };
-    if (line[0] === 'H') {
+    if (line[0] === "H") {
       json.high.push(tide);
-    }
-    else {
+    } else {
       json.low.push(tide);
     }
   });

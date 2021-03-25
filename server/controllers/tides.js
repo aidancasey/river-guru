@@ -1,5 +1,5 @@
-const { DateTime } = require('luxon');
-const { GetTideTimes } = require('../tide-times');
+const { DateTime } = require("luxon");
+const { GetTideTimes } = require("../data-feeds/tide-times");
 
 module.exports = {
   GetLatestTides(place, req, res) {
@@ -7,5 +7,5 @@ module.exports = {
     GetTideTimes(place, today).then((result) => {
       res.send(result);
     });
-  }
+  },
 };

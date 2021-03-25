@@ -1,5 +1,5 @@
 const { StoreLatestFlowReadings } = require("../water-flow-rates");
-const { StoreMissingTideTimes } = require("../tide-times");
+const { StoreMissingTideTimes } = require("../data-feeds/tide-times");
 const { StoreMissingWaterLevels } = require("../opw-water-levels");
 const { DeleteOldWaterLeveLReadings } = require("../opw-water-levels");
 const { StoreLatestForecastData } = require("../data-feeds/weather-forecast");
