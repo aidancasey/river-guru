@@ -1,54 +1,37 @@
 <template>
-  <v-container fluid grid-list-xl>
-    <v-layout row wrap>
-      <!-- Widgets-->
-     <!--  <v-flex d-flex lg3 sm6 xs12>
-        <widget icon="domain" title="1,287,687" subTitle="13%"  color="#00b297"/>
-      </v-flex>
-      <v-flex d-flex lg3 sm6 xs12>
-        <widget icon="money_off" title="$141,291" subTitle="117,212"  color="#dc3545"/>
-      </v-flex>
-      <v-flex d-flex lg3 sm6 xs12>
-        <widget icon="computer" title="33.45%" subTitle="111"   color="#0866C6"/>
-      </v-flex>
-      <v-flex d-flex lg3 sm6 xs12>
-        <widget icon="watch_later" title="13.00%" subTitle="222"  color="#1D2939"/>
-      </v-flex> -->
-      <!-- Widgets Ends -->
-      <!-- Statistics -->
-        <v-flex d-flex lg4 sm6 xs12>
-        <river-level river ="owenboy" location="ballea" displayHeading="Ballea Bridge"/>
-      </v-flex> 
-       <v-flex d-flex lg4 sm6 xs12>
-        <tide-times location="Cork City"/>
-      </v-flex> 
-      <v-flex d-flex lg4 sm6 xs12>
-        <weather location="Placeholder Cork City Weather"/>
-      </v-flex> 
-     <!--  <v-flex d-flex lg4 sm6 xs12>
-        <total-earnings-statistic/>
-      </v-flex>
-      <v-flex d-flex lg4 sm6 xs12>
-        <total-earnings-statistic/>
-      </v-flex> -->
-      <!-- Statistics Ends -->
-         </v-layout>
-  </v-container>
+  <div>
+    <v-container fluid fill-height>
+      <v-row>
+        <v-col>
+          <river-level
+            river="owenboy"
+            location="ballea"
+            displayHeading="Ballea Bridge"
+          />
+        </v-col>
+        <v-col>
+          <tide-times location="Cork Harbour" />
+        </v-col>
+      </v-row>
+
+      <v-row>
+        <v-col>
+          <weather1 river="owenboy" location="carrigaline" />
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script>
-import TideTimes from '../components/TideTimes.vue'
+  import TideTimes from "../components/TideTimes.vue";
+  import Weather1 from "../components/Weather1.vue";
 
-export default {
-  components: { TideTimes },
-  data() {
-    return {
-      lorem: `Lorem ipsum dolor sit amet, mel at clita quando.`
-    }
-  }
-}
+  export default {
+    components: { TideTimes, Weather1 },
+    data() {
+      return {};
+    },
+  };
 </script>
-
-<style>
-
-</style>
+<style></style>
