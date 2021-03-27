@@ -1,36 +1,60 @@
 <template>
   <v-card height="100%" width="100%">
-    <v-data-table :headers="headers" :items="forecasts"></v-data-table>
+    <v-data-table :headers="headers" :items="forecasts">
+      <template v-slot:item.from="{ item }">
+        <span>{{ formatDate(item.from) }}</span>
+      </template>
+    </v-data-table>
   </v-card>
 </template>
 
 <script>
+  import RiverDataService from "../services/RiverDataService";
   export default {
     props: {
+      river: {
+        type: String,
+        required: false,
+      },
       location: {
         type: String,
         required: false,
       },
     },
+
     methods: {
       formatDate(value) {
-        return this.$luxon(value, "DD HH:mm");
+        return this.$luxon(value, "ff");
+      },
+      getData() {
+        RiverDataService.getLatestWeather(
+          this.$props.river,
+          this.$props.location
+        )
+          .then((response) => {
+            console.log("FORECAST IS");
+            console.log(response);
+            var results = response.data.data;
+            this.forecasts = results;
+          })
+          .catch((e) => {
+            console.log(e);
+          });
       },
     },
     mounted() {
-      //this.getTideData();
+      this.getData();
     },
 
     data() {
       return {
         headers: [
           {
-            text: "From",
+            text: "",
             align: "left",
             filterable: false,
             value: "from",
           },
-          { text: "To", value: "to" },
           { text: "Weather Symbol", value: "weatherSymbol_descriptionID" },
           { text: "Weather Symbol ID", value: "weatherSymbol_number" },
           { text: "Temp (C)", value: "temperature_celsius" },
@@ -40,7 +64,8 @@
           { text: "Rain (mm)", value: "rain_mm" },
           { text: "Pressure", value: "pressure" },
         ],
-        forecasts: [
+        forecasts: [],
+        forecasts1: [
           {
             from: "2021-03-25T00:00:00.000+00:00",
             to: "2021-03-25T00:00:00.000+00:00",
