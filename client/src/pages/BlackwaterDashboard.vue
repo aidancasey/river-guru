@@ -23,7 +23,11 @@
 
       <v-row>
         <v-col>
-          <weather1 river="blackwater" location="fermoy" />
+          <weather1
+            river="blackwater"
+            location="fermoy"
+            displayHeading="Fermoy Town"
+          />
         </v-col>
       </v-row>
     </v-container>

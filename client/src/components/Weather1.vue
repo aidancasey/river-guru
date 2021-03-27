@@ -1,6 +1,6 @@
 <template>
   <v-card height="100%" width="100%">
-    <v-card-title>Weather Forecast - {{ location }}</v-card-title>
+    <v-card-title>Weather Forecast for {{ displayHeading }}</v-card-title>
     <v-data-table :headers="headers" :items="forecasts">
       <template v-slot:item.from="{ item }">
         <span>{{ formatDate(item.from) }}</span>
@@ -18,6 +18,10 @@
         required: false,
       },
       location: {
+        type: String,
+        required: false,
+      },
+      displayHeading: {
         type: String,
         required: false,
       },

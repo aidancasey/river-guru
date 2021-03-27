@@ -19,7 +19,11 @@
 
       <v-row>
         <v-col>
-          <weather1 river="lee" location="anglers-rest" />
+          <weather1
+            river="lee"
+            location="anglers-rest"
+            displayHeading="The Anglers Rest"
+          />
         </v-col>
       </v-row>
     </v-container>

@@ -16,7 +16,11 @@
 
       <v-row>
         <v-col>
-          <weather1 river="owenboy" location="carrigaline" />
+          <weather1
+            river="owenboy"
+            location="carrigaline"
+            displayHeading="Carrigaline"
+          />
         </v-col>
       </v-row>
     </v-container>

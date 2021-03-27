@@ -16,7 +16,11 @@
 
       <v-row>
         <v-col>
-          <weather1 river="bandon" location="bandon" />
+          <weather1
+            river="bandon"
+            location="bandon"
+            displayHeading="Bandon Town"
+          />
         </v-col>
       </v-row>
     </v-container>
