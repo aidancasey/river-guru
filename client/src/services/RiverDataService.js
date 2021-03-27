@@ -9,11 +9,15 @@ class RiverDataService {
     return http.get("/api/tides/" + location + "/latest");
   }
 
-  getLatestLevels(river,location) {
-    return http.get("/api/levels/" + river  + "/" + location +  "/latest");
+  getLatestLevels(river, location) {
+    return http.get("/api/levels/" + river + "/" + location + "/latest");
   }
 
- /*  get(id) {
+  getLatestWeather(river, location) {
+    return http.get("/api/weather-forecast/" + river + "/" + location + "");
+  }
+
+  /*  get(id) {
     return http.get(`/river/${id}`);
   }
 
@@ -24,7 +28,6 @@ class RiverDataService {
   update(id, data) {
     return http.put(`/river/${id}`, data);
   } */
-
 }
 
 export default new RiverDataService();
