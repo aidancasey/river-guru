@@ -28,12 +28,11 @@
       <v-flex d-flex lg4 sm6 xs12>
         <weather location="Placeholder Cork City Weather"/>
       </v-flex> 
-     <!--  <v-flex d-flex lg4 sm6 xs12>
-        <total-earnings-statistic/>
+      
+       <v-flex d-flex lg4 sm6 xs12>
+        <weather1 location="Anglers Rest"/>
       </v-flex>
-      <v-flex d-flex lg4 sm6 xs12>
-        <total-earnings-statistic/>
-      </v-flex> -->
+      
       <!-- Statistics Ends -->
          </v-layout>
   </v-container>
@@ -42,9 +41,11 @@
 <script>
 import FlowRateChart from '../components/FlowRateChart.vue'
 import TideTimes from '../components/TideTimes.vue'
+import Weather from '../components/Weather.vue'
+import Weather1 from '../components/Weather1.vue'
 
 export default {
-  components: { FlowRateChart, TideTimes },
+  components: { FlowRateChart, TideTimes, Weather, Weather1 },
   data() {
     return {
       lorem: `Lorem ipsum dolor sit amet, mel at clita quando.`
