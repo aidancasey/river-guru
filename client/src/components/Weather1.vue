@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card height="100%" width="100%">
     <v-data-table :headers="headers" :items="forecasts"></v-data-table>
   </v-card>
 </template>
@@ -14,25 +14,12 @@
     },
     methods: {
       formatDate(value) {
-        return this.$luxon(value, "HH:mm");
+        return this.$luxon(value, "DD HH:mm");
       },
     },
     mounted() {
       //this.getTideData();
     },
-
-    /*   data() {
-    return {
-    labels: ['SU', 'MO', 'TU', 'WED', 'TH', 'FR', 'SA'],
-      time: 0,
-      forecast: [
-        { day: 'Tuesday', icon: 'mdi-white-balance-sunny', temp: '24\xB0/12\xB0' },
-        { day: 'Wednesday', icon: 'mdi-white-balance-sunny', temp: '22\xB0/14\xB0' },
-        { day: 'Thursday', icon: 'mdi-cloud', temp: '25\xB0/15\xB0' },
-      ],
-      forecast1 :[],
-    };
-  }, */
 
     data() {
       return {
@@ -44,12 +31,14 @@
             value: "from",
           },
           { text: "To", value: "to" },
-          { text: "Temp", value: "temperature_celsius" },
-          { text: "Wind", value: "windDirectionName" },
-          { text: "Wind Dir", value: "windDirectionDegree_degrees" },
-          { text: "Wind Speed", value: "windSpeed_mps" },
-          { text: "Rain", value: "rain_mm" },
           { text: "Weather Symbol", value: "weatherSymbol_descriptionID" },
+          { text: "Weather Symbol ID", value: "weatherSymbol_number" },
+          { text: "Temp (C)", value: "temperature_celsius" },
+          { text: "Wind Dir", value: "windDirectionName" },
+          { text: "Wind Degrees", value: "windDirectionDegree_degrees" },
+          { text: "Wind Speed (kph)", value: "windSpeed_kph" },
+          { text: "Rain (mm)", value: "rain_mm" },
+          { text: "Pressure", value: "pressure" },
         ],
         forecasts: [
           {
