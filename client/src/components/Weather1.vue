@@ -5,10 +5,33 @@
       <template v-slot:item.from="{ item }">
         <span>{{ formatDate(item.from) }}</span>
       </template>
+
+      <!-- #myimg {
+    -ms-transform: rotate(7deg); /* IE 9 */
+    -webkit-transform: rotate(7deg); /* Chrome, Safari, Opera */
+    transform: rotate(7deg);
+} -->
+
+      <template v-slot:item.windDirectionDegree_degrees="{ item }">
+        <img
+          :src="'/icons/wind/weather-wind-arrow.svg'"
+          :style="
+            'width: 30px; height: 30px; transform: rotate(' +
+              item.windDirectionDegree_degrees +
+              'deg);'
+          "
+        />
+      </template>
+
+      <template v-slot:item.weatherSymbol_number="{ item }">
+        <img
+          :src="'/icons/day/' + item.weatherSymbol_number + '.svg'"
+          style="width: 60px; height: 60px"
+        />
+      </template>
     </v-data-table>
   </v-card>
 </template>
-
 <script>
   import RiverDataService from "../services/RiverDataService";
   export default {
@@ -31,6 +54,10 @@
       formatDate(value) {
         return this.$luxon(value, "ff");
       },
+      formatImageLink(value) {
+        return "/day/" + value + ".svg";
+      },
+
       getData() {
         RiverDataService.getLatestWeather(
           this.$props.river,
@@ -60,14 +87,12 @@
             filterable: false,
             value: "from",
           },
-          { text: "Weather Symbol", value: "weatherSymbol_descriptionID" },
-          { text: "Weather Symbol ID", value: "weatherSymbol_number" },
+          { text: "Weather", value: "weatherSymbol_number" },
           { text: "Temp (C)", value: "temperature_celsius" },
           { text: "Wind Dir", value: "windDirectionName" },
           { text: "Wind Degrees", value: "windDirectionDegree_degrees" },
           { text: "Wind Speed (kph)", value: "windSpeed_kph" },
           { text: "Rain (mm)", value: "rain_mm" },
-          { text: "Pressure", value: "pressure" },
         ],
         forecasts: [],
         forecasts1: [
