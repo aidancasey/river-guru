@@ -1,16 +1,14 @@
 <template>
   <v-card height="100%" width="100%">
     <v-card-title>Weather Forecast for {{ displayHeading }}</v-card-title>
+    <span class="blue">2&deg;</span>
+    <span class="yellow">12&deg;</span>
+    <span class="orange">15&deg;</span>
+    <span class="red">25&deg;</span>
     <v-data-table :headers="headers" :items="forecasts">
       <template v-slot:item.from="{ item }">
         <span>{{ formatDate(item.from) }}</span>
       </template>
-
-      <!-- #myimg {
-    -ms-transform: rotate(7deg); /* IE 9 */
-    -webkit-transform: rotate(7deg); /* Chrome, Safari, Opera */
-    transform: rotate(7deg);
-} -->
 
       <template v-slot:item.windDirectionDegree_degrees="{ item }">
         <img
@@ -83,16 +81,20 @@
         headers: [
           {
             text: "",
-            align: "left",
+            align: "center",
             filterable: false,
             value: "from",
           },
-          { text: "Weather", value: "weatherSymbol_number" },
-          { text: "Temp (C)", value: "temperature_celsius" },
-          { text: "Wind Dir", value: "windDirectionName" },
-          { text: "Wind Degrees", value: "windDirectionDegree_degrees" },
-          { text: "Wind Speed (kph)", value: "windSpeed_kph" },
-          { text: "Rain (mm)", value: "rain_mm" },
+          { text: "Weather", align: "center", value: "weatherSymbol_number" },
+          { text: "Temp (C)", align: "center", value: "temperature_celsius" },
+          { text: "Wind Dir", align: "center", value: "windDirectionName" },
+          {
+            text: "Wind Degrees",
+            align: "center",
+            value: "windDirectionDegree_degrees",
+          },
+          { text: "Wind Speed (kph)", align: "center", value: "windSpeed_kph" },
+          { text: "Rain (mm)", align: "center", value: "rain_mm" },
         ],
         forecasts: [],
         forecasts1: [
@@ -129,3 +131,57 @@
     },
   };
 </script>
+<style>
+  span.blue {
+    background: #7895cf;
+    border-radius: 1em;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    color: black;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 2em;
+    margin-right: 15px;
+    text-align: center;
+    width: 2em;
+  }
+  span.red {
+    background: hsl(13, 94%, 49%);
+    border-radius: 1em;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    color: black;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 2em;
+    margin-right: 15px;
+    text-align: center;
+    width: 2em;
+  }
+  span.yellow {
+    background: #ffff00;
+    border-radius: 1em;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    color: black;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 2em;
+    margin-right: 15px;
+    text-align: center;
+    width: 2em;
+  }
+  span.orange {
+    background: #ffaa00;
+    border-radius: 1em;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    color: black;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 2em;
+    margin-right: 15px;
+    text-align: center;
+    width: 2em;
+  }
+</style>

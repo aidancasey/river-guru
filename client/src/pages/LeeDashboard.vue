@@ -19,7 +19,7 @@
 
       <v-row>
         <v-col>
-          <weather1
+          <weather
             river="lee"
             location="anglers-rest"
             displayHeading="The Anglers Rest"
@@ -33,10 +33,10 @@
 <script>
   import FlowRateChart from "../components/FlowRateChart.vue";
   import TideTimes from "../components/TideTimes.vue";
-  import Weather1 from "../components/Weather1.vue";
+  import Weather from "../components/Weather.vue";
 
   export default {
-    components: { FlowRateChart, TideTimes, Weather1 },
+    components: { FlowRateChart, TideTimes, Weather },
     data() {
       return {};
     },

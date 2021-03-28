@@ -16,7 +16,7 @@
 
       <v-row>
         <v-col>
-          <weather1
+          <weather
             river="bandon"
             location="bandon"
             displayHeading="Bandon Town"
@@ -29,10 +29,10 @@
 
 <script>
   import TideTimes from "../components/TideTimes.vue";
-  import Weather1 from "../components/Weather1.vue";
+  import Weather from "../components/Weather.vue";
 
   export default {
-    components: { TideTimes, Weather1 },
+    components: { TideTimes, Weather },
     data() {
       return {};
     },
