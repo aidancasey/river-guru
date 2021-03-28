@@ -40,12 +40,12 @@
     <v-list class="transparent">
       <v-list-item v-for="item in forecasts" :key="item.from">
         <v-list-item-title>{{ formatDate(item.from) }}</v-list-item-title>
-
         <v-list-item>
           <span :class="getColour(item.temperature_celsius)"
             >{{ item.temperature_celsius }}&deg;</span
           >
-
+        </v-list-item>
+        <v-list-item>
           <img
             :src="'/icons/day/' + item.weatherSymbol_number + '.svg'"
             style="width: 60px; height: 60px"
@@ -144,7 +144,7 @@
 
     data() {
       return {
-        labels: ["SU", "MO", "TU", "WED", "TH", "FR", "SA"],
+        labels: ["1", "2", "3"],
         time: 0,
         forecast: [
           {
