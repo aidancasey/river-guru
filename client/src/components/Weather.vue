@@ -53,8 +53,7 @@
           rain {{ item.rain_mm }}mm
         </v-list-item>
 
-        <v-list-item
-          >pp
+        <v-list-item>
           <img
             :src="'/icons/wind/weather-wind-arrow.svg'"
             :style="
