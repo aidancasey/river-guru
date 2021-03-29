@@ -6,7 +6,7 @@
           {{ displayHeading }}
         </v-list-item-title>
         <v-list-item-subtitle
-          >{{ currentTime }}, Mostly sunny</v-list-item-subtitle
+          >{{ currentTime }}, {{ currentDescription }}</v-list-item-subtitle
         >
       </v-list-item-content>
     </v-list-item>
@@ -53,7 +53,8 @@
           rain {{ item.rain_mm }}mm
         </v-list-item>
 
-        <v-list-item>
+        <v-list-item
+          >pp
           <img
             :src="'/icons/wind/weather-wind-arrow.svg'"
             :style="
@@ -117,14 +118,60 @@
         }
       },
 
+      getWeatherDescription(value) {
+        var descriptions = {
+          1: "Sun",
+          2: "Light Cloud",
+          3: "Partly Cloud",
+          4: "Cloud",
+          5: "Light Rain Sun",
+          6: "Light Rain Thunder Sun",
+          7: "Sleet Sun",
+          8: "Snow Sunny",
+          9: "Light Rain",
+          10: "Rain",
+          11: "Rain Thunder",
+          12: "Sleet",
+          13: "Snow",
+          14: "Snow Thunder",
+          15: "Fog",
+          20: "SleetSunThunder",
+          21: "SnowSunThunder	",
+          22: "LightRainThunder	",
+          23: "SleetThunder	",
+          24: "DrizzleThunderSun",
+          25: "RainThunderSun	",
+          26: "LightSleetThunderSun	",
+          27: "HeavySleetThunderSun	",
+          28: "LightSnowThunderSun	",
+          29: "HeavySnowThunderSun	",
+          30: "DrizzleThunder	",
+          31: "LightSleetThunder	",
+          32: "HeavySleetThunder	",
+          33: "Light Snow Thunder",
+          34: "Heavy Snow Thunder",
+          40: "Drizzle Sun",
+          41: "Rain Sun",
+          42: "Light Sleet Sun",
+          43: "Heavy Sleet Sun",
+          44: "Light Snow Sun",
+          45: "Heavy Snow Sun",
+          46: "Drizzle",
+          47: "Light Sleet",
+          48: "Heavy Sleet",
+          49: "Light Snow",
+          50: "Heavy Snow",
+        };
+        var val = JSON.stringify(descriptions[value]).toString();
+        return val.replace(/"/g, "");
+      },
+
       getData() {
         RiverDataService.getLatestWeather(
           this.$props.river,
           this.$props.location
         )
           .then((response) => {
-            console.log("ZEEE FORECAST IS");
-            console.log(response);
             var results = response.data.data;
             this.forecasts = results;
             this.currentWeatherSymbol =
@@ -132,6 +179,9 @@
             this.currentTemp = results[0].temperature_celsius;
             this.currentTime = this.formatDate(results[0].from);
             this.currentWindSpeed = results[0].windSpeed_kph;
+            this.currentDescription = this.getWeatherDescription(
+              results[0].weatherSymbol_number
+            );
           })
           .catch((e) => {
             console.log(e);
@@ -164,6 +214,7 @@
         currentWeatherPic: null,
         currentTemp: null,
         currentTime: null,
+        currentDescription: null,
       };
     },
   };
