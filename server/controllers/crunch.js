@@ -14,6 +14,7 @@ module.exports = {
       .then(StoreMissingWaterLevels("blackwater", "ballyduff"))
       .then(StoreMissingWaterLevels("owenboy", "ballea"))
       .then(StoreLatestForecastData("lee", "anglers-rest"))
+      .then(StoreLatestForecastData("lee", "waterworks"))
       .then(StoreLatestForecastData("bandon", "bandon"))
       .then(StoreLatestForecastData("owenboy", "carrigaline"))
       .then(StoreLatestForecastData("blackwater", "fermoy"))
