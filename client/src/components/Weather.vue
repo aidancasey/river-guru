@@ -1,45 +1,27 @@
 <template>
-  <v-card class="mx-auto" height="100%" width="100%">
+  <v-card height="100%" class="pa-md-4 mx-lg-auto">
     <v-list-item two-line>
       <v-list-item-content>
         <v-list-item-title class="headline">
           {{ displayHeading }}
         </v-list-item-title>
-        <v-list-item-subtitle
-          >{{ currentTime }}, {{ currentDescription }}</v-list-item-subtitle
-        >
+        <v-list-item-subtitle>{{ currentTime }}, </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
 
     <v-card-text>
-      <v-row align="center">
-        <v-col class="display-3" cols="6"> {{ currentTemp }}&deg;C </v-col>
-        <v-col cols="6">
-          <img style="width:40%" :src="currentWeatherSymbol" alt="" />
+      <v-row align="left" class="ma-0 pa-0">
+        <v-col class="display-2" cols="6"
+          >{{ currentDescription }}, {{ currentTemp }}&deg;C
+          <img :src="currentWeatherSymbol" style="width:20%" alt="" />
         </v-col>
       </v-row>
     </v-card-text>
-
-    <v-list-item>
-      <v-list-item-icon>
-        <v-icon>mdi-send</v-icon>
-      </v-list-item-icon>
-      <v-list-item-subtitle
-        >{{ currentWindSpeed.toFixed(2) }} km/h</v-list-item-subtitle
-      >
-    </v-list-item>
-
-    <v-slider
-      v-model="time"
-      :max="6"
-      :tick-labels="labels"
-      class="mx-4"
-      ticks
-    ></v-slider>
-
-    <v-list class="transparent">
+    <v-list>
       <v-list-item v-for="item in forecasts" :key="item.from">
-        <v-list-item-title>{{ formatDate(item.from) }}</v-list-item-title>
+        <v-list-item>
+          {{ formatDate(item.from) }}
+        </v-list-item>
         <v-list-item>
           <span :class="getColour(item.temperature_celsius)"
             >{{ item.temperature_celsius }}&deg;</span
@@ -52,9 +34,7 @@
           />
           rain {{ item.rain_mm }}mm
         </v-list-item>
-
-        <v-list-item
-          >pp
+        <v-list-item>
           <img
             :src="'/icons/wind/weather-wind-arrow.svg'"
             :style="
@@ -65,18 +45,15 @@
           />
           {{ item.windDirectionName }} {{ item.windSpeed_kph.toFixed(2) }} km/h
         </v-list-item>
-
-        <v-list-item-subtitle class="text-right">
-          {{ item.temp }}
-        </v-list-item-subtitle>
       </v-list-item>
     </v-list>
-
-    <v-divider></v-divider>
-
     <v-card-actions>
-      <v-btn text>
-        Full Report
+      <v-btn
+        text
+        @click.prevent="loadAllForecasts"
+        :disabled="buttonDisabled == 1"
+      >
+        Load More
       </v-btn>
     </v-card-actions>
   </v-card>
@@ -101,7 +78,8 @@
     },
     methods: {
       formatDate(value) {
-        return this.$luxon(value, "ff");
+        //Mon 09:00
+        return this.$luxon(value, "ccc") + " " + this.$luxon(value, "T");
       },
       formatImageLink(value) {
         return "/day/" + value + ".svg";
@@ -165,6 +143,10 @@
         var val = JSON.stringify(descriptions[value]).toString();
         return val.replace(/"/g, "");
       },
+      loadAllForecasts() {
+        this.buttonDisabled = this.buttonDisabled + 1;
+        this.forecasts = this.allForecasts;
+      },
 
       getData() {
         RiverDataService.getLatestWeather(
@@ -173,7 +155,9 @@
         )
           .then((response) => {
             var results = response.data.data;
-            this.forecasts = results;
+            this.allForecasts = results;
+            this.forecasts = results.slice(0, 10);
+
             this.currentWeatherSymbol =
               "/icons/day/" + results[0].weatherSymbol_number + ".svg";
             this.currentTemp = results[0].temperature_celsius;
@@ -194,27 +178,14 @@
 
     data() {
       return {
-        labels: ["1", "2", "3"],
-        time: 0,
-        forecast: [
-          {
-            day: "Tuesday",
-            icon: "mdi-white-balance-sunny",
-            temp: "24\xB0/12\xB0",
-          },
-          {
-            day: "Wednesday",
-            icon: "mdi-white-balance-sunny",
-            temp: "22\xB0/14\xB0",
-          },
-          { day: "Thursday", icon: "mdi-cloud", temp: "25\xB0/15\xB0" },
-        ],
         forecasts: [],
+        allForecasts: [],
         currentWeatherSymbol: null,
         currentWeatherPic: null,
         currentTemp: null,
         currentTime: null,
         currentDescription: null,
+        buttonDisabled: 0,
       };
     },
   };
@@ -229,7 +200,7 @@
     display: inline-block;
     font-weight: bold;
     line-height: 3em;
-    margin-right: 15px;
+    margin-right: 2px;
     text-align: center;
     width: 4em;
   }
@@ -242,7 +213,7 @@
     display: inline-block;
     font-weight: bold;
     line-height: 3em;
-    margin-right: 15px;
+    margin-right: 2px;
     text-align: center;
     width: 4em;
   }
@@ -255,7 +226,7 @@
     display: inline-block;
     font-weight: bold;
     line-height: 3em;
-    margin-right: 15px;
+    margin-right: 2px;
     text-align: center;
     width: 4em;
   }
@@ -268,7 +239,7 @@
     display: inline-block;
     font-weight: bold;
     line-height: 3em;
-    margin-right: 15px;
+    margin-right: 2px;
     text-align: center;
     width: 4em;
   }

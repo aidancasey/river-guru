@@ -16,7 +16,6 @@
           <tide-times location="Cork Harbour" />
         </v-col>
       </v-row>
-
       <v-row>
         <v-col>
           <weather
