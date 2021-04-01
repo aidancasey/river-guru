@@ -1,13 +1,11 @@
 <template>
-  <v-navigation-drawer
-    v-model="toggle"
-    fixed app>
+  <v-navigation-drawer v-model="toggle" fixed app>
     <v-toolbar flat dark :color="$root.themeColor" class="toolbar">
       <router-link :to="{ name: 'LeeDashboard' }">
-        <img src="@/assets/guru.png" width="36px"/>
+        <img src="@/assets/guru.png" width="36px" />
       </router-link>
       <router-link :to="{ name: 'LeeDashboard' }" class="text">
-         The River Guru
+        The River Guru
       </router-link>
     </v-toolbar>
     <v-list>
@@ -15,54 +13,75 @@
         <v-list-item-action>
           <v-icon>mdi-waves</v-icon>
         </v-list-item-action>
-        <v-list-item-title :class="[{'active': selectedIndex === 1}, 'item-title' ]" >River Lee, Cork</v-list-item-title>
+        <v-list-item-title
+          :class="[{ active: selectedIndex === 1 }, 'item-title']"
+          >River Lee, Cork</v-list-item-title
+        >
       </v-list-item>
-        <v-list-item @click="changeRoute('BandonDashboard', 2)">
+      <v-list-item @click="changeRoute('BandonDashboard', 2)">
         <v-list-item-action>
           <v-icon>mdi-waves</v-icon>
         </v-list-item-action>
-        <v-list-item-title :class="[{'active': selectedIndex === 2}, 'item-title' ]" >River Bandon, Cork</v-list-item-title>
+        <v-list-item-title
+          :class="[{ active: selectedIndex === 2 }, 'item-title']"
+          >River Bandon, Cork</v-list-item-title
+        >
       </v-list-item>
     </v-list>
-          <v-list-item @click="changeRoute('BlackwaterDashboard', 3)">
-        <v-list-item-action>
-          <v-icon>mdi-waves</v-icon>
-        </v-list-item-action>
-        <v-list-item-title :class="[{'active': selectedIndex === 3}, 'item-title' ]" >River Blackwater, Cork</v-list-item-title>
-      </v-list-item>
-                <v-list-item @click="changeRoute('OwenboyDashboard', 4)">
-        <v-list-item-action>
-          <v-icon>mdi-waves</v-icon>
-        </v-list-item-action>
-        <v-list-item-title :class="[{'active': selectedIndex === 4}, 'item-title' ]" >River Owenboy, Cork</v-list-item-title>
-      </v-list-item>
+    <v-list-item @click="changeRoute('BlackwaterDashboard', 3)">
+      <v-list-item-action>
+        <v-icon>mdi-waves</v-icon>
+      </v-list-item-action>
+      <v-list-item-title
+        :class="[{ active: selectedIndex === 3 }, 'item-title']"
+        >River Blackwater, Cork</v-list-item-title
+      >
+    </v-list-item>
+    <v-list-item @click="changeRoute('OwenboyDashboard', 4)">
+      <v-list-item-action>
+        <v-icon>mdi-waves</v-icon>
+      </v-list-item-action>
+      <v-list-item-title
+        :class="[{ active: selectedIndex === 4 }, 'item-title']"
+        >River Owenboy, Cork</v-list-item-title
+      >
+    </v-list-item>
+    <v-list-item @click="changeRoute('AboutPage', 5)">
+      <v-list-item-action>
+        <v-icon>mdi-information-outline</v-icon>
+      </v-list-item-action>
+      <v-list-item-title
+        :class="[{ active: selectedIndex === 5 }, 'item-title']"
+        >About</v-list-item-title
+      >
+    </v-list-item>
   </v-navigation-drawer>
 </template>
 
 <script>
-export default {
-  props: {
-    toggle: {
+  export default {
+    props: {
+      toggle: {
         type: Boolean,
         required: false,
-        default: true
-    }
-  },
+        default: true,
+      },
+    },
 
-  data() {
-    return {
-      selectedIndex: 1
-    }
-  },
+    data() {
+      return {
+        selectedIndex: 1,
+      };
+    },
 
-  methods: {
-    changeRoute(routeName, selectedIndex) {
-      const vm = this;
-      vm.selectedIndex = selectedIndex;
-      return vm.$router.push({ name: routeName });
-    }
-  }
-}
+    methods: {
+      changeRoute(routeName, selectedIndex) {
+        const vm = this;
+        vm.selectedIndex = selectedIndex;
+        return vm.$router.push({ name: routeName });
+      },
+    },
+  };
 </script>
 
 <style>
@@ -74,7 +93,7 @@ export default {
   .toolbar .text {
     padding-left: 15px;
     color: white;
-    text-decoration:none;
+    text-decoration: none;
   }
 
   .item-title {

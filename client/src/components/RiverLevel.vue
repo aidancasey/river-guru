@@ -6,10 +6,11 @@
       <area-chart :data="chartData" />
     </v-card-text>
     <v-divider></v-divider>
-
-    <v-card-actions>
-      <v-btn text> More Info (Last 12 Hours)</v-btn>
-    </v-card-actions>
+    <v-list-item-subtitle align="center">
+      <p>
+        river levels intrepreted from OPW data
+      </p>
+    </v-list-item-subtitle>
   </v-card>
 </template>
 

@@ -9,10 +9,11 @@
     </v-card-text>
 
     <v-divider></v-divider>
-
-    <v-card-actions>
-      <v-btn text> More Info (Last 3 Months)</v-btn>
-    </v-card-actions>
+    <v-list-item-subtitle align="center">
+      <p>
+        current flow rate intrepreted from ESB data feed
+      </p>
+    </v-list-item-subtitle>
   </v-card>
 </template>
 

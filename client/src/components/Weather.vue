@@ -49,13 +49,18 @@
     </v-list>
     <v-card-actions>
       <v-btn
-        text
+        block
         @click.prevent="loadAllForecasts"
         :disabled="buttonDisabled == 1"
       >
         Load More
       </v-btn>
     </v-card-actions>
+    <v-list-item-subtitle align="center">
+      <p>
+        weather information is provided by Met Éireann public API
+      </p>
+    </v-list-item-subtitle>
   </v-card>
 </template>
 
