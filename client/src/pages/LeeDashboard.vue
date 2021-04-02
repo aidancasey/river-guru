@@ -12,6 +12,15 @@
             displayHeading="Waterworks Weir"
           />
         </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <river-level
+            river="lee"
+            location="ovens"
+            displayHeading="Ovens Bridge"
+          />
+        </v-col>
         <v-col>
           <tide-times location="cork" displayLocation="Cork Harbour" />
         </v-col>
