@@ -20,6 +20,7 @@ module.exports = {
       .then(StoreLatestForecastData("blackwater", "fermoy"))
       .then(StoreMissingWaterLevels("owenboy", "ballea"))
       .then(StoreLatestForecastData("owenboy", "carrigaline"))
+      .then(StoreMissingWaterLevels("lee", "ovens"))
       .then(DeleteOldWaterLeveLReadings())
 
       .then(res.send("data crunchified"));

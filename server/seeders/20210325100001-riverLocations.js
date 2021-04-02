@@ -15,6 +15,7 @@ module.exports = {
     var anglersrestConfig = { latitude: "51.8974", longitude: "-8.5688" };
     var bandontownConfig = { latitude: "51.7472", longitude: "-8.7253" };
     var carrigalineConfig = { latitude: "51.8179", longitude: "-8.3915" };
+    var ovensBridgeConfig = { station: "0000019103" };
 
     return queryInterface.bulkInsert("RiverLocations", [
       {
@@ -95,6 +96,15 @@ module.exports = {
         location: "carrigaline",
         locationID: 9,
         data: JSON.stringify(carrigalineConfig),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "lee",
+        county: "cork",
+        location: "ovens",
+        locationID: 10,
+        data: JSON.stringify(ovensBridgeConfig),
         createdAt: new Date(),
         updatedAt: new Date(),
       },
