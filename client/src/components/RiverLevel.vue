@@ -51,9 +51,6 @@
             this.chartData = results;
             var hourlyResults = this.getHourlyFlowReadings(response.data);
 
-            console.log("hourlyResults");
-            console.log(JSON.stringify(results));
-
             var latestDate = hourlyResults[0][0][0];
             var latestLevel = hourlyResults[0][1][0];
 

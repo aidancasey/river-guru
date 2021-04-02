@@ -9,6 +9,10 @@ function BuildURL(place, date) {
   var baseURL = "https://www.tidetimes.co.uk/";
   if (place.toLowerCase() === "cork") {
     baseURL = `${baseURL}cork-city-tide-times-`;
+  } else if (place.toLowerCase() === "youghal") {
+    baseURL = `${baseURL}youghal-tide-times-`;
+  } else if (place.toLowerCase() === "kinsale") {
+    baseURL = `${baseURL}kinsale-tide-times-`;
   } else {
     throw `unsupported location for tide times ${loc}`;
   }

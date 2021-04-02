@@ -17,7 +17,7 @@
           />
         </v-col>
         <v-col>
-          <tide-times location="Cork Harbour" />
+          <tide-times location="youghal" displayLocation="Youghal" />
         </v-col>
       </v-row>
 

@@ -32,7 +32,6 @@
       retrieveFlowReadings() {
         RiverDataService.getAll()
           .then((response) => {
-            console.log(response);
             var results = response.data.map(this.getDisplayFlowReading);
             results.reverse();
             this.chartData = results;

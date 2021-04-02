@@ -10,7 +10,7 @@
           />
         </v-col>
         <v-col>
-          <tide-times location="Cork Harbour" />
+          <tide-times location="cork" displayLocation="Cork Harbour" />
         </v-col>
       </v-row>
 

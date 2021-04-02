@@ -8,6 +8,8 @@ module.exports = {
   Karunch(req, res) {
     // store latest tide times
     StoreMissingTideTimes("cork")
+      .then(StoreMissingTideTimes("youghal"))
+      .then(StoreMissingTideTimes("kinsale"))
       .then(StoreLatestFlowReadings)
       .then(StoreMissingWaterLevels("lee", "waterworks"))
       .then(StoreLatestForecastData("lee", "anglers-rest"))
