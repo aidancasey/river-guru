@@ -47,10 +47,13 @@
         )
           .then((response) => {
             var results = this.getDailyFlowReadings(response.data);
+            console.log(this.$props.displayHeading + " results");
+            console.log(JSON.stringify(results));
             results.reverse();
             this.chartData = results;
             var hourlyResults = this.getHourlyFlowReadings(response.data);
-
+            console.log("hourly");
+            console.log(JSON.stringify(hourlyResults));
             var latestDate = hourlyResults[0][0][0];
             var latestLevel = hourlyResults[0][1][0];
 
