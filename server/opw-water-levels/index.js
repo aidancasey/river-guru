@@ -29,7 +29,9 @@ async function StoreMissingWaterLevels(river, location) {
     order: [["recordedAt", "DESC"]],
   });
 
-  if (latestSavedRiverLevel == null) {
+  return await SaveRiverLevels(latestReadings);
+
+  /*   if (latestSavedRiverLevel == null) {
     return await SaveRiverLevels(latestReadings);
   } else {
     //filter newReadings to remove ones older already stored in db
@@ -37,7 +39,7 @@ async function StoreMissingWaterLevels(river, location) {
       return item.recordedAt > latestSavedRiverLevel.recordedAt;
     });
     return await SaveRiverLevels(newReadings);
-  }
+  } */
 }
 
 async function GetLatestWaterLevelReadings(river, location) {

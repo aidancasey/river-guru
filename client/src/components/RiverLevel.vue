@@ -47,13 +47,13 @@
         )
           .then((response) => {
             var results = this.getDailyFlowReadings(response.data);
-            console.log(this.$props.displayHeading + " results");
-            console.log(JSON.stringify(results));
+            console.log(this.$props.displayHeading + " results count ");
+            console.log(results.count);
             results.reverse();
             this.chartData = results;
             var hourlyResults = this.getHourlyFlowReadings(response.data);
-            console.log("hourly");
-            console.log(JSON.stringify(hourlyResults));
+            console.log("hourly results count");
+            console.log(hourlyResults.count);
             var latestDate = hourlyResults[0][0][0];
             var latestLevel = hourlyResults[0][1][0];
 
@@ -63,7 +63,7 @@
             this.currentLevel = latestLevel; //get the  very last (latest ) flow reading
           })
           .catch((e) => {
-            console.log(e);
+            console.log("error " + e);
           });
       },
 
@@ -73,14 +73,25 @@
 
       getDailyFlowReadings(allReadings) {
         var results = [];
-        allReadings.forEach(function(item) {
-          if (item.mean != 0) {
-            results.push([
-              [DateTime.fromISO(item.recordedAt).toLocaleString()],
-              [item.mean],
-            ]);
-          }
-        });
+        var i = 0;
+        try {
+          allReadings.forEach(function(item) {
+            i++;
+            console.log(i);
+            if (item.mean != 0) {
+              results.push([
+                [DateTime.fromISO(item.recordedAt).toLocaleString()],
+                [item.mean],
+              ]);
+            } else {
+              console.log("skipping");
+              console.log(item);
+            }
+          });
+        } catch (e) {
+          console.log("error in getDailyFlowReadings");
+          console.log(e);
+        }
         return results;
       },
       getHourlyFlowReadings(allReadings) {

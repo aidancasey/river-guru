@@ -56,7 +56,6 @@
       getTideData() {
         RiverDataService.getLatestTideTimes(this.$props.location)
           .then((response) => {
-            console.log(response);
             var results = response.data;
             this.tides = results;
           })
