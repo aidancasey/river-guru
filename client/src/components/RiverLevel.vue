@@ -47,13 +47,9 @@
         )
           .then((response) => {
             var results = this.getDailyFlowReadings(response.data);
-            console.log(this.$props.displayHeading + " results count ");
-            console.log(results.count);
             results.reverse();
             this.chartData = results;
             var hourlyResults = this.getHourlyFlowReadings(response.data);
-            console.log("hourly results count");
-            console.log(hourlyResults.count);
             var latestDate = hourlyResults[0][0][0];
             var latestLevel = hourlyResults[0][1][0];
 
@@ -73,19 +69,13 @@
 
       getDailyFlowReadings(allReadings) {
         var results = [];
-        var i = 0;
         try {
           allReadings.forEach(function(item) {
-            i++;
-            console.log(i);
             if (item.mean != 0) {
               results.push([
                 [DateTime.fromISO(item.recordedAt).toLocaleString()],
                 [item.mean],
               ]);
-            } else {
-              console.log("skipping");
-              console.log(item);
             }
           });
         } catch (e) {
