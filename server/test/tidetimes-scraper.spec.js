@@ -21,6 +21,7 @@ describe("tide-times-scraper", () => {
       const now = DateTime.fromISO(new Date().toISOString());
       scraper.GetTideTimes("cork", now).then((data) => {
         console.log(data.length);
+        console.log(JSON.stringify(data));
         assert.equal(data.length > 2, true, true);
       });
     });

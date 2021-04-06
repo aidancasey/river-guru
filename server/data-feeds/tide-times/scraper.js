@@ -43,6 +43,7 @@ async function GetTideTimes(place, startDate) {
           day: startDate.day,
           hour: hh,
           minute: mm,
+          zone: "local",
         });
         tide.hilo = "low";
         results.push(tide);
@@ -62,6 +63,7 @@ async function GetTideTimes(place, startDate) {
           day: startDate.day,
           hour: hh,
           minute: mm,
+          zone: "local",
         });
         tide.hilo = "high";
         results.push(tide);
