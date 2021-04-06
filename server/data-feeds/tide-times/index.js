@@ -56,6 +56,24 @@ async function StoreMissingTideTimes(location) {
     }
   });
 }
+
+async function DeleteAllTideTimes() {
+  console.log("*********************************");
+  console.log("*********************************");
+  console.log("*********DELETING ALL TIDE TIMES********");
+
+  var now = new Date();
+
+  return db.TideTime.destroy({
+    where: {
+      createdAt: {
+        [Op.lte]: now,
+      },
+    },
+  });
+}
+
 module.exports.StoreTideTimesData = StoreTideTimesData;
 module.exports.GetTideTimes = GetTideTimes;
+module.exports.DeleteAllTideTimes = DeleteAllTideTimes;
 module.exports.StoreMissingTideTimes = StoreMissingTideTimes;
