@@ -11,8 +11,8 @@ describe("opw-water-level-scraper", () => {
   });
 
   describe("#GetWaterLevels", () => {
-    it("returns water levels when called with valid parameters for river lee", async () => {
-      var data = await scraper.GetWaterLevels("lee", "waterworks");
+    it("returns water levels when called with valid parameters for river bandon", async () => {
+      var data = await scraper.GetWaterLevels("bandon", "dunmanway");
       assert.equal(data.length > 10, true, true);
     });
   });

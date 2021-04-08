@@ -5,26 +5,27 @@ const { DeleteOldWaterLeveLReadings } = require("../opw-water-levels");
 const { StoreLatestForecastData } = require("../data-feeds/weather-forecast");
 const { StoreRiverSunTimes } = require("../data-feeds/sun-moon");
 module.exports = {
-  Karunch(req, res) {
+  async Karunch(req, res) {
     // store latest tide times
     StoreMissingTideTimes("cork")
       .then(StoreMissingTideTimes("youghal"))
       .then(StoreMissingTideTimes("kinsale"))
       .then(StoreLatestFlowReadings)
-      .then(StoreMissingWaterLevels("lee", "waterworks"))
+      .then(await StoreMissingWaterLevels("lee", "waterworks"))
       .then(StoreLatestForecastData("lee", "anglers-rest"))
-      .then(StoreMissingWaterLevels("bandon", "curranure"))
+      .then(await StoreMissingWaterLevels("bandon", "curranure"))
       .then(StoreLatestForecastData("bandon", "bandon"))
-      .then(StoreMissingWaterLevels("blackwater", "fermoy"))
-      .then(StoreMissingWaterLevels("blackwater", "ballyduff"))
+      .then(await StoreMissingWaterLevels("blackwater", "fermoy"))
+      .then(await StoreMissingWaterLevels("blackwater", "ballyduff"))
       .then(StoreLatestForecastData("blackwater", "fermoy"))
       .then(StoreMissingWaterLevels("owenboy", "ballea"))
       .then(StoreLatestForecastData("owenboy", "carrigaline"))
-      .then(StoreMissingWaterLevels("lee", "ovens"))
+      .then(await StoreMissingWaterLevels("lee", "ovens"))
       .then(StoreRiverSunTimes("bandon", "bandon"))
       .then(StoreRiverSunTimes("lee", "anglers-rest"))
       .then(StoreRiverSunTimes("blackwater", "fermoy"))
       .then(StoreRiverSunTimes("owenboy", "carrigaline"))
+      .then(await StoreMissingWaterLevels("bandon", "bealaboy"))
       .then(DeleteOldWaterLeveLReadings())
 
       .then(res.send("data crunchified"));

@@ -10,6 +10,7 @@ async function StoreMissingWaterLevels(river, location) {
   console.log("StoreMissingWaterLevels");
   console.log("******************************");
   // get latest data from OPW
+
   var latestReadings = await scraper.GetWaterLevels(river, location);
 
   //look up river locationID

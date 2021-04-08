@@ -12,6 +12,7 @@ module.exports = {
     var owenboyConfig = { station: "0000019001" };
     var waterworksConfig = { station: "0000019102" };
     var ballyduffConfig = { station: "0000018002" };
+    var bealaboyConfig = { station: "0000020016" };
     var anglersrestConfig = { latitude: "51.8974", longitude: "-8.5688" };
     var bandontownConfig = { latitude: "51.7472", longitude: "-8.7253" };
     var carrigalineConfig = { latitude: "51.8179", longitude: "-8.3915" };
@@ -105,6 +106,15 @@ module.exports = {
         location: "ovens",
         locationID: 10,
         data: JSON.stringify(ovensBridgeConfig),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "bandon",
+        county: "cork",
+        location: "bealaboy",
+        locationID: 11,
+        data: JSON.stringify(bealaboyConfig),
         createdAt: new Date(),
         updatedAt: new Date(),
       },

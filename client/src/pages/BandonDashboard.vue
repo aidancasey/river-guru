@@ -12,6 +12,15 @@
       >>
       <v-row>
         <v-col>
+          <river-level
+            river="bandon"
+            location="bealaboy"
+            displayHeading="Bealaboy Bridge"
+          />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
           <sun-moon
             river="bandon"
             location="bandon"
