@@ -28,6 +28,21 @@
     </v-list-item>
     <v-list-item> <v-icon>mdi-moon-full</v-icon> moon full </v-list-item>
 
+    <v-list-item>
+      <img
+        :src="'/icons/sunrise-icon.svg'"
+        :style="'width: 30px; height: 30px;'"
+      />
+      sunrise 6 am
+    </v-list-item>
+    <v-list-item>
+      <img
+        :src="'/icons/sunset-icon.svg'"
+        :style="'width: 30px; height: 30px;'"
+      />
+      sunset 8 pm
+    </v-list-item>
+
     <v-divider></v-divider>
 
     <v-card-actions>

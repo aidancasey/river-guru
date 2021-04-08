@@ -1,6 +1,9 @@
 var SunCalc = require("suncalc");
 const { RiverLocation } = require("../../models");
 const { DateTime } = require("luxon");
+const { SunCalendar } = require("../../models");
+const { UpsertRiverSunTimes } = require("./db");
+const { GetRiverSunTimesData } = require("./db");
 
 async function GetSunTimes(date, latitude, longitude) {
   var today = DateTime.local();
@@ -37,7 +40,7 @@ async function MoonPhase() {
   return current_phase;
 }
 
-async function GetRiverSunTime(river, locationName) {
+async function StoreRiverSunTimes(river, locationName) {
   var location = await RiverLocation.findOne({
     where: {
       name: river,
@@ -81,10 +84,36 @@ async function GetRiverSunTime(river, locationName) {
     console.log("Sunrise details are *********************");
     console.log(JSON.stringify(results));
 
+    var sunCal = new SunCalendar();
+    sunCal.river = river;
+    sunCal.locationID = location.locationID;
+    sunCal.data = results;
+    sunCal.recordedAt = DateTime.local();
+
+    console.log("calling UpsertRiverSunTimes");
+    // console.log(river);
+    // console.log(location.locationID);
+    console.log(JSON.stringify(sunCal));
+    await UpsertRiverSunTimes(river, location.locationID, sunCal);
+
     return results;
   }
 }
 
+async function GetRiverSunTimes(river, locationName) {
+  return await RiverLocation.findOne({
+    where: {
+      name: river,
+      location: locationName,
+    },
+  }).then((location) => {
+    return GetRiverSunTimesData(river, location.locationID).then((data) => {
+      return data;
+    });
+  });
+}
+
 module.exports.GetSunTimes = GetSunTimes;
-module.exports.GetRiverSunTime = GetRiverSunTime;
+module.exports.GetRiverSunTimes = GetRiverSunTimes;
+module.exports.StoreRiverSunTimes = StoreRiverSunTimes;
 module.exports.MoonPhase = MoonPhase;

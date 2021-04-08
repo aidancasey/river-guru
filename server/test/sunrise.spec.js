@@ -14,9 +14,10 @@ describe("sunrise-calculator", () => {
 
   describe("#GetRiverSunTime()", () => {
     it("should return a sunrise and sunset times when passed a valid river and location name", async () => {
-      var info = await index.GetRiverSunTime("blackwater", "fermoy");
-      assert.equal(info.day1.sunrise != null, true);
-      assert.equal(info.day2.sunrise != null, true);
+      await index.StoreRiverSunTimes("blackwater", "fermoy");
+      var info = await index.GetRiverSunTimes("blackwater", "fermoy");
+      assert.equal(info.data.day1.sunrise != null, true);
+      assert.equal(info.data.day2.sunrise != null, true);
     });
   });
   describe("#MoonPhase()", () => {
