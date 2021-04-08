@@ -3,7 +3,7 @@ const { StoreMissingTideTimes } = require("../data-feeds/tide-times");
 const { StoreMissingWaterLevels } = require("../opw-water-levels");
 const { DeleteOldWaterLeveLReadings } = require("../opw-water-levels");
 const { StoreLatestForecastData } = require("../data-feeds/weather-forecast");
-
+const { StoreRiverSunTimes } = require("../data-feeds/sun-moon");
 module.exports = {
   Karunch(req, res) {
     // store latest tide times
@@ -21,6 +21,10 @@ module.exports = {
       .then(StoreMissingWaterLevels("owenboy", "ballea"))
       .then(StoreLatestForecastData("owenboy", "carrigaline"))
       .then(StoreMissingWaterLevels("lee", "ovens"))
+      .then(StoreRiverSunTimes("bandon", "bandon"))
+      .then(StoreRiverSunTimes("lee", "anglers-rest"))
+      .then(StoreRiverSunTimes("blackwater", "fermoy"))
+      .then(StoreRiverSunTimes("owenboy", "carrigaline"))
       .then(DeleteOldWaterLeveLReadings())
 
       .then(res.send("data crunchified"));

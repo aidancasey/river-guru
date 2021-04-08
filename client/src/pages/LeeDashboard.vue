@@ -5,6 +5,8 @@
         <v-col>
           <flow-rate-chart />
         </v-col>
+      </v-row>
+      <v-row>
         <v-col>
           <river-level
             river="lee"
@@ -12,14 +14,21 @@
             displayHeading="Waterworks Weir"
           />
         </v-col>
-      </v-row>
-      <v-row>
         <v-col>
           <river-level
             river="lee"
             location="ovens"
             displayHeading="Ovens Bridge"
           />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <sun-moon
+            river="lee"
+            location="anglers-rest"
+            displayLocation="The Angler's Rest"
+          ></sun-moon>
         </v-col>
         <v-col>
           <tide-times location="cork" displayLocation="Cork Harbour" />
@@ -41,10 +50,11 @@
 <script>
   import FlowRateChart from "../components/FlowRateChart.vue";
   import TideTimes from "../components/TideTimes.vue";
+  import SunMoon from "../components/SunMoon.vue";
   import Weather from "../components/Weather.vue";
 
   export default {
-    components: { FlowRateChart, TideTimes, Weather },
+    components: { FlowRateChart, TideTimes, SunMoon, Weather },
     data() {
       return {};
     },
