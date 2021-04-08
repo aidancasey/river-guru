@@ -1,8 +1,9 @@
 <template>
   <v-card class="mx-auto" height="100%" width="100%">
     <v-card-text class="pa-3">
-      <v-card-title>Sun and Moon {{ displayLocation }}</v-card-title>
+      <v-card-title>Daylight - {{ displayLocation }} </v-card-title>
     </v-card-text>
+
     <!-- <v-list-item>
       <v-icon color="blue darken-5">mdi-moon-first-quarter</v-icon> moon first
       quarter
@@ -28,29 +29,37 @@
     </v-list-item>
     <v-list-item> <v-icon>mdi-moon-full</v-icon> moon full </v-list-item> -->
 
-    <v-list-item> dawn : {{ dawn1 }} </v-list-item>
-    <v-list-item>
+    <v-list-item-content>
+      <v-list-item-title class="text-center"> {{ day1 }}</v-list-item-title>
       <img
         :src="'/icons/sunrise-icon.svg'"
-        :style="'width: 30px; height: 30px;'"
+        :style="'width: 50px; height: 50px;'"
       />
-      sunrise : {{ sunrise1 }}
-    </v-list-item>
-    <v-list-item>
+      <v-list-item> dawn : {{ dawn1 }} </v-list-item>
+      <v-list-item> sunrise : {{ sunrise1 }} </v-list-item>
       <img
         :src="'/icons/sunset-icon.svg'"
-        :style="'width: 30px; height: 30px;'"
+        :style="'width: 50px; height: 50px;'"
       />
-      sunset : {{ sunset1 }}
-    </v-list-item>
+      <v-list-item> sunset : {{ sunset1 }} </v-list-item>
+      <v-list-item> dusk : {{ dusk1 }} </v-list-item>
+    </v-list-item-content>
 
-    <v-list-item> dusk : {{ dusk1 }} </v-list-item>
-
-    <v-divider></v-divider>
-
-    <v-card-actions>
-      <v-btn text> Full Report </v-btn>
-    </v-card-actions>
+    <v-list-item-content>
+      <v-list-item-title class="text-center"> {{ day2 }}</v-list-item-title>
+      <img
+        :src="'/icons/sunrise-icon.svg'"
+        :style="'width: 50px; height: 50px;'"
+      />
+      <v-list-item> dawn : {{ dawn2 }} </v-list-item>
+      <v-list-item> sunrise : {{ sunrise2 }} </v-list-item>
+      <img
+        :src="'/icons/sunset-icon.svg'"
+        :style="'width: 50px; height: 50px;'"
+      />
+      <v-list-item> sunset : {{ sunset2 }} </v-list-item>
+      <v-list-item> dusk : {{ dusk2 }} </v-list-item>
+    </v-list-item-content>
   </v-card>
 </template>
 
@@ -78,14 +87,16 @@
           .then((response) => {
             var results = response.data;
             this.sunTimes = results;
-            this.dawn1 = this.sunTimes.data.day1.dawn;
-            this.dawn2 = this.sunTimes.data.day2.dawn;
-            this.sunrise1 = this.sunTimes.data.day1.sunrise;
-            this.sunrise2 = this.sunTimes.data.day2.sunrise;
-            this.sunset1 = this.sunTimes.data.day1.sunset;
-            this.sunset2 = this.sunTimes.data.day2.sunset;
-            this.dusk1 = this.sunTimes.data.day1.dusk;
-            this.dusk2 = this.sunTimes.data.day2.dusk;
+            this.dawn1 = this.$luxon(this.sunTimes.data.day1.dawn, "T");
+            this.dawn2 = this.$luxon(this.sunTimes.data.day2.dawn, "T");
+            this.sunrise1 = this.$luxon(this.sunTimes.data.day1.sunrise, "T");
+            this.sunrise2 = this.$luxon(this.sunTimes.data.day2.sunrise, "T");
+            this.sunset1 = this.$luxon(this.sunTimes.data.day1.sunset, "T");
+            this.sunset2 = this.$luxon(this.sunTimes.data.day2.sunset, "T");
+            this.dusk1 = this.$luxon(this.sunTimes.data.day1.dusk, "T");
+            this.dusk2 = this.$luxon(this.sunTimes.data.day2.dusk, "T");
+            this.day1 = this.$luxon(this.sunTimes.data.day1.dawn, "DDDD");
+            this.day2 = this.$luxon(this.sunTimes.data.day2.dawn, "DDDD");
           })
           .catch((e) => {
             console.log(e);
@@ -107,6 +118,8 @@
         sunset2: "",
         dusk1: "",
         dusk2: "",
+        day1: "",
+        day2: "",
       };
     },
   };

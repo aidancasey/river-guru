@@ -5,6 +5,8 @@
         <v-col>
           <flow-rate-chart />
         </v-col>
+      </v-row>
+      <v-row>
         <v-col>
           <river-level
             river="lee"
@@ -12,14 +14,21 @@
             displayHeading="Waterworks Weir"
           />
         </v-col>
-      </v-row>
-      <v-row>
         <v-col>
           <river-level
             river="lee"
             location="ovens"
             displayHeading="Ovens Bridge"
           />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <sun-moon
+            river="lee"
+            location="anglers-rest"
+            displayLocation="The Angler's Rest"
+          ></sun-moon>
         </v-col>
         <v-col>
           <tide-times location="cork" displayLocation="Cork Harbour" />
@@ -32,13 +41,6 @@
             location="anglers-rest"
             displayHeading="The Anglers Rest"
           />
-        </v-col>
-        <v-col>
-          <sun-moon
-            river="lee"
-            location="anglers-rest"
-            displayLocation="The Angler's Rest"
-          ></sun-moon>
         </v-col>
       </v-row>
     </v-container>

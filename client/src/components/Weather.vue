@@ -3,15 +3,17 @@
     <v-list-item two-line>
       <v-list-item-content>
         <v-list-item-title class="headline">
-          {{ displayHeading }}
+          Weather Forecast - {{ displayHeading }}
         </v-list-item-title>
-        <v-list-item-subtitle>{{ currentTime }}, </v-list-item-subtitle>
+        <v-list-item-subtitle
+          >last updated at {{ currentTime }}
+        </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
 
     <v-card-text>
       <v-row align="left" class="ma-0 pa-0">
-        <v-col class="display-2" cols="6"
+        <v-col class="display-1" cols="6"
           >{{ currentDescription }}, {{ currentTemp }}&deg;C
           <img :src="currentWeatherSymbol" style="width:20%" alt="" />
         </v-col>
