@@ -1,7 +1,7 @@
 <template>
   <v-card class="mx-auto" height="100%" width="100%">
     <v-card-text class="pa-3">
-      <v-card-title>Flow Rate - Inniscarra Dam</v-card-title>
+      <v-card-subtitle>Flow Rate - Inniscarra Dam</v-card-subtitle>
       <p class="text-center display-2 text--primary">
         {{ currentFlow }} ㎥/sec
       </p>

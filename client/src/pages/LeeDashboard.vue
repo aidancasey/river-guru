@@ -18,7 +18,7 @@
           <river-level
             river="lee"
             location="ovens"
-            displayHeading="Ovens Bridge"
+            displayHeading="River Bride at Ovens Bridge"
           />
         </v-col>
       </v-row>

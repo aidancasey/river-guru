@@ -1,7 +1,7 @@
 <template>
   <v-card class="mx-auto" height="100%" width="100%">
     <v-card-text class="pa-3">
-      <v-card-title>River Level - {{ displayHeading }}</v-card-title>
+      <v-card-subtitle>Water Level - {{ displayHeading }}</v-card-subtitle>
       <p class="text-center display-2 text--primary">{{ currentLevel }} m</p>
       <area-chart :data="chartData" />
     </v-card-text>
