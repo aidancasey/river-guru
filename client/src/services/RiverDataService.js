@@ -16,6 +16,9 @@ class RiverDataService {
   getLatestWeather(river, location) {
     return http.get("/api/weather-forecast/" + river + "/" + location + "");
   }
+  getSunTimes(river, location) {
+    return http.get("/api/sun-times/" + river + "/" + location + "");
+  }
 
   /*  get(id) {
     return http.get(`/river/${id}`);

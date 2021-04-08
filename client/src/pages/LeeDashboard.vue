@@ -34,7 +34,11 @@
           />
         </v-col>
         <v-col>
-          <sun-moon displayLocation="The Angler's Rest"></sun-moon>
+          <sun-moon
+            river="lee"
+            location="anglers-rest"
+            displayLocation="The Angler's Rest"
+          ></sun-moon>
         </v-col>
       </v-row>
     </v-container>
