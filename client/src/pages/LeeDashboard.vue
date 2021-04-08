@@ -33,6 +33,9 @@
             displayHeading="The Anglers Rest"
           />
         </v-col>
+        <v-col>
+          <sun-moon displayLocation="The Angler's Rest"></sun-moon>
+        </v-col>
       </v-row>
     </v-container>
   </div>
@@ -41,10 +44,11 @@
 <script>
   import FlowRateChart from "../components/FlowRateChart.vue";
   import TideTimes from "../components/TideTimes.vue";
+  import SunMoon from "../components/SunMoon.vue";
   import Weather from "../components/Weather.vue";
 
   export default {
-    components: { FlowRateChart, TideTimes, Weather },
+    components: { FlowRateChart, TideTimes, SunMoon, Weather },
     data() {
       return {};
     },

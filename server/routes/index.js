@@ -5,6 +5,7 @@ const dataNukerController = require("../controllers").dataNuker;
 const tidesController = require("../controllers").tides;
 const riverLevelController = require("../controllers").riverLevel;
 const weatherForecastController = require("../controllers").weatherForecast;
+const sunMoonController = require("../controllers").sunMoon;
 
 module.exports = (app) => {
   app.get("/api", (req, res) =>
@@ -34,5 +35,11 @@ module.exports = (app) => {
     var location = req.params.location;
     var river = req.params.river;
     weatherForecastController.GetLatestForecast(river, location, req, res);
+  });
+
+  app.get("/api/sun-times/:river/:location", (req, res) => {
+    var location = req.params.location;
+    var river = req.params.river;
+    sunMoonController.GetLatestRiverSunTimes(river, location, req, res);
   });
 };

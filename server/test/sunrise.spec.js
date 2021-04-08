@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 var assert = require("assert");
 const { DateTime } = require("luxon");
-var index = require("../data-feeds/sunrise/index.js");
+var index = require("../data-feeds/sun-moon/index.js");
 
 describe("sunrise-calculator", () => {
   describe("#GetSunTimes()", () => {
@@ -15,7 +15,14 @@ describe("sunrise-calculator", () => {
   describe("#GetRiverSunTime()", () => {
     it("should return a sunrise and sunset times when passed a valid river and location name", async () => {
       var info = await index.GetRiverSunTime("blackwater", "fermoy");
-      assert.equal(info.sunrise != null, true);
+      assert.equal(info.day1.sunrise != null, true);
+      assert.equal(info.day2.sunrise != null, true);
+    });
+  });
+  describe("#MoonPhase()", () => {
+    it("should return the moon phase info", async () => {
+      var info = await index.MoonPhase();
+      assert.equal(info != null, true);
     });
   });
 });

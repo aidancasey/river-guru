@@ -64,6 +64,3 @@ sequelize db:seed:all
 heroku restart
 
 ```
-
-DRAW MOON PHASES
-http://codebox.org.uk/pages/html-moon-planet-phases
