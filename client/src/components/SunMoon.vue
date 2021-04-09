@@ -1,7 +1,9 @@
 <template>
-  <v-card class="mx-auto" height="100%" width="100%">
+  <v-card class="mx-auto" height="100%" width="100%" rounded="true">
     <v-card-text class="pa-3">
-      <v-card-subtitle>Daylight - {{ displayLocation }} </v-card-subtitle>
+      <v-card-subtitle class="display-1"
+        >Daylight - {{ displayLocation }}
+      </v-card-subtitle>
     </v-card-text>
 
     <!-- <v-list-item>
@@ -30,35 +32,67 @@
     <v-list-item> <v-icon>mdi-moon-full</v-icon> moon full </v-list-item> -->
 
     <v-list-item-content>
-      <v-list-item-title class="text-center"> {{ day1 }}</v-list-item-title>
+      <v-list-item-title class="headline text-center font-weight-medium">
+        {{ day1 }}</v-list-item-title
+      >
       <img
         :src="'/icons/sunrise-icon.svg'"
         :style="'width: 50px; height: 50px;'"
       />
-      <v-list-item> dawn : {{ dawn1 }} </v-list-item>
-      <v-list-item> sunrise : {{ sunrise1 }} </v-list-item>
+      <v-list-item>
+        <v-list-item-subtitle class="title text-center">
+          dawn : {{ dawn1 }}
+        </v-list-item-subtitle>
+
+        <v-list-item-subtitle class="title text-center">
+          sunrise : {{ sunrise1 }}
+        </v-list-item-subtitle>
+      </v-list-item>
       <img
         :src="'/icons/sunset-icon.svg'"
         :style="'width: 50px; height: 50px;'"
       />
-      <v-list-item> sunset : {{ sunset1 }} </v-list-item>
-      <v-list-item> dusk : {{ dusk1 }} </v-list-item>
+      <v-list-item>
+        <v-list-item-subtitle class="title text-center">
+          sunset : {{ sunset1 }}
+        </v-list-item-subtitle>
+
+        <v-list-item-subtitle class="title text-center">
+          dusk : {{ dusk1 }}
+        </v-list-item-subtitle>
+      </v-list-item>
     </v-list-item-content>
 
     <v-list-item-content>
-      <v-list-item-title class="text-center"> {{ day2 }}</v-list-item-title>
+      <v-list-item-title class="headline text-center font-weight-medium">
+        {{ day2 }}</v-list-item-title
+      >
       <img
         :src="'/icons/sunrise-icon.svg'"
         :style="'width: 50px; height: 50px;'"
       />
-      <v-list-item> dawn : {{ dawn2 }} </v-list-item>
-      <v-list-item> sunrise : {{ sunrise2 }} </v-list-item>
+      <v-list-item>
+        <v-list-item-subtitle class="title text-center">
+          dawn : {{ dawn2 }}
+        </v-list-item-subtitle>
+
+        <v-list-item-subtitle class="title text-center">
+          sunrise : {{ sunrise2 }}
+        </v-list-item-subtitle>
+      </v-list-item>
       <img
         :src="'/icons/sunset-icon.svg'"
         :style="'width: 50px; height: 50px;'"
       />
-      <v-list-item> sunset : {{ sunset2 }} </v-list-item>
-      <v-list-item> dusk : {{ dusk2 }} </v-list-item>
+      <v-list-item>
+        <v-list-item-subtitle class="title text-center">
+          sunset : {{ sunset2 }}
+        </v-list-item-subtitle>
+
+        <v-list-item-subtitle class="title text-center">
+          dusk : {{ dusk2 }}
+        </v-list-item-subtitle>
+      </v-list-item>
     </v-list-item-content>
   </v-card>
 </template>
