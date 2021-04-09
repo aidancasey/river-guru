@@ -24,19 +24,19 @@
         <v-list-item>
           {{ formatDate(item.from) }}
         </v-list-item>
-        <v-list-item>
+        <v-list-item class="caption">
           <span :class="getColour(item.temperature_celsius)"
             >{{ item.temperature_celsius }}&deg;</span
           >
         </v-list-item>
-        <v-list-item>
+        <v-list-item class="caption">
           <img
             :src="'/icons/day/' + item.weatherSymbol_number + '.svg'"
-            style="width: 60px; height: 60px"
+            style="width: 40px; height: 40px"
           />
           rain {{ item.rain_mm }}mm
         </v-list-item>
-        <v-list-item>
+        <v-list-item class="caption">
           <img
             :src="'/icons/wind/weather-wind-arrow.svg'"
             :style="
@@ -200,54 +200,54 @@
 <style scoped>
   span.blue {
     background: #7895cf;
-    border-radius: 4em;
-    -moz-border-radius: 4em;
-    -webkit-border-radius: 4em;
+    border-radius: 2.5em;
+    -moz-border-radius: 2.5em;
+    -webkit-border-radius: 2.5em;
     color: black;
     display: inline-block;
     font-weight: bold;
-    line-height: 3em;
+    line-height: 2.5em;
     margin-right: 2px;
     text-align: center;
-    width: 4em;
+    width: 3em;
   }
   span.red {
     background: hsl(13, 94%, 49%);
-    border-radius: 4em;
-    -moz-border-radius: 4em;
-    -webkit-border-radius: 4em;
+    border-radius: 2.5em;
+    -moz-border-radius: 2.5em;
+    -webkit-border-radius: 2.5em;
     color: black;
     display: inline-block;
     font-weight: bold;
-    line-height: 3em;
+    line-height: 2.5em;
     margin-right: 2px;
     text-align: center;
-    width: 4em;
+    width: 3em;
   }
   span.yellow {
     background: #ffff00;
-    border-radius: 4em;
-    -moz-border-radius: 4em;
-    -webkit-border-radius: 4em;
+    border-radius: 2.5em;
+    -moz-border-radius: 2.5em;
+    -webkit-border-radius: 2.5em;
     color: black;
     display: inline-block;
     font-weight: bold;
-    line-height: 3em;
+    line-height: 2.5em;
     margin-right: 2px;
     text-align: center;
-    width: 4em;
+    width: 3em;
   }
   span.orange {
     background: #ffaa00;
-    border-radius: 4em;
-    -moz-border-radius: 4em;
-    -webkit-border-radius: 4em;
+    border-radius: 2.5em;
+    -moz-border-radius: 2.5em;
+    -webkit-border-radius: 2.5em;
     color: black;
     display: inline-block;
     font-weight: bold;
-    line-height: 3em;
+    line-height: 2.5em;
     margin-right: 2px;
     text-align: center;
-    width: 4em;
+    width: 3em;
   }
 </style>
