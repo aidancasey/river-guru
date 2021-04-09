@@ -21,7 +21,7 @@
     </v-card-text>
     <v-list>
       <v-list-item v-for="item in forecasts" :key="item.from">
-        <v-list-item>
+        <v-list-item class="caption">
           {{ formatDate(item.from) }}
         </v-list-item>
         <v-list-item class="caption">
