@@ -7,6 +7,7 @@ const { StoreRiverSunTimes } = require("../data-feeds/sun-moon");
 module.exports = {
   async Karunch(req, res) {
     // store latest tide times
+
     StoreMissingTideTimes("cork")
       .then(StoreMissingTideTimes("youghal"))
       .then(StoreMissingTideTimes("kinsale"))
@@ -27,7 +28,6 @@ module.exports = {
       .then(StoreRiverSunTimes("owenboy", "carrigaline"))
       .then(await StoreMissingWaterLevels("bandon", "bealaboy"))
       .then(DeleteOldWaterLeveLReadings())
-
       .then(res.send("data crunchified"));
   },
 };

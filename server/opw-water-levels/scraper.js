@@ -58,7 +58,7 @@ async function GetWaterLevels(river, location) {
   });
 
   return await getCSV(url).then((rows) => {
-    console.log(rows);
+    //  console.log(rows);
     var readings = [];
     rows.forEach((element) => {
       var reading = new RiverLevel();

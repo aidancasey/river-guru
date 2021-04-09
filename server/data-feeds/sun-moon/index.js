@@ -55,14 +55,17 @@ async function StoreRiverSunTimes(river, locationName) {
     //its a valid river
     //console.log(JSON.stringify(location));
     var today = DateTime.local();
+    console.log("today is ***************");
+    console.log(today);
+
     var day1Details = SunCalc.getTimes(
-      new Date(today.toISODate()),
+      new Date(today.plus({ days: 1 }).toISODate()),
       location.data.latitude,
       location.data.longitude
     );
 
     var day2Details = SunCalc.getTimes(
-      new Date(today.plus({ days: 1 }).toISODate()),
+      new Date(today.plus({ days: 2 }).toISODate()),
       location.data.latitude,
       location.data.longitude
     );
@@ -94,6 +97,7 @@ async function StoreRiverSunTimes(river, locationName) {
     // console.log(river);
     // console.log(location.locationID);
     console.log(JSON.stringify(sunCal));
+
     await UpsertRiverSunTimes(river, location.locationID, sunCal);
 
     return results;
