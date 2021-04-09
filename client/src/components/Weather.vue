@@ -19,28 +19,28 @@
         </v-col>
       </v-row>
     </v-card-text>
-    <v-list>
+    <v-list class="pa-0">
       <v-list-item v-for="item in forecasts" :key="item.from">
-        <v-list-item class="caption">
+        <v-list-item class="caption pa=0">
           {{ formatDate(item.from) }}
         </v-list-item>
-        <v-list-item class="caption">
+        <v-list-item class="caption pa=0">
           <span :class="getColour(item.temperature_celsius)"
             >{{ item.temperature_celsius }}&deg;</span
           >
         </v-list-item>
-        <v-list-item class="caption">
+        <v-list-item class="h5 pa=0">
           <img
             :src="'/icons/day/' + item.weatherSymbol_number + '.svg'"
             style="width: 40px; height: 40px"
           />
           rain {{ item.rain_mm }}mm
         </v-list-item>
-        <v-list-item class="caption">
+        <v-list-item class="h5 pa=0">
           <img
             :src="'/icons/wind/weather-wind-arrow.svg'"
             :style="
-              'width: 30px; height: 30px; transform: rotate(' +
+              'width: 20px; height: 20px; transform: rotate(' +
                 item.windDirectionDegree_degrees +
                 'deg);'
             "

@@ -1,6 +1,6 @@
 <template>
   <v-card class="mx-auto" height="100%" width="100%" rounded="true">
-    <v-card-text class="pa-3">
+    <v-card-text class="pa-0">
       <v-card-subtitle class="display-1"
         >Daylight - {{ displayLocation }}
       </v-card-subtitle>
@@ -31,7 +31,7 @@
     </v-list-item>
     <v-list-item> <v-icon>mdi-moon-full</v-icon> moon full </v-list-item> -->
 
-    <v-list-item-content>
+    <v-list-item-content class="pa-0">
       <v-list-item-title class="headline text-center font-weight-medium">
         {{ day1 }}</v-list-item-title
       >
@@ -40,7 +40,7 @@
         :style="'width: 50px; height: 50px;'"
       />
       <v-list-item>
-        <v-list-item-subtitle class="title text-center">
+        <v-list-item-subtitle class="title text-center pa-0">
           dawn : {{ dawn1 }}
         </v-list-item-subtitle>
 
