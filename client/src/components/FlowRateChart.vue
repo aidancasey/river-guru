@@ -1,8 +1,8 @@
 <template>
-  <v-card class="mx-auto" height="100%" width="100%">
-    <v-card-text class="pa-3">
-      <v-card-subtitle>Flow Rate - Inniscarra Dam</v-card-subtitle>
-      <p class="text-center display-2 text--primary">
+  <v-card height="100%" width="100%">
+    <v-card-text class="pa-2">
+      <v-card-subtitle class="title">Flow Inniscarra Dam</v-card-subtitle>
+      <p class="text-center display-1 text--primary">
         {{ currentFlow }} ㎥/sec
       </p>
       <area-chart :data="chartData" />

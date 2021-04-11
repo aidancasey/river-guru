@@ -1,9 +1,9 @@
 <template>
-  <v-card height="100%" class="pa-md-4 mx-lg-auto">
+  <v-card height="100%">
     <v-list-item two-line>
       <v-list-item-content>
-        <v-list-item-title class="headline">
-          Weather Forecast - {{ displayHeading }}
+        <v-list-item-title class="title"
+          >{{ displayHeading }}
         </v-list-item-title>
         <v-list-item-subtitle
           >last updated at {{ currentTime }}
@@ -12,12 +12,16 @@
     </v-list-item>
 
     <v-card-text>
-      <v-row align="left" class="ma-0 pa-0">
-        <v-col class="display-1" cols="6"
+      <!--       <v-row align="left" class="ma-0 pa-0">
+        <v-col class="text-center display-1" cols="6"
           >{{ currentDescription }}, {{ currentTemp }}&deg;C
-          <img :src="currentWeatherSymbol" style="width:20%" alt="" />
+          <img :src="currentWeatherSymbol" style="width:15%" alt="" />
         </v-col>
-      </v-row>
+      </v-row> -->
+      <v-list-item class="text-center display-1">
+        <img :src="currentWeatherSymbol" style="width:20%" alt="" />
+        {{ currentDescription }}, {{ currentTemp }}&deg;C
+      </v-list-item>
     </v-card-text>
     <v-list class="pa-0">
       <v-list-item v-for="item in forecasts" :key="item.from">
