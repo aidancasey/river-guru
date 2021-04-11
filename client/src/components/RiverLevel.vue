@@ -8,7 +8,7 @@
       <area-chart :data="chartData" :colors="['cornflowerblue']" />
     </v-card-text>
     <v-divider></v-divider>
-    <v-list-item-subtitle align="center">
+    <v-list-item-subtitle align="center" class="ma-3 caption">
       <p>
         river levels intrepreted from OPW data
       </p>

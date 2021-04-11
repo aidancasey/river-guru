@@ -62,9 +62,9 @@
         Load More
       </v-btn>
     </v-card-actions>
-    <v-list-item-subtitle align="center">
+    <v-list-item-subtitle align="center" class="ma-3 caption">
       <p>
-        weather information is provided by Met Éireann public API
+        weather info provided by Met Éireann public API
       </p>
     </v-list-item-subtitle>
   </v-card>

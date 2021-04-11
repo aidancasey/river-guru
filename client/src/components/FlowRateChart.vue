@@ -11,7 +11,7 @@
     </v-card-text>
 
     <v-divider></v-divider>
-    <v-list-item-subtitle align="center">
+    <v-list-item-subtitle align="center" class="ma-3 caption">
       <p>
         current flow rate intrepreted from ESB data feed
       </p>
