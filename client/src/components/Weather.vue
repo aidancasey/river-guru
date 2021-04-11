@@ -2,10 +2,10 @@
   <v-card height="100%">
     <v-list-item two-line>
       <v-list-item-content>
-        <v-list-item-title class="title"
+        <v-list-item-title class="title text-center"
           >{{ displayHeading }}
         </v-list-item-title>
-        <v-list-item-subtitle
+        <v-list-item-subtitle class="text-center"
           >last updated at {{ currentTime }}
         </v-list-item-subtitle>
       </v-list-item-content>
@@ -18,7 +18,7 @@
           <img :src="currentWeatherSymbol" style="width:15%" alt="" />
         </v-col>
       </v-row> -->
-      <v-list-item class="text-center display-1">
+      <v-list-item class="text-center justify-center display-1">
         <img :src="currentWeatherSymbol" style="width:20%" alt="" />
         {{ currentDescription }}, {{ currentTemp }}&deg;C
       </v-list-item>

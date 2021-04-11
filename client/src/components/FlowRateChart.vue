@@ -1,11 +1,13 @@
 <template>
-  <v-card height="100%" width="100%">
+  <v-card height="100%" width="100%" class="card">
     <v-card-text class="pa-2">
-      <v-card-subtitle class="title">Flow Inniscarra Dam</v-card-subtitle>
+      <v-card-subtitle class="title text-center"
+        >Flow Inniscarra Dam</v-card-subtitle
+      >
       <p class="text-center display-1 text--primary">
         {{ currentFlow }} ㎥/sec
       </p>
-      <area-chart :data="chartData" />
+      <area-chart :data="chartData" :colors="['cornflowerblue']" />
     </v-card-text>
 
     <v-divider></v-divider>
@@ -66,5 +68,13 @@
     border: 1px solid rgba(0, 0, 0, 0.125);
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.21);
     background-color: transparent;
+  }
+
+  .card {
+    border-radius: 3px;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.21);
+    background-color: ;
   }
 </style>

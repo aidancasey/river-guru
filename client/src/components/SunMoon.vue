@@ -1,7 +1,7 @@
 <template>
   <v-card class="mx-auto" height="100%" width="100%" rounded="true">
-    <v-card-text class="pa-0">
-      <v-list-item-title class="title"
+    <v-card-text class="pa-2">
+      <v-list-item-title class="title text-center"
         >Daylight {{ displayLocation }}
       </v-list-item-title>
     </v-card-text>

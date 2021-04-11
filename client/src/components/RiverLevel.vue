@@ -1,11 +1,11 @@
 <template>
   <v-card class="mx-auto" height="100%" width="100%">
     <v-card-text class="pa-3">
-      <v-card-subtitle class="title"
+      <v-card-subtitle class="title text-center"
         >Water Level {{ displayHeading }}</v-card-subtitle
       >
       <p class="text-center display-1 text--primary">{{ currentLevel }} m</p>
-      <area-chart :data="chartData" />
+      <area-chart :data="chartData" :colors="['cornflowerblue']" />
     </v-card-text>
     <v-divider></v-divider>
     <v-list-item-subtitle align="center">

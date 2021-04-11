@@ -1,31 +1,38 @@
 <template>
   <v-card height="100%" width="100%">
     <v-card-text class="pa-3">
-      <v-card-subtitle class="title"
-        >Tide Times - {{ displayLocation }}</v-card-subtitle
+      <v-card-subtitle class="title text-center"
+        >{{ displayLocation }} Tide Times</v-card-subtitle
       >
+      <v-card-subtitle class="subheading text-center"
+        >{{ today }}
+      </v-card-subtitle>
     </v-card-text>
-    <v-list class="transparent">
-      <v-list-item v-for="item in tides" :key="item.id">
-        <v-list-item-subtitle class="text-left">
-          {{ item.hilo.toUpperCase() }}
-        </v-list-item-subtitle>
 
-        <v-list-item-subtitle class="text-center">
-          {{ formatDate(item.time) }}
-        </v-list-item-subtitle>
-
-        <v-list-item-subtitle class="text-right">
-          {{ item.height }} m
-        </v-list-item-subtitle>
-      </v-list-item>
-    </v-list>
-
-    <v-divider></v-divider>
-
-    <v-card-actions>
-      <v-btn text> Full Report </v-btn>
-    </v-card-actions>
+    <v-simple-table>
+      <template v-slot:default>
+        <thead>
+          <tr>
+            <th class="text-left">
+              Tide
+            </th>
+            <th class="text-center">
+              Time
+            </th>
+            <th class="text-left">
+              Height
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in tides" :key="item.id">
+            <td class="text-left">{{ item.hilo }}</td>
+            <td class="text-center">{{ formatDate(item.time) }}</td>
+            <td class="text-left">{{ item.height }} m</td>
+          </tr>
+        </tbody>
+      </template>
+    </v-simple-table>
   </v-card>
 </template>
 
@@ -59,7 +66,9 @@
         RiverDataService.getLatestTideTimes(this.$props.location)
           .then((response) => {
             var results = response.data;
+            results.reverse();
             this.tides = results;
+            this.today = this.$luxon(results[0].time, "DDDD");
           })
           .catch((e) => {
             console.log(e);
@@ -73,6 +82,7 @@
     data() {
       return {
         tides: [],
+        today: "foo",
       };
     },
   };
