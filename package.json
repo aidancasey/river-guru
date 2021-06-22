@@ -6,7 +6,7 @@
     "scripts": {
         "start": "node ./bin/www",
         "heroku-postbuild": "cd client && npm install && npm run build",
-        "test": "mocha ./server/test/*.spec.js",
+        "test-remove": "mocha ./server/test/*.spec.js",
         "lint": "eslint --ext .js --ignore-path .gitignore ."
     },
     "keywords": [],
