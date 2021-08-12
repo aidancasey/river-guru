@@ -38,7 +38,9 @@
             :src="'/icons/day/' + item.weatherSymbol_number + '.svg'"
             style="width: 40px; height: 40px"
           />
-          rain {{ item.rain_mm }}mm
+          <div v-if="item.rain_mm !== '0.0' && item.rain_mm !== undefined">
+            rain {{ item.rain_mm }}mm
+          </div>
         </v-list-item>
         <v-list-item class="h5 pa=0">
           <img
