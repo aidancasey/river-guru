@@ -1,4 +1,5 @@
 const { StoreLatestFlowReadings } = require("../water-flow-rates");
+const { DeleteOldWaterLevels } = require("../water-flow-rates");
 const { StoreMissingTideTimes } = require("../data-feeds/tide-times");
 const { StoreMissingWaterLevels } = require("../opw-water-levels");
 const { DeleteOldWaterLeveLReadings } = require("../opw-water-levels");
@@ -28,6 +29,7 @@ module.exports = {
       .then(StoreRiverSunTimes("owenboy", "carrigaline"))
       .then(await StoreMissingWaterLevels("bandon", "bealaboy"))
       .then(DeleteOldWaterLeveLReadings())
+      .then(DeleteOldWaterLevels(60))
       .then(res.send("data crunchified"));
   },
 };
