@@ -15,26 +15,18 @@ Visualise water levels, tides and other interesting data for fishermen on the ri
 - [x] pipelines to deploy app / Heroku
 - [x] CRON task / schedulled API to refresh data twice an hour
 
-#### Deployments
+#### TO do List
 
 - [x] custom domain hosting
 - [x] cloudflare SSL certs
-- [] bundle optimisations - add WebPack
-
-#### Visualise Tide Info for next 48 hours
-
-- [x] find a decent API to consume this info (npm tide-times fork)
+- [ ] bundle optimisations - add WebPack
+- [X] migrate from Heroku to AWS Beanstalk
+- [ ] serve static webapp from S3
+- [ ] treeshake express app to reduce AMI size to run npm install
+- [ ] upgrade to Vuetify 3
 - [ ] find a decent API for moon cycles in Ireland
+- [ ] push notifications when dam is on at inniscarra
 
-#### Visualise Current Temaperature at the kingsley wier
-
-https://waterlevel.ie/0000019102/0002/summary/
-
-#### Visualise weather forecast for next 48 hours
-
-#### Analytics to predict good times to go fishing ...
-
-#### Push Notifications to tell me to go fishing when the stars align !
 
 ### Installing Locally
 
