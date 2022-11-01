@@ -5,7 +5,7 @@
         <img src="@/assets/guru.png" width="36px" />
       </router-link>
       <router-link :to="{ name: 'LeeDashboard' }" class="text">
-        The River Guru
+        The River Guru!
       </router-link>
     </v-toolbar>
     <v-list>
