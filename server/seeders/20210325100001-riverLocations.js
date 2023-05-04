@@ -16,7 +16,12 @@ module.exports = {
     var anglersrestConfig = { latitude: "51.8974", longitude: "-8.5688" };
     var bandontownConfig = { latitude: "51.7472", longitude: "-8.7253" };
     var carrigalineConfig = { latitude: "51.8179", longitude: "-8.3915" };
+    var cahirConfig = { latitude: "52.3749", longitude: "-7.9240" };
     var ovensBridgeConfig = { station: "0000019103" };
+    var newbridgeConfig = { station: "0000016008" };
+    var carrickConfig = { station: "0000016062" };
+
+    
 
     return queryInterface.bulkInsert("RiverLocations", [
       {
@@ -118,6 +123,33 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        name: "suir",
+        county: "tipperary",
+        location: "new-bridge",
+        locationID: 12,
+        data: JSON.stringify(newbridgeConfig),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "suir",
+        county: "tipperary",
+        location: "carrick-on-suir",
+        locationID: 13,
+        data: JSON.stringify(carrickConfig),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: "suir",
+        county: "tipperary",
+        location: "cahir",
+        locationID: 14,
+        data: JSON.stringify(cahirConfig),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      }
     ]);
   },
   down: (queryInterface, Sequelize) =>

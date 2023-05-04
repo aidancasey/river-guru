@@ -4,6 +4,7 @@ import LeeDashboard from "../src/pages/LeeDashboard.vue";
 import BlackwaterDashboard from "../src/pages/BlackwaterDashboard.vue";
 import BandonDashboard from "../src/pages/BandonDashboard.vue";
 import OwenboyDashboard from "../src/pages/OwenboyDashboard.vue";
+import SuirDashboard from "../src/pages/SuirDashboard.vue";
 import AboutPage from "../src/pages/About.vue";
 
 Vue.use(Router);
@@ -31,6 +32,11 @@ export default new Router({
       path: "bandon",
       name: "BandonDashboard",
       component: BandonDashboard,
+    },
+    {
+      path: "suir",
+      name: "SuirDashboard",
+      component: SuirDashboard,
     },
     {
       path: "owenboy",
