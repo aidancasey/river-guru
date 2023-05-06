@@ -46,12 +46,21 @@
         >River Owenboy, Cork</v-list-item-title
       >
     </v-list-item>
-    <v-list-item @click="changeRoute('AboutPage', 5)">
+    <v-list-item @click="changeRoute('SuirDashboard', 5)">
+      <v-list-item-action>
+        <v-icon>mdi-waves</v-icon>
+      </v-list-item-action>
+      <v-list-item-title
+        :class="[{ active: selectedIndex === 5 }, 'item-title']"
+        >River Suir, Tipperary</v-list-item-title
+      >
+    </v-list-item>
+    <v-list-item @click="changeRoute('AboutPage', 6)">
       <v-list-item-action>
         <v-icon>mdi-information-outline</v-icon>
       </v-list-item-action>
       <v-list-item-title
-        :class="[{ active: selectedIndex === 5 }, 'item-title']"
+        :class="[{ active: selectedIndex === 6 }, 'item-title']"
         >About</v-list-item-title
       >
     </v-list-item>

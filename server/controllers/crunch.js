@@ -27,7 +27,11 @@ module.exports = {
       .then(StoreRiverSunTimes("lee", "anglers-rest"))
       .then(StoreRiverSunTimes("blackwater", "fermoy"))
       .then(StoreRiverSunTimes("owenboy", "carrigaline"))
+      .then(StoreRiverSunTimes("suir", "cahir"))
       .then(await StoreMissingWaterLevels("bandon", "bealaboy"))
+      .then(await StoreMissingWaterLevels("suir", "new-bridge"))
+      .then(await StoreMissingWaterLevels("suir", "carrick-on-suir"))
+      .then(StoreLatestForecastData("suir", "cahir"))
       .then(DeleteOldWaterLeveLReadings())
       .then(DeleteOldWaterLevels(60))
       .then(res.send("data crunchified"));
