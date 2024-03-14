@@ -8,8 +8,6 @@ npm-debug.log
 .env
 tmp
 /dist/
-yarn.lock
-package-lock.json
 
 
 
