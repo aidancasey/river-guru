@@ -45,7 +45,7 @@
         "sequelize-cli": "^6.6.0"
     },
     "engines": {
-        "node": "^16.0.0 "
+        "node": "^21.6.x"
     },
     "eslintConfig": {
         "extends": "airbnb-base",
