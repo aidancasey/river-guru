@@ -5,7 +5,7 @@
     "main": "server.js",
     "scripts": {
         "start": "node ./bin/www",
-        "build:digitalocean": "cd client && npm install && npm run build",
+        "heroku-postbuild": "export NODE_OPTIONS=--openssl-legacy-provider && cd client && npm install && npm run build",
         "test": "mocha ./server/test/*.spec.js",
         "lint": "eslint --ext .js --ignore-path .gitignore ."
     },
@@ -45,7 +45,7 @@
         "sequelize-cli": "^6.6.0"
     },
     "engines": {
-        "node": "^16.x.x"
+        "node": "^16.0.0 "
     },
     "eslintConfig": {
         "extends": "airbnb-base",
