@@ -56,3 +56,10 @@ sequelize db:seed:all
 heroku restart
 
 ```
+
+
+Digital Ocean Issues
+request and requrest promise are deprecated
+move to https://www.npmjs.com/package/node-fetch instead
+
+buidl
