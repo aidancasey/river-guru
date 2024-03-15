@@ -10,9 +10,8 @@ module.exports = {
     // store latest tide times
 
     StoreMissingTideTimes("cork")
-      .then(StoreMissingTideTimes("youghal"))
+       .then(StoreMissingTideTimes("youghal"))
       .then(StoreMissingTideTimes("kinsale"))
-      .then(StoreLatestFlowReadings)
       .then(await StoreMissingWaterLevels("lee", "waterworks"))
       .then(StoreLatestForecastData("lee", "anglers-rest"))
       .then(await StoreMissingWaterLevels("bandon", "curranure"))
@@ -32,8 +31,9 @@ module.exports = {
       .then(await StoreMissingWaterLevels("suir", "new-bridge"))
       .then(await StoreMissingWaterLevels("suir", "carrick-on-suir"))
       .then(StoreLatestForecastData("suir", "cahir"))
-      .then(DeleteOldWaterLeveLReadings())
-      .then(DeleteOldWaterLevels(60))
+      .then(DeleteOldWaterLeveLReadings()) 
+      .then(DeleteOldWaterLevels(60)) 
+    .then(StoreLatestFlowReadings)
       .then(res.send("data crunchified"));
   },
 };

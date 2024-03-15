@@ -7,5 +7,6 @@ npm-debug.log
 .password
 .env
 tmp
-/dist/
+
+
 
