@@ -3,8 +3,8 @@
     <template>
       <v-app id="inspire">
         <div class="app-container">
-          <toolbar @toggleNavigationBar="drawer = !drawer" />
-          <navigation :toggle="drawer" />
+          <app-toolbar @toggleNavigationBar="drawer = !drawer" />
+          <app-navigation :toggle="drawer" />
           <v-content>
             <router-view />
           </v-content>

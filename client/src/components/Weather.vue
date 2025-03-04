@@ -75,6 +75,7 @@
 <script>
   import RiverDataService from "../services/RiverDataService";
   export default {
+    name: 'WeatherDisplay',
     props: {
       river: {
         type: String,

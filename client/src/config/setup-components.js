@@ -8,11 +8,11 @@ import FlowRateChart from "../components/FlowRateChart.vue";
 import RiverLevel from "../components/RiverLevel.vue";
 
 function setupComponents(Vue) {
-  Vue.component("toolbar", Toolbar);
-  Vue.component("navigation", Navigation);
+  Vue.component("app-toolbar", Toolbar);
+  Vue.component("app-navigation", Navigation);
   Vue.component("tide-times", TideTimes);
   Vue.component("sun-moon", SunMoon);
-  Vue.component("weather", Weather);
+  Vue.component("weather-display", Weather);
   Vue.component("flow-rate-chart", FlowRateChart);
   Vue.component("river-level", RiverLevel);
 }

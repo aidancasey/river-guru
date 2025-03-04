@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer v-model="toggle" fixed app>
+  <v-navigation-drawer v-model="drawer" fixed app>
     <v-toolbar flat dark :color="$root.themeColor" class="toolbar">
       <router-link :to="{ name: 'LeeDashboard' }">
         <img src="@/assets/guru.png" width="36px" />
@@ -69,14 +69,23 @@
 
 <script>
   export default {
+    name: 'NavigationDrawer',
     props: {
       toggle: {
         type: Boolean,
-        required: false,
-        default: true,
-      },
+        required: true
+      }
     },
-
+    computed: {
+      drawer: {
+        get() {
+          return this.toggle;
+        },
+        set(value) {
+          this.$emit('update:toggle', value);
+        }
+      }
+    },
     data() {
       return {
         selectedIndex: 1,
