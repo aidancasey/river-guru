@@ -1,116 +1,289 @@
 <template>
-  <v-card class="mx-auto" height="100%" width="100%">
-    <v-card-text class="pa-3">
-      <v-card-subtitle class="title text-center"
-        >Water Level {{ displayHeading }}</v-card-subtitle
+  <div>
+    <h2 v-if="displayHeading" class="location-heading">{{ displayHeading }}</h2>
+    <div class="time-range-selector">
+      <button 
+        :class="{ active: timeRange === '12h' }" 
+        @click="setTimeRange('12h')"
       >
-      <p class="text-center display-1 text--primary">{{ currentLevel }} m</p>
-      <area-chart :data="chartData" :colors="['cornflowerblue']" />
-    </v-card-text>
-    <v-divider></v-divider>
-    <v-list-item-subtitle align="center" class="ma-3 caption">
-      <p>
-        river levels intrepreted from OPW data
-      </p>
-    </v-list-item-subtitle>
-  </v-card>
+        12 Hours
+      </button>
+      <button 
+        :class="{ active: timeRange === '1w' }" 
+        @click="setTimeRange('1w')"
+      >
+        1 Week
+      </button>
+    </div>
+    <div class="chart-wrapper">
+      <div v-if="currentLevel" class="current-level">
+        Current Level: {{ currentLevel }} m
+      </div>
+      <div class="chart-container">
+        <WaterLevelChart
+          v-if="chartData"
+          :data="chartData"
+          :options="getChartOptions()"
+        />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-  import RiverDataService from "../services/RiverDataService";
-  import { DateTime } from "luxon";
+import { Line as WaterLevelChart } from 'vue-chartjs'
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  LineElement,
+  LinearScale,
+  CategoryScale,
+  PointElement,
+  Filler
+} from 'chart.js'
 
-  export default {
-    data() {
+// Register Chart.js components
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  LineElement,
+  LinearScale,
+  CategoryScale,
+  PointElement,
+  Filler
+)
+
+export default {
+  name: 'RiverLevel',
+  components: {
+    WaterLevelChart
+  },
+  props: {
+    displayHeading: {
+      type: String,
+      required: false,
+      default: ''
+    }
+  },
+  data() {
+    return {
+      timeRange: '12h',
+      chartData: null,
+      currentLevel: null
+    }
+  },
+  methods: {
+    getChartOptions() {
       return {
-        chartData: [],
-        currentLevel: 0,
-      };
-    },
-    props: {
-      river: {
-        type: String,
-        required: false,
-      },
-      location: {
-        type: String,
-        required: false,
-      },
-      displayHeading: {
-        type: String,
-        required: false,
-      },
-    },
-    methods: {
-      retrieveLevelReadings() {
-        RiverDataService.getLatestLevels(
-          this.$props.river,
-          this.$props.location
-        )
-          .then((response) => {
-            var results = this.getDailyFlowReadings(response.data);
-            results.reverse();
-            this.chartData = results;
-            var hourlyResults = this.getHourlyFlowReadings(response.data);
-            var latestDate = hourlyResults[0][0][0];
-            var latestLevel = hourlyResults[0][1][0];
-
-            //add the latest reading to the end of the daily results to make end of chart accurate
-            results.push([[latestDate], [latestLevel]]);
-
-            this.currentLevel = latestLevel; //get the  very last (latest ) flow reading
-          })
-          .catch((e) => {
-            console.log("error " + e);
-          });
-      },
-
-      refreshList() {
-        this.retrieveFlowReadings();
-      },
-
-      getDailyFlowReadings(allReadings) {
-        var results = [];
-        try {
-          allReadings.forEach(function(item) {
-            if (item.mean != 0) {
-              results.push([
-                [DateTime.fromISO(item.recordedAt).toLocaleString()],
-                [item.mean],
-              ]);
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: {
+            type: 'category',
+            title: {
+              display: true,
+              text: 'Time'
+            },
+            grid: {
+              display: false  // Hide vertical grid lines
+            },
+            ticks: {
+              maxTicksLimit: this.timeRange === '12h' ? 12 : 14,
+              callback: (_, index) => {
+                const labels = this.chartData?.labels || [];
+                if (!labels[index]) return '';
+                
+                const date = new Date(labels[index]);
+                if (this.timeRange === '1w') {
+                  return `${date.getDate()}/${date.getMonth() + 1} ${date.getHours()}:${String(date.getMinutes()).padStart(2, '0')}`;
+                } else {
+                  return date.toLocaleTimeString([], { 
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false 
+                  });
+                }
+              }
             }
-          });
-        } catch (e) {
-          console.log("error in getDailyFlowReadings");
-          console.log(e);
-        }
-        return results;
-      },
-      getHourlyFlowReadings(allReadings) {
-        var results = [];
-        allReadings.forEach(function(item) {
-          if (item.mean == 0) {
-            results.push([
-              [DateTime.fromISO(item.recordedAt).toLocaleString()],
-              [item.value],
-            ]);
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Water Level (m)'
+            },
+            grid: {
+              display: true  // Keep horizontal grid lines
+            }
           }
-        });
-        return results;
-      },
+        },
+        plugins: {
+          legend: {
+            display: true,
+            position: 'top',
+            onClick: null  // Disable click handling
+          },
+          tooltip: {
+            callbacks: {
+              title: (context) => {
+                return new Date(context[0].label).toLocaleString()
+              }
+            }
+          }
+        }
+      }
     },
-    mounted() {
-      this.retrieveLevelReadings();
+    setTimeRange(range) {
+      this.timeRange = range;
+      this.fetchData();
     },
-  };
+    async fetchData() {
+      try {
+        const timestamp = new Date().getTime()
+        console.log('Fetching water level data...')
+        const response = await fetch(`/api/levels/lee/ovens/latest?_t=${timestamp}`, {
+          headers: {
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache'
+          }
+        })
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+        
+        const readings = await response.json()
+        console.log('Raw API response:', readings)
+        console.log('Response status:', response.status)
+        
+        if (!Array.isArray(readings) || readings.length === 0) {
+          console.warn('No water level readings received')
+          return
+        }
+
+        // Calculate time range based on selection
+        const now = new Date()
+        const timeRangeMs = this.timeRange === '12h' 
+          ? 12 * 60 * 60 * 1000  // 12 hours
+          : 7 * 24 * 60 * 60 * 1000  // 1 week
+        const rangeStart = new Date(now.getTime() - timeRangeMs)
+        
+        const validReadings = readings
+          .filter(reading => new Date(reading.recordedAt) > rangeStart)
+          .sort((a, b) => new Date(a.recordedAt) - new Date(b.recordedAt))
+
+        if (validReadings.length === 0) {
+          console.warn(`No water level readings found in the last ${this.timeRange}`)
+          return
+        }
+
+        // Update current level with the latest reading
+        this.currentLevel = validReadings[validReadings.length - 1].value.toFixed(3)
+
+        console.log('First reading:', validReadings[0])
+        console.log('Last reading:', validReadings[validReadings.length - 1])
+        console.log('Number of readings:', validReadings.length)
+
+        const labels = validReadings.map(reading => reading.recordedAt)
+        const values = validReadings.map(reading => reading.value)
+
+        this.chartData = {
+          labels,
+          datasets: [
+            {
+              label: 'Water Level (m)',
+              data: values,
+              borderColor: '#4CAF50',
+              backgroundColor: 'rgba(76, 175, 80, 0.5)',
+              borderWidth: 2,
+              fill: {
+                target: 'origin',
+                above: 'rgba(76, 175, 80, 0.5)'
+              },
+              tension: 0.4
+            }
+          ]
+        }
+      } catch (error) {
+        console.error('Error fetching water level data:', error)
+        console.error('Error details:', {
+          message: error.message,
+          stack: error.stack
+        })
+      }
+    }
+  },
+  mounted() {
+    this.fetchData()
+    // Refresh data every 5 minutes
+    setInterval(this.fetchData, 5 * 60 * 1000)
+  }
+}
 </script>
 
-<style>
-  .card {
-    border-radius: 3px;
-    background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.21);
-    background-color: transparent;
-  }
+<style scoped>
+.location-heading {
+  font-size: 2rem;
+  font-weight: 300;
+  color: #2c3e50;
+  margin: 1.5rem 0;
+  text-align: center;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.time-range-selector {
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.time-range-selector button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #4CAF50;
+  background: white;
+  color: #4CAF50;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.time-range-selector button.active {
+  background: #4CAF50;
+  color: white;
+}
+
+.time-range-selector button:hover {
+  background: #E8F5E9;
+}
+
+.time-range-selector button.active:hover {
+  background: #388E3C;
+}
+
+.chart-wrapper {
+  position: relative;
+}
+
+.current-level {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: bold;
+  color: #4CAF50;
+  text-align: center;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chart-container {
+  height: 400px;
+  width: 100%;
+}
 </style>

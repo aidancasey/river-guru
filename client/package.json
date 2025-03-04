@@ -14,7 +14,7 @@
   "dependencies": {
     "apexcharts": "^3.41.0",
     "axios": "^1.6.7",
-    "chart.js": "^4.4.1",
+    "chart.js": "^4.4.8",
     "core-js": "^3.36.0",
     "font-awesome": "^4.7.0",
     "is-docker": "^3.0.0",
@@ -23,6 +23,7 @@
     "sass": "^1.71.0",
     "vue": "^2.7.16",
     "vue-apexcharts": "^1.6.2",
+    "vue-chartjs": "^5.3.2",
     "vue-chartkick": "^0.5.0",
     "vue-cli-plugin-vuetify": "~2.5.8",
     "vue-luxon": "^0.10.0",
