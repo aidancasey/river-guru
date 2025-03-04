@@ -5,35 +5,51 @@ const { StoreMissingWaterLevels } = require("../opw-water-levels");
 const { DeleteOldWaterLeveLReadings } = require("../opw-water-levels");
 const { StoreLatestForecastData } = require("../data-feeds/weather-forecast");
 const { StoreRiverSunTimes } = require("../data-feeds/sun-moon");
+
 module.exports = {
   async Karunch(req, res) {
-    // store latest tide times
-
-    StoreMissingTideTimes("cork")
-       .then(StoreMissingTideTimes("youghal"))
-      .then(StoreMissingTideTimes("kinsale"))
-      .then(await StoreMissingWaterLevels("lee", "waterworks"))
-      .then(StoreLatestForecastData("lee", "anglers-rest"))
-      .then(await StoreMissingWaterLevels("bandon", "curranure"))
-      .then(StoreLatestForecastData("bandon", "bandon"))
-      .then(await StoreMissingWaterLevels("blackwater", "fermoy"))
-      .then(await StoreMissingWaterLevels("blackwater", "ballyduff"))
-      .then(StoreLatestForecastData("blackwater", "fermoy"))
-      .then(StoreMissingWaterLevels("owenboy", "ballea"))
-      .then(StoreLatestForecastData("owenboy", "carrigaline"))
-      .then(await StoreMissingWaterLevels("lee", "ovens"))
-      .then(StoreRiverSunTimes("bandon", "bandon"))
-      .then(StoreRiverSunTimes("lee", "anglers-rest"))
-      .then(StoreRiverSunTimes("blackwater", "fermoy"))
-      .then(StoreRiverSunTimes("owenboy", "carrigaline"))
-      .then(StoreRiverSunTimes("suir", "cahir"))
-      .then(await StoreMissingWaterLevels("bandon", "bealaboy"))
-      .then(await StoreMissingWaterLevels("suir", "new-bridge"))
-      .then(await StoreMissingWaterLevels("suir", "carrick-on-suir"))
-      .then(StoreLatestForecastData("suir", "cahir"))
-      .then(DeleteOldWaterLeveLReadings()) 
-      .then(DeleteOldWaterLevels(60)) 
-    .then(StoreLatestFlowReadings)
-      .then(res.send("data crunchified"));
+    try {
+      // store latest tide times
+      await StoreMissingTideTimes("cork");
+      await StoreMissingTideTimes("youghal");
+      await StoreMissingTideTimes("kinsale");
+      
+      // Store water levels and forecasts
+      await StoreMissingWaterLevels("lee", "waterworks");
+      await StoreLatestForecastData("lee", "anglers-rest");
+      await StoreMissingWaterLevels("bandon", "curranure");
+      await StoreLatestForecastData("bandon", "bandon");
+      await StoreMissingWaterLevels("blackwater", "fermoy");
+      await StoreMissingWaterLevels("blackwater", "ballyduff");
+      await StoreLatestForecastData("blackwater", "fermoy");
+      await StoreMissingWaterLevels("owenboy", "ballea");
+      await StoreLatestForecastData("owenboy", "carrigaline");
+      await StoreMissingWaterLevels("lee", "ovens");
+      
+      // Store sun times
+      await StoreRiverSunTimes("bandon", "bandon");
+      await StoreRiverSunTimes("lee", "anglers-rest");
+      await StoreRiverSunTimes("blackwater", "fermoy");
+      await StoreRiverSunTimes("owenboy", "carrigaline");
+      await StoreRiverSunTimes("suir", "cahir");
+      
+      // Store remaining water levels and forecasts
+      await StoreMissingWaterLevels("bandon", "bealaboy");
+      await StoreMissingWaterLevels("suir", "new-bridge");
+      await StoreMissingWaterLevels("suir", "carrick-on-suir");
+      await StoreLatestForecastData("suir", "cahir");
+      
+      // Clean up old data
+      await DeleteOldWaterLeveLReadings();
+      await DeleteOldWaterLevels(60);
+      
+      // Store latest flow readings
+      await StoreLatestFlowReadings();
+      
+      res.status(200).send("data crunchified");
+    } catch (error) {
+      console.error("Error in Karunch:", error);
+      res.status(500).send({ error: error.message });
+    }
   },
 };

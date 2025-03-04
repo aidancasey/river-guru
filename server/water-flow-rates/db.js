@@ -3,37 +3,31 @@ const { Op } = require("../models").Sequelize;
 const { DateTime } = require("luxon");
 
 async function SaveFlowReadings(flowReadings) {
-  var promises = [];
-  promises.push(
-    flowReadings.forEach((element) => {
-      //    element.save();
-      db.FlowReading.findOne({
+  try {
+    for (const element of flowReadings) {
+      const foundItem = await db.FlowReading.findOne({
         where: {
           river: element.river,
           locationID: element.locationID,
           recordedAt: element.recordedAt,
         },
-      })
-        .then((foundItem) => {
-          if (!foundItem) {
-            // Item not found, create a new one
-            element.save();
-            //   .then(onCreate)
-            //   .catch(onError);
-          } else {
-            console.log("**************************************");
-            console.log("Flow Reading already exists... SKIPPING");
-            console.log("**************************************");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    })
-  );
-  await Promise.all(promises).then(() => {
+      });
+
+      if (!foundItem) {
+        // Item not found, create a new one
+        await element.save();
+        console.log("Saved new flow reading");
+      } else {
+        console.log("**************************************");
+        console.log("Flow Reading already exists... SKIPPING");
+        console.log("**************************************");
+      }
+    }
     console.log("done all the saving");
-  });
+  } catch (err) {
+    console.error("Error saving flow readings:", err);
+    throw err;
+  }
 }
 
 async function DeleteOldWaterLevels(daysToKeep) {

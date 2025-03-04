@@ -2,18 +2,30 @@ const db = require("./db");
 const scraper = require("./dataScraper");
 
 async function StoreLatestFlowReadings() {
-  scraper
-    .DownloadLatestPDF()
-    .then((filePath) => scraper.ExtractRawFlowDataFromPDF(filePath))
-    .then((rawData) => scraper.ConvertToFlowReadings(rawData))
-    .then((readings, err) => {
-      //console.log('need to save...');
-      //console.log(JSON.stringify(readings));
-      db.SaveFlowReadings(readings);
-    })
-    .catch((error) => {
-      console.log("Error Occured ", error);
-    });
+  try {
+    console.log('Downloading latest PDF...');
+    const filePath = await scraper.DownloadLatestPDF();
+    
+    console.log('Extracting raw flow data from PDF...');
+    const rawData = await scraper.ExtractRawFlowDataFromPDF(filePath);
+    
+    if (!rawData || rawData.length === 0) {
+      console.log('No flow data found in PDF');
+      return;
+    }
+    
+    console.log(`Found ${rawData.length} flow readings`);
+    console.log('Converting to flow readings...');
+    const readings = await scraper.ConvertToFlowReadings(rawData);
+    
+    console.log('Saving flow readings...');
+    await db.SaveFlowReadings(readings);
+    
+    console.log('Successfully stored flow readings');
+  } catch (error) {
+    console.error('Error storing flow readings:', error);
+    throw error;
+  }
 }
 
 async function DeleteOldWaterLevels(daysToKeep) {

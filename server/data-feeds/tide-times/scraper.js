@@ -1,5 +1,5 @@
-const rp = require("request-promise");
-const $ = require("cheerio");
+const axios = require("axios");
+const cheerio = require("cheerio");
 const { DateTime } = require("luxon");
 const { TideTime } = require("../../models");
 
@@ -23,58 +23,58 @@ function BuildURL(place, date) {
 async function GetTideTimes(place, startDate) {
   var url = BuildURL(place, startDate);
   // Scrape the data
-  return await rp(url)
-    .then((html) => {
-      var fragment = $(".times", html).text();
-      var tides = FormatToJSON(fragment);
-      var results = [];
+  try {
+    const response = await axios.get(url);
+    const $ = cheerio.load(response.data);
+    var fragment = $(".times").text();
+    var tides = FormatToJSON(fragment);
+    var results = [];
 
-      tides.low.forEach((element) => {
-        var tide = new TideTime();
-        tide.location = place;
-        tide.height = element.height;
+    tides.low.forEach((element) => {
+      var tide = new TideTime();
+      tide.location = place;
+      tide.height = element.height;
 
-        var hh = element.time.split(":")[0];
-        var mm = element.time.split(":")[1];
+      var hh = element.time.split(":")[0];
+      var mm = element.time.split(":")[1];
 
-        tide.time = DateTime.fromObject({
-          year: startDate.year,
-          month: startDate.month,
-          day: startDate.day,
-          hour: hh,
-          minute: mm,
-          zone: "UTC+1",
-        });
-        tide.hilo = "low";
-        results.push(tide);
+      tide.time = DateTime.fromObject({
+        year: startDate.year,
+        month: startDate.month,
+        day: startDate.day,
+        hour: hh,
+        minute: mm,
+        zone: "UTC+1",
       });
-
-      tides.high.forEach((element) => {
-        tide = new TideTime();
-        tide.location = place;
-        tide.height = element.height;
-
-        var hh = element.time.split(":")[0];
-        var mm = element.time.split(":")[1];
-
-        tide.time = DateTime.fromObject({
-          year: startDate.year,
-          month: startDate.month,
-          day: startDate.day,
-          hour: hh,
-          minute: mm,
-          zone: "UTC+1",
-        });
-        tide.hilo = "high";
-        results.push(tide);
-      });
-
-      return results;
-    })
-    .catch((err) => {
-      console.log(err);
-      return null;
+      tide.hilo = "low";
+      results.push(tide);
     });
+
+    tides.high.forEach((element) => {
+      tide = new TideTime();
+      tide.location = place;
+      tide.height = element.height;
+
+      var hh = element.time.split(":")[0];
+      var mm = element.time.split(":")[1];
+
+      tide.time = DateTime.fromObject({
+        year: startDate.year,
+        month: startDate.month,
+        day: startDate.day,
+        hour: hh,
+        minute: mm,
+        zone: "UTC+1",
+      });
+      tide.hilo = "high";
+      results.push(tide);
+    });
+
+    return results;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
 }
 
 // https://github.com/digitalfrost/tidetimes
