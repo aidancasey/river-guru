@@ -31,30 +31,32 @@
 </template>
 
 <script>
-import { Line as WaterLevelChart } from 'vue-chartjs'
-import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  LineElement,
-  LinearScale,
-  CategoryScale,
-  PointElement,
-  Filler
-} from 'chart.js'
+import { format, parseISO } from 'date-fns'
 
-// Register Chart.js components
-ChartJS.register(
-  Title,
-  Tooltip,
-  Legend,
-  LineElement,
-  LinearScale,
-  CategoryScale,
-  PointElement,
-  Filler
-)
+// Dynamic import of chart components
+const WaterLevelChart = () => import('vue-chartjs').then(m => m.Line)
+const registerChartComponents = async () => {
+  const { 
+    Chart: ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Filler
+  } = await import('chart.js')
+
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Filler
+  )
+}
 
 export default {
   name: 'RiverLevel',
@@ -72,10 +74,17 @@ export default {
     return {
       timeRange: '12h',
       chartData: null,
-      currentLevel: null
+      currentLevel: null,
+      chartRegistered: false
     }
   },
   methods: {
+    formatDate(dateString, isWeekView = false) {
+      const date = parseISO(dateString)
+      return isWeekView 
+        ? format(date, 'dd/MM HH:mm')
+        : format(date, 'HH:mm')
+    },
     getChartOptions() {
       return {
         responsive: true,
@@ -88,24 +97,14 @@ export default {
               text: 'Time'
             },
             grid: {
-              display: false  // Hide vertical grid lines
+              display: false
             },
             ticks: {
               maxTicksLimit: this.timeRange === '12h' ? 12 : 14,
               callback: (_, index) => {
                 const labels = this.chartData?.labels || [];
                 if (!labels[index]) return '';
-                
-                const date = new Date(labels[index]);
-                if (this.timeRange === '1w') {
-                  return `${date.getDate()}/${date.getMonth() + 1} ${date.getHours()}:${String(date.getMinutes()).padStart(2, '0')}`;
-                } else {
-                  return date.toLocaleTimeString([], { 
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: false 
-                  });
-                }
+                return this.formatDate(labels[index], this.timeRange === '1w')
               }
             }
           },
@@ -115,20 +114,20 @@ export default {
               text: 'Water Level (m)'
             },
             grid: {
-              display: true  // Keep horizontal grid lines
+              display: true
             }
           }
         },
         plugins: {
           legend: {
-            display: false,  // Hide the legend
+            display: false,
             position: 'top',
-            onClick: null  // Disable click handling
+            onClick: null
           },
           tooltip: {
             callbacks: {
               title: (context) => {
-                return new Date(context[0].label).toLocaleString()
+                return format(parseISO(context[0].label), 'PPpp')
               }
             }
           }
@@ -140,8 +139,13 @@ export default {
       this.fetchData();
     },
     async fetchData() {
+      if (!this.chartRegistered) {
+        await registerChartComponents()
+        this.chartRegistered = true
+      }
+
       try {
-        const timestamp = new Date().getTime()
+        const timestamp = Date.now()
         const response = await fetch(`/api/levels/lee/ovens/latest?_t=${timestamp}`, {
           headers: {
             'Cache-Control': 'no-cache',
@@ -160,11 +164,10 @@ export default {
           return
         }
 
-        // Calculate time range based on selection
         const now = new Date()
         const timeRangeMs = this.timeRange === '12h' 
-          ? 12 * 60 * 60 * 1000  // 12 hours
-          : 7 * 24 * 60 * 60 * 1000  // 1 week
+          ? 12 * 60 * 60 * 1000
+          : 7 * 24 * 60 * 60 * 1000
         const rangeStart = new Date(now.getTime() - timeRangeMs)
         
         const validReadings = readings
@@ -176,7 +179,6 @@ export default {
           return
         }
 
-        // Update current level with the latest reading
         this.currentLevel = validReadings[validReadings.length - 1].value.toFixed(3)
 
         const labels = validReadings.map(reading => reading.recordedAt)
@@ -204,9 +206,8 @@ export default {
       }
     }
   },
-  mounted() {
+  async mounted() {
     this.fetchData()
-    // Refresh data every 5 minutes
     setInterval(this.fetchData, 5 * 60 * 1000)
   }
 }
