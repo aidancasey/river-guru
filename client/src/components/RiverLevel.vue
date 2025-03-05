@@ -121,7 +121,7 @@ export default {
         },
         plugins: {
           legend: {
-            display: true,
+            display: false,  // Hide the legend
             position: 'top',
             onClick: null  // Disable click handling
           },
@@ -268,9 +268,9 @@ export default {
 
 .current-level {
   position: absolute;
-  top: 50%;
+  top: 20%;  /* Position at 20% from the top of the chart */
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);  /* Center both horizontally and vertically */
   font-size: 24px;
   font-weight: bold;
   color: #4CAF50;

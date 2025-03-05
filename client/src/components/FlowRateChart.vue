@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h2 v-if="displayHeading" class="location-heading">{{ displayHeading }}</h2>
     <div class="time-range-selector">
       <button 
         :class="{ active: timeRange === '12h' }" 
@@ -60,6 +61,13 @@ export default {
   components: {
     FlowRateLineChart
   },
+  props: {
+    displayHeading: {
+      type: String,
+      required: false,
+      default: ''
+    }
+  },
   data() {
     return {
       timeRange: '12h',
@@ -103,7 +111,7 @@ export default {
           },
           y: {
             title: {
-              display: true,
+              display: false,  // Hide the y-axis title
               text: 'Flow Rate (m³/s)'
             },
             grid: {
@@ -113,7 +121,7 @@ export default {
         },
         plugins: {
           legend: {
-            display: true,
+            display: false,  // Hide the legend
             position: 'top',
             onClick: null  // Disable click handling
           },
@@ -216,6 +224,15 @@ export default {
 </script>
 
 <style scoped>
+.location-heading {
+  font-size: 2rem;
+  font-weight: 300;
+  color: #2c3e50;
+  margin: 1.5rem 0;
+  text-align: center;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
 .time-range-selector {
   margin-bottom: 1rem;
   display: flex;
@@ -251,9 +268,9 @@ export default {
 
 .current-flow-rate {
   position: absolute;
-  top: 50%;
+  top: 20%;  /* Position at 20% from the top of the chart */
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);  /* Center both horizontally and vertically */
   font-size: 24px;
   font-weight: bold;
   color: #2196F3;

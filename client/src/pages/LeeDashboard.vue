@@ -3,7 +3,8 @@
     <v-container fluid fill-height>
       <v-row>
         <v-col>
-          <flow-rate-chart />
+          <flow-rate-chart 
+          displayHeading="Inniscarra Dam Flow" />
         </v-col>
       </v-row>
       <v-row>
