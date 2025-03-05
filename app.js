@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cors(corsOptions));
 
-console.log('in a runnig');
+console.log('server is running');
 // Require our routes into the application.
 require('./server/routes')(app);
 

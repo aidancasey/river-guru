@@ -142,7 +142,6 @@ export default {
     async fetchData() {
       try {
         const timestamp = new Date().getTime()
-        console.log('Fetching water level data...')
         const response = await fetch(`/api/levels/lee/ovens/latest?_t=${timestamp}`, {
           headers: {
             'Cache-Control': 'no-cache',
@@ -155,11 +154,9 @@ export default {
         }
         
         const readings = await response.json()
-        console.log('Raw API response:', readings)
-        console.log('Response status:', response.status)
         
         if (!Array.isArray(readings) || readings.length === 0) {
-          console.warn('No water level readings received')
+          console.warn('No water level readings available')
           return
         }
 
@@ -175,16 +172,12 @@ export default {
           .sort((a, b) => new Date(a.recordedAt) - new Date(b.recordedAt))
 
         if (validReadings.length === 0) {
-          console.warn(`No water level readings found in the last ${this.timeRange}`)
+          console.warn(`No water level readings found in the selected time range`)
           return
         }
 
         // Update current level with the latest reading
         this.currentLevel = validReadings[validReadings.length - 1].value.toFixed(3)
-
-        console.log('First reading:', validReadings[0])
-        console.log('Last reading:', validReadings[validReadings.length - 1])
-        console.log('Number of readings:', validReadings.length)
 
         const labels = validReadings.map(reading => reading.recordedAt)
         const values = validReadings.map(reading => reading.value)
@@ -207,11 +200,7 @@ export default {
           ]
         }
       } catch (error) {
-        console.error('Error fetching water level data:', error)
-        console.error('Error details:', {
-          message: error.message,
-          stack: error.stack
-        })
+        console.error('Error fetching water level data:', error.message)
       }
     }
   },
@@ -268,17 +257,17 @@ export default {
 
 .current-level {
   position: absolute;
-  top: 20%;  /* Position at 20% from the top of the chart */
+  top: 20%;
   left: 50%;
-  transform: translate(-50%, -50%);  /* Center both horizontally and vertically */
-  font-size: 24px;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
   font-weight: bold;
   color: #4CAF50;
   text-align: center;
-  z-index: 10;
+  z-index: 1;
   background: rgba(255, 255, 255, 0.9);
-  padding: 10px 20px;
-  border-radius: 8px;
+  padding: 8px 16px;
+  border-radius: 6px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
